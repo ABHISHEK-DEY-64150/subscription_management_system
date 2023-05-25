@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>registration</title>
+
+</head>
+<body>
+
+<h1 style="color:red">Register a Customer</h1>
+
+<form action ="/customerRegister" method="POST">
+<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+<input type="name" name="customer[name]" placeholder="name">
+<input type="email" name="customer[email]" placeholder="enail">
+<input type="password" name="customer[password]" placeholder="password">
+<input type="password" name="customer[password_confirmation]" placeholder="password_confirmation">
+
+
+<input type="submit" name="submit" class="submit">
+</form>
+</body>
+</html>
+

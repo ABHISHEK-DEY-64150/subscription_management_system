@@ -13,9 +13,16 @@ Rails.application.routes.draw do
 
   # after login admin the admin lands on admin dashboard
 
-  get "/adminDashboard" => "providers#dashboard"
+  get "/providerDashboard" => "providers#dashboard"
 
   #logout of admin on admindashboard
 
   delete "/logoutadmin" => 'providers#destroy'
+
+  #Registration of a user by provider
+
+  get "/customerregistration" => 'providers#userregister'
+
+  post "/customerRegister" => 'providers#customerRegister'
+
 end
