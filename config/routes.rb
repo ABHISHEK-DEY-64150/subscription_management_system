@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   #login of provider
 
+  get "/providerLogin" => "providers#signIn"
+
   post "/providerlogin" => "providers#loginprovider"
 
 
@@ -24,5 +26,16 @@ Rails.application.routes.draw do
   get "/customerregistration" => 'providers#userregister'
 
   post "/customerRegister" => 'providers#customerRegister'
+
+
+  #Customer functionalities
+
+  post "/customerLogin" => "customers#loginCustomer"
+
+  get "/customerlogin" => "customers#signIn"
+
+  get "/customerDashboard" => "customers#dashboard"
+
+  delete "/logoutcustomer" => 'customers#destroy'
 
 end

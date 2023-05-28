@@ -1,5 +1,5 @@
 class ProvidersController < ApplicationController
-    before_action :require_provider_logged_in ,only: [:dashboard ,:userregister]
+    before_action :require_provider_logged_in ,only: [:dashboard, :userregister]
     def home
          puts alert
     end
@@ -9,7 +9,7 @@ class ProvidersController < ApplicationController
     end
 
     def userregister
-        puts "customer register page loaded"
+
     end
 
     def customerRegister
