@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Packlages</title>
+
+</head>
+<body>
+
+<h1 style="color:red">Add Packages</h1>
+
+<form action ="/add_Package" method="POST">
+
+<input type="description" name="packages[description]" placeholder="description">
+<input type="price" name="packages[price]" placeholder="price">
+
+<select name="packages[servicetype]" id="anything" >
+  <option value="Internet">Internet</option>
+  <option value="Cable">Cable</option>
+  <option value="Paper">Paper</option>
+</select>
+
+<input type="submit" name="submit" class="submit">
+</form>
+</body>
+</html>
+

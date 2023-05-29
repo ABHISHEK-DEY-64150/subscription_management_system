@@ -1,11 +1,15 @@
 class ProvidersController < ApplicationController
-    before_action :require_provider_logged_in ,only: [:dashboard, :userregister]
+    before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages]
     def home
          puts alert
     end
 
     def dashboard
         puts notice
+    end
+
+    def addPackages
+
     end
 
     def userregister
@@ -43,6 +47,22 @@ class ProvidersController < ApplicationController
         redirect_to '/'
       end  
 
+
+
+    def add_Package
+
+        package = Package.new(packages_params)
+
+        package.provider_id = session[:provider_id]
+
+        if package.save
+         redirect_to '/providerDashboard'
+        else
+         flash[:register_errors] = package.errors.full_messages
+         redirect_to '/'
+        end
+    end    
+
   private
   def login_params
     params.require(:loginprovider).permit(:email,:password);
@@ -53,4 +73,11 @@ class ProvidersController < ApplicationController
   def customer_params
       params.require(:customer).permit(:name,:email,:password,:password_confirmation);
   end 
+
+  private
+  def packages_params
+      params.require(:packages).permit(:description, :price, :servicetype);
+  end 
+
+
 end

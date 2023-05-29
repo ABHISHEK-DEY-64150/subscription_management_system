@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_072755) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_29_114823) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_072755) do
     t.index ["provider_id"], name: "index_customers_on_provider_id"
   end
 
+  create_table "packages", force: :cascade do |t|
+    t.string "servicetype"
+    t.text "description"
+    t.integer "price"
+    t.integer "provider_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider_id"], name: "index_packages_on_provider_id"
+  end
+
   create_table "providers", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -30,4 +40,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_072755) do
   end
 
   add_foreign_key "customers", "providers"
+  add_foreign_key "packages", "providers"
 end
