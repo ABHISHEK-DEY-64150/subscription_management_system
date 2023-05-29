@@ -27,6 +27,12 @@ Rails.application.routes.draw do
 
   post "/customerRegister" => 'providers#customerRegister'
 
+  #packages by provider
+
+  get "/addpackages" => "providers#addPackages"
+
+  post "/add_Package" => "providers#add_Package"
+
 
   #Customer functionalities
 
