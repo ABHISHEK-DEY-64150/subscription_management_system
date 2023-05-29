@@ -30,7 +30,7 @@ class ProvidersController < ApplicationController
         # puts ">>>>>>>>>>>>>>",provider.email
         if provider && provider.authenticate(login_params[:password])
             session[:provider_id] = provider.id 
-            redirect_to '/providerDashboard',notice: 'Admin Logged in successfully'
+            redirect_to '/providerDashboard',notice: 'Provider Logged in successfully'
         else
           flash[:login_errors] = ['invalid credentials']
           redirect_to '/'
