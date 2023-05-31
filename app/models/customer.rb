@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   belongs_to :provider
+  has_many :CustomerSubscription
   has_secure_password
 
   validates :email, presence: true, length: { maximum: 255 },

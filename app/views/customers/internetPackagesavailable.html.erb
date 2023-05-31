@@ -17,13 +17,28 @@
         <td><%= pack.servicetype %></td>
         <td>
         <%= form_with(model: @mysub, url: addmySubscription_path) do |form| %>
+            
+            
+            <% if flash[:subscription_errors] %>
+            <div ><%= flash[:subscription_errors] %></div>
+            <% end %>
+
             <%= form.hidden_field :package_id, value: pack.id %>
             <%= form.hidden_field :packagedescription, value: pack.description %>
             <%= form.hidden_field :price, value: pack.price %>
             <%= form.hidden_field :servicetype, value: pack.servicetype %>
             <%= form.submit "Subscribe" %>
           <% end %>
+
+          <% if @mysub.errors.any? %>
+          <% @mysub.errors.full_messages.each do |message|%>
+            <%= message %>
+          <% end %>
+        <% end %>
+
+
         </td>
+
       </tr>
     <% end %>
   </tbody>
