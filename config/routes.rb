@@ -44,4 +44,10 @@ Rails.application.routes.draw do
 
   delete "/logoutcustomer" => 'customers#destroy'
 
+  #available packages of customer
+
+  get "/internetPackagesavailable" => "customers#internetPackagesavailable"
+
+  post "/addmySubscription" => "customers#addmySubscription"
+
 end

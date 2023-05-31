@@ -3,6 +3,34 @@ class CustomersController < ApplicationController
 
     def dashboard
       puts notice
+      @package = Package.all 
+    end
+
+
+    def internetPackagesavailable
+        @internetPackage = Package.where("servicetype = 'Cable'")
+    end
+
+
+    def addmySubscription
+        
+        puts "=====subs====>",params
+        puts "ppppp--->",params[:packagedescription]
+        @mysub = CustomerSubscription.new()
+        @mysub.servicetype = params[:servicetype]
+        @mysub.packagedescription = params[:packagedescription]
+        @mysub.price = params[:price]
+        @mysub.package_id = params[:package_id]
+        @mysub.customer_id = session[:customer_id]
+        customer = Customer.find_by(id: session[:customer_id])
+        @mysub.provider_id = customer.provider_id
+
+        if @mysub.save
+          redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
+        else
+          redirect_to "/internetPackagesavailable"
+
+        end
     end
 
 
@@ -28,5 +56,10 @@ class CustomersController < ApplicationController
     def customer_login_params
       params.require(:logincustomer).permit(:email,:password);
     end  
+
+    private 
+    def customerSub_params
+        params.require(:mysub).permit(:servicetype , :packagedescription, :price, :package_id)
+    end
   
 end
