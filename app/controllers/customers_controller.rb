@@ -9,6 +9,8 @@ class CustomersController < ApplicationController
 
     def internetPackagesavailable
         @internetPackage = Package.where("servicetype = 'Cable'")
+        @mysub = CustomerSubscription.new
+
     end
 
 
@@ -16,7 +18,7 @@ class CustomersController < ApplicationController
         
         puts "=====subs====>",params
         puts "ppppp--->",params[:packagedescription]
-        @mysub = CustomerSubscription.new()
+        @mysub = CustomerSubscription.new
         @mysub.servicetype = params[:servicetype]
         @mysub.packagedescription = params[:packagedescription]
         @mysub.price = params[:price]
@@ -28,7 +30,11 @@ class CustomersController < ApplicationController
         if @mysub.save
           redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
         else
-          redirect_to "/internetPackagesavailable"
+          # flash[:subscription_errors] = "Already subscribed"
+          
+          # redirect_to "/internetPackagesavailable",status:unprocessable_entity
+          puts @mysub.errors.full_messages
+          render :internetPackagesavailable, status: :unprocessable_entity, content_type: "text/html"
 
         end
     end
