@@ -11,35 +11,56 @@
   </thead>
   <tbody>
     <% @internetPackage.each do |pack| %>
+
       <tr>
         <td><%= pack.description %></td>
         <td><%= pack.price %></td>
         <td><%= pack.servicetype %></td>
+
         <td>
         <%= form_with(model: @mysub, url: addmySubscription_path) do |form| %>
-            
-            
-            <% if flash[:subscription_errors] %>
-            <div ><%= flash[:subscription_errors] %></div>
-            <% end %>
-
             <%= form.hidden_field :package_id, value: pack.id %>
             <%= form.hidden_field :packagedescription, value: pack.description %>
             <%= form.hidden_field :price, value: pack.price %>
             <%= form.hidden_field :servicetype, value: pack.servicetype %>
+            <div>
             <%= form.submit "Subscribe" %>
+            <% if flash[:subscription_errors] %>
+            <div ><%= flash[:subscription_errors] %></div>
+            <div ><%= flash[:subscription_errors] = "" %></div>
+            <% end %>
+            </div>        
           <% end %>
 
-          <% if @mysub.errors.any? %>
-          <% @mysub.errors.full_messages.each do |message|%>
-            <%= message %>
-          <% end %>
-        <% end %>
-
-
+         
         </td>
 
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
+<div>
+<h1>Your Subscribed packages</h1>
+<table>
+  <thead>
+    <tr>
+      <th>description</th>
+      <th>price</th>
+      <th>servicetype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customersInternet.each do |pack| %>
+
+      <tr>
+        <td><%= pack.packagedescription %></td>
+        <td><%= pack.price %></td>
+        <td><%= pack.servicetype %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
