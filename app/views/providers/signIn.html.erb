@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>login</title>
-</head>
-<body>
-<h1>Login Provider</h1>
+  <head>
+    <title>login</title>
+   
+    <%= stylesheet_link_tag "login_page_style", "data-turbo-track": "reload" %>
+  </head>
 
-<form action="/providerlogin" method="POST">
-<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
- <input type="email" name="loginprovider[email]" placeholder="email">
- <input type="password" name="loginprovider[password]" placeholder="password">
- <input type="submit" name="submit" class="submit">
-</form>
+  <body>
 
-</body>
+  
+
+    <div class="wrapper">
+      <div class="inner-warpper text-center">
+        <h1>Login Provider</h1>
+
+        <form action="/providerlogin" method="POST">
+          <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%=form_authenticity_token%>"
+          />
+
+          <div class="input-group">
+            <label class="palceholder" for="email">Email</label>
+            <input
+              class="form-control" 
+              type="email"
+              name="loginprovider[email]"
+              id="userName"
+              placeholder=""
+            />
+            <span class="lighting"></span>
+          </div>
+
+
+
+
+          <div class="input-group">
+            <input
+              type="password"
+              name="loginprovider[password]"
+              placeholder="password"
+            />
+            <span class="lighting"></span>
+          </div>
+
+
+          <input type="submit" name="submit" class="submit" />
+        </form>
+      </div>
+    </div>
+
+   
+  </body>
+
+
 </html>
