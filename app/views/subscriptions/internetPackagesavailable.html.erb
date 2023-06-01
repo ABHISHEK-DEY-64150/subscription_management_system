@@ -30,9 +30,7 @@
             <div ><%= flash[:subscription_errors] = "" %></div>
             <% end %>
             </div>        
-          <% end %>
-
-         
+          <% end %> 
         </td>
 
       </tr>
@@ -52,13 +50,20 @@
     </tr>
   </thead>
   <tbody>
-    <% @customersInternet.each do |pack| %>
+    <% @customersInternet.each do |p| %>
 
       <tr>
-        <td><%= pack.packagedescription %></td>
-        <td><%= pack.price %></td>
-        <td><%= pack.servicetype %></td>
+        <td><%= p.packagedescription %></td>
+        <td><%= p.price %></td>
+        <td><%= p.servicetype %></td>
+        <td>
+        <%= button_to "Unsubscribe", unsubscribe_path(p), method: :delete ,data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
+        </td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
