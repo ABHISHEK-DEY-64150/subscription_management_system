@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>login</title>
-</head>
-<body>
+  <head>
+    <title>login</title>
+  </head>
+  <body>
+    <div class="container">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="">Service</a></li>
+            <li><a href="#contact">About</a></li>
+            <li style="float: right">
+              <%= link_to "Provider Login", providerLogin_path, method: :get %>
+            </li>
+            <li style="float: right">
+              <%= link_to "Customer Login", customerlogin_path, method: :get %>
+            </li>
+          </ul>
+    </div>
+    <div class="grid-container">
+        <div class="grid-item" ><img src="https://img.freepik.com/free-vector/internet-day-concept-illustration_114360-5303.jpg" alt="Internet" >
+            <figcaption>Internet</figcaption>
+        </div>
+        <div class="grid-item"><img src="https://data1.ibtimes.co.in/en/full/630758/tv.jpg" alt="Cable" width="500" height="600">
+            <figcaption>Cable</figcaption>
+        </div>
+         <div class="grid-item"><img src="https://prod-media-eng.dhakatribune.com/uploads/2020/04/bigstock-newspapers-folded-and-stacked-345951880-1587641033688.jpg" alt="Newspaper" width="500" height="600">
+            <figcaption>Newspaper</figcaption>
+        </div>
+        
+      </div>
+      
+    
 
-<%= button_to "Provider Login", providerLogin_path, method: :get %>
-<%= button_to "Customer Login", customerlogin_path, method: :get%>
-
-</body>
+  </body>
 </html>
