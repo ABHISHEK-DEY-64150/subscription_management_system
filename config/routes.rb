@@ -46,8 +46,10 @@ Rails.application.routes.draw do
 
   #available packages of customer
 
-  get "/internetPackagesavailable" => "customers#internetPackagesavailable"
+  get "/internetPackagesavailable" => "subscriptions#internetPackagesavailable"
 
-  post "/addmySubscription" => "customers#addmySubscription"
+  post "/addmySubscription" => "subscriptions#addmySubscription"
+
+  delete "/unsubscribe/:id" => "subscriptions#destroy", as:"unsubscribe"
 
 end
