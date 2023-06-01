@@ -8,7 +8,7 @@ class SubscriptionsController < ApplicationController
       
           def addmySubscription
               
-              # puts "=====subs====>",params
+              puts "=====subs====>",params
               # puts "ppppp--->",params[:packagedescription]
               @mysub = CustomerSubscription.new
               @mysub.servicetype = params[:servicetype]
