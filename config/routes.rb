@@ -52,4 +52,9 @@ Rails.application.routes.draw do
 
   delete "/unsubscribe/:id" => "subscriptions#destroy", as:"unsubscribe"
 
+  #payment
+  get "/payment/:id" =>"payments#payment",as:"showPaymentforPackage"
+
+  post "/makepayment" => "payments#makePayment",as:"paymentforpackage"
+
 end

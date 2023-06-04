@@ -1,0 +1,24 @@
+<h1> Pay For the Package</h1>
+<table>
+  <thead>
+    <tr>
+      <th><%= @unpaidpack.packagedescription %></th>
+      <th><%= @unpaidpack.price %></th>
+      <th><%= @unpaidpack.servicetype %></th>
+      <th><%= @unpaidpack.dues %></th>
+      <th> <%= @unpaidpack.dues * @unpaidpack.price %></th> 
+    </tr>
+  </thead>
+</table>
+
+<%= form_with(model: @mysub, url: paymentforpackage_path) do |form| %>
+    <%= form.hidden_field :subscription_id, value: @unpaidpack.id %>
+    <%= form.hidden_field :packagedescription, value: @unpaidpack.packagedescription %>
+    <%= form.hidden_field :price, value: @unpaidpack.price %>
+    <%= form.hidden_field :servicetype, value: @unpaidpack.servicetype %>
+    <%= form.hidden_field :dues, value: @unpaidpack.dues %>
+    <%= form.hidden_field :amount, value: @unpaidpack.dues * @unpaidpack.price %>
+    <%= form.label :enter_card_number %>
+     <%= form.number_field:number_field %>
+    <%= form.submit "make payment" %>       
+  <% end %> 

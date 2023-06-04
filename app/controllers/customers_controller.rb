@@ -4,6 +4,8 @@ class CustomersController < ApplicationController
     def dashboard
       puts notice
       @package = Package.all 
+      @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
+
     end
 
 

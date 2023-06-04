@@ -4,11 +4,12 @@ class SubscriptionsController < ApplicationController
           def internetPackagesavailable
               @internetPackage = Package.where("servicetype = 'Cable'")
               @customersInternet = CustomerSubscription.where(customer_id: session[:customer_id],servicetype:"Cable")
+             
           end
       
           def addmySubscription
               
-              # puts "=====subs====>",params
+              puts "=====subs====>",params
               # puts "ppppp--->",params[:packagedescription]
               @mysub = CustomerSubscription.new
               @mysub.servicetype = params[:servicetype]
@@ -18,6 +19,7 @@ class SubscriptionsController < ApplicationController
               @mysub.customer_id = session[:customer_id]
               customer = Customer.find_by(id: session[:customer_id])
               @mysub.provider_id = customer.provider_id
+              @mysub.dues = 2
       
               if @mysub.save
                 redirect_to "/internetPackagesavailable",notice: 'Customer subscribed successfully'

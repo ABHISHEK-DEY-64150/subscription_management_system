@@ -21,6 +21,32 @@
 </table>
 
 
+<h1> Due Packages</h1>
+<table>
+  <thead>
+    <tr>
+      <th>description</th>
+      <th>price</th>
+      <th>servicetype</th>
+      <th>dues</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @duePackages.each do |p| %>
+      <tr>
+        <td><%= p.packagedescription %></td>
+        <td><%= p.price %></td>
+        <td><%= p.servicetype %></td>
+        <td><%= p.dues %></td>
+        <td>
+        <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <%= button_to "Internet", internetPackagesavailable_path, method: :get %>
 
 
