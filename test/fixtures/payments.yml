@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider_id: 1
+  customer_id: 1
+  subscription_id: 1
+  amount: 1
+  timestamp: 2023-06-04
+  txid: MyText
+  dues: 1
+
+two:
+  provider_id: 1
+  customer_id: 1
+  subscription_id: 1
+  amount: 1
+  timestamp: 2023-06-04
+  txid: MyText
+  dues: 1
