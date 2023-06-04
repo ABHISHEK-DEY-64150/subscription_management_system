@@ -59,13 +59,14 @@
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     font-size: 30px;
-    
     text-align: center;
   }
 
   img {
     filter: brightness(120%);
     filter: contrast(120%);
+    width: 30vw;
     height: 65vh;
+    
     filter: drop-shadow(10px 10px 10px rgb(218, 239, 218));
  }

@@ -38,18 +38,18 @@ body {
   }
   a:hover,
   a:focus {
-    color: #00755d;
+    color: #668871;
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
   }
   .text-primary {
-    color: #00A885;
+    color: #668871;
   }
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
   }
   .logo h1 {
-    color: #00A885;
+    color: #668871;
     margin-bottom: -12px;
   }
   input[type="checkbox"] {
@@ -57,7 +57,7 @@ body {
   }
   button {
     cursor: pointer;
-    background: #00A885;
+    background: #668871;
     width: 100%;
     border: 0;
     padding: 10px 15px;
@@ -89,7 +89,7 @@ body {
     top: 9px;
     left: 10px;
     font-size: 16px;
-    color: #cdcdcd;
+    color: #668871;
     font-weight: normal;
     padding: 2px 5px;
     z-index: 5;
@@ -112,7 +112,7 @@ body {
     transition: 0.3s ease;
   }
   .input-group .lighting {
-    background: #00A885;
+    background: #668871;
     width: 0;
     height: 2px;
     display: inline-block;

@@ -2,19 +2,16 @@
 <html>
   <head>
     <title>login</title>
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <%= stylesheet_link_tag "login_page_style", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-
-  
-
     <div class="wrapper">
       <div class="inner-warpper text-center">
-        <h1>Login Provider</h1>
+        <h1 class="title" >Login Provider</h1>
 
-        <form action="/providerlogin" method="POST">
+        <form action="/providerlogin" method="POST" >
           <input
             type="hidden"
             name="authenticity_token"
@@ -22,37 +19,62 @@
           />
 
           <div class="input-group">
-            <label class="palceholder" for="email">Email</label>
+            <label class="palceholder" for="userEmail">Email</label>
             <input
-              class="form-control" 
+              class="form-control"
               type="email"
               name="loginprovider[email]"
-              id="userName"
+              id="userEmail"
               placeholder=""
             />
             <span class="lighting"></span>
           </div>
 
-
-
-
           <div class="input-group">
+            <label class="palceholder" for="userPassword">Password</label>
             <input
-              type="password"
+              class="form-control" 
               name="loginprovider[password]"
-              placeholder="password"
+              id="userPassword"
+              type="password"
+              placeholder=""
             />
             <span class="lighting"></span>
           </div>
 
-
-          <input type="submit" name="submit" class="submit" />
+          <button type="submit" >Login</button>
         </form>
       </div>
     </div>
 
-   
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+    <script>
+      + function($) {
+  $('.palceholder').click(function() {
+    $(this).siblings('input').focus();
+  });
+
+  $('.form-control').focus(function() {
+    $(this).parent().addClass("focused");
+  });
+
+  $('.form-control').blur(function() {
+    var $this = $(this);
+    if ($this.val().length == 0)
+      $(this).parent().removeClass("focused");
+  });
+  $('.form-control').blur();
+
+  // validetion
+  $.validator.setDefaults({
+    errorElement: 'span',
+    errorClass: 'validate-tooltip'
+  });
+
+
+}(jQuery);
+    </script>
+    
   </body>
-
-
 </html>
