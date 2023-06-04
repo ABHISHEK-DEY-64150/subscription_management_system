@@ -72,3 +72,6 @@ group :test do
 end
 
 gem "jsbundling-rails", "~> 1.1"
+gem 'jquery-rails'
+gem 'sassc-rails'
+gem 'jquery-cdn'
