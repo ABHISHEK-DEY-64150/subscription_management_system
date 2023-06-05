@@ -3,7 +3,8 @@ class CustomersController < ApplicationController
 
     def dashboard
       puts notice
-      @package = Package.all 
+      # @package = Package.all 
+      @customersInternet = CustomerSubscription.where(customer_id: session[:customer_id],servicetype:"Cable")
       @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
 
     end

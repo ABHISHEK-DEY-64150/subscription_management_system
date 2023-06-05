@@ -1,6 +1,7 @@
 <h1>Customer dashboard </h1>
 
-<h1>Packages</h1>
+<div>
+<h1>Your Subscribed packages</h1>
 <table>
   <thead>
     <tr>
@@ -10,15 +11,26 @@
     </tr>
   </thead>
   <tbody>
-    <% @package.each do |pack| %>
+    <% @customersInternet.each do |p| %>
+
       <tr>
-        <td><%= pack.description %></td>
-        <td><%= pack.price %></td>
-        <td><%= pack.servicetype %></td>
+        <td><%= p.packagedescription %></td>
+        <td><%= p.price %></td>
+        <td><%= p.servicetype %></td>
+        <td>
+        <%= button_to "Unsubscribe", unsubscribe_path(p), method: :delete ,data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
+        </td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
+
+</div>
+
 
 
 <h1> Due Packages</h1>
@@ -47,7 +59,7 @@
 </table>
 
 
-<%= button_to "Internet", internetPackagesavailable_path, method: :get %>
+<%= button_to "subscribe to new Package", selectpackage_path, method: :get %>
 
 
 <%= button_to "Logout", logoutcustomer_path, method: :delete %>

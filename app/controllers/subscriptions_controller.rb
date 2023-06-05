@@ -1,11 +1,21 @@
 class SubscriptionsController < ApplicationController
         before_action :require_customer_logged_in ,only: [:internetPackagesavailable]
-           
-          def internetPackagesavailable
-              @internetPackage = Package.where("servicetype = 'Cable'")
-              @customersInternet = CustomerSubscription.where(customer_id: session[:customer_id],servicetype:"Cable")
-             
+          def selectpackage
+            
           end
+          
+          def internetPackagesavailable
+              @internetPackage = Package.where("servicetype = 'Internet'")             
+          end
+
+          def cablePackagesavailable
+            @cablePackage = Package.where("servicetype = 'Cable'")  
+          end
+
+          def paperPackagesavailable
+            @paperPackage = Package.where("servicetype = 'Paper'")  
+          end
+
       
           def addmySubscription
               
@@ -42,7 +52,7 @@ class SubscriptionsController < ApplicationController
             @customerSubscriptionrecord = CustomerSubscription.find(params[:id])
             puts "unsubscribe an article =========>>>>>",params 
             @customerSubscriptionrecord.destroy
-            redirect_to "/internetPackagesavailable"
+            redirect_to "/customerDashboard"
           end
       
           private 
