@@ -1,4 +1,27 @@
-<h1>Customer dashboard </h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="container">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="">Service</a></li>
+        <li><a href="#contact">About</a></li>
+        <li  style="float: right">
+          <%= button_to "Logout", logoutcustomer_path, method: :delete, class: "li_button" %>
+        </li>
+        <li style="float: right">
+          <%= link_to "My Subscription", customerlogin_path, method: :get %>
+        </li>
+      </ul>
+    </div>
+
 
 <div>
 <h1>Your Subscribed packages</h1>
@@ -30,34 +53,32 @@
 </table>
 
 </div>
+ 
 
-
-
-<h1> Due Packages</h1>
-<table>
-  <thead>
-    <tr>
-      <th>description</th>
-      <th>price</th>
-      <th>servicetype</th>
-      <th>dues</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @duePackages.each do |p| %>
-      <tr>
-        <td><%= p.packagedescription %></td>
-        <td><%= p.price %></td>
-        <td><%= p.servicetype %></td>
-        <td><%= p.dues %></td>
-        <td>
-        <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    <h1>Due Packages</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>description</th>
+          <th>price</th>
+          <th>servicetype</th>
+          <th>dues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @duePackages.each do |p| %>
+        <tr>
+          <td><%= p.packagedescription %></td>
+          <td><%= p.price %></td>
+          <td><%= p.servicetype %></td>
+          <td><%= p.dues %></td>
+          <td>
+            <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 <%= button_to "subscribe to new Package", selectpackage_path, method: :get %>
 
