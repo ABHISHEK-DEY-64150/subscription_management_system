@@ -1,10 +1,10 @@
 class CustomersController < ApplicationController
   before_action :require_customer_logged_in ,only: [:dashboard]
-
+  before_action :update_dues
     def dashboard
       puts notice
       # @package = Package.all 
-      @customersInternet = CustomerSubscription.where(customer_id: session[:customer_id],servicetype:"Cable")
+      @customerspackage = CustomerSubscription.where(customer_id: session[:customer_id])
       @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
 
     end
@@ -24,11 +24,28 @@ class CustomersController < ApplicationController
     end
 
     def destroy
-        session[:customer_id] = nil
+        session[:customer_id] = nil  
         redirect_to '/customerlogin'
     end  
 
+    def update_dues
+      @duePackages = CustomerSubscription.where(customer_id: session[:customer_id])
 
+      @duePackages.each do |pack|
+          update_date = pack.updated_at.to_date
+          current_date = Date.today
+
+          days_diff = (current_date - update_date).to_i
+
+          if days_diff >=1
+             days_diff = pack.dues + days_diff
+             pack.update(dues:days_diff)
+          else
+            pack.update(dues:pack.dues)
+          end
+      end
+
+    end
 
     private
     def customer_login_params

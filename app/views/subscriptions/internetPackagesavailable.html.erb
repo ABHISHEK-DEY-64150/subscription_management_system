@@ -22,6 +22,7 @@
 
         <td>
         <%= form_with(model: @mysub, url: addmySubscription_path) do |form| %>
+
             <%= form.hidden_field :package_id, value: pack.id %>
             <%= form.hidden_field :packagedescription, value: pack.description %>
             <%= form.hidden_field :price, value: pack.price %>
@@ -29,6 +30,7 @@
             <div>
             <%= form.submit "Subscribe" %>
             </div>
+
           <% end %> 
         </td>
 

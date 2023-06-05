@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   get "/customerDashboard" => "customers#dashboard"
 
-  delete "/logoutcustomer" => 'customers#destroy'
+  delete "/logoutcustomer" => 'customers#destroy',as: "logoutcustomer"
 
   #available packages of customer
 

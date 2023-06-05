@@ -1,11 +1,13 @@
 class SubscriptionsController < ApplicationController
         before_action :require_customer_logged_in ,only: [:internetPackagesavailable]
+        
           def selectpackage
             
           end
-          
+
           def internetPackagesavailable
-              @internetPackage = Package.where("servicetype = 'Internet'")             
+              @internetPackage = Package.where("servicetype = 'Internet'")
+              # @mysub = CustomerSubscription.new              
           end
 
           def cablePackagesavailable
@@ -32,13 +34,15 @@ class SubscriptionsController < ApplicationController
               @mysub.dues = 2
       
               if @mysub.save
-                redirect_to "/internetPackagesavailable",notice: 'Customer subscribed successfully'
+                redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
               else
+                # flash[:subscription_errors] = "Already subscribed"
+
+                @mysub.errors.full_messages
+
+                puts "eeeeeeeeee----->>>>",error_message
                 
-      
-                flash[:subscription_errors] = "Already subscribed"
-                
-                redirect_to "/internetPackagesavailable"
+                # redirect_to "/customerDashboard"
                 # puts @mysub.errors.full_messages
                 # render :internetPackagesavailable, status: :unprocessable_entity, content_type: "text/html"
       
@@ -54,6 +58,8 @@ class SubscriptionsController < ApplicationController
             @customerSubscriptionrecord.destroy
             redirect_to "/customerDashboard"
           end
+
+
       
           private 
           def customerSub_params

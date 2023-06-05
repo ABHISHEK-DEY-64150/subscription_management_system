@@ -14,7 +14,7 @@
         <li><a href="">Service</a></li>
         <li><a href="#contact">About</a></li>
         <li  style="float: right">
-          <%= button_to "Logout", logoutcustomer_path, method: :delete, class: "li_button" %>
+          <%= button_to "Logout", logoutcustomer_path, method: :delete %>
         </li>
         <li style="float: right">
           <%= link_to "My Subscription", customerlogin_path, method: :get %>
@@ -34,7 +34,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @customersInternet.each do |p| %>
+    <% @customerspackage.each do |p| %>
 
       <tr>
         <td><%= p.packagedescription %></td>
