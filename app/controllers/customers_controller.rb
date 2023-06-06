@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :require_customer_logged_in ,only: [:dashboard]
-  before_action :update_dues
+  # before_action :update_dues
     def dashboard
       puts notice
       # @package = Package.all 
@@ -28,24 +28,24 @@ class CustomersController < ApplicationController
         redirect_to '/customerlogin'
     end  
 
-    def update_dues
-      @duePackages = CustomerSubscription.where(customer_id: session[:customer_id])
+    # def update_dues
+    #   @duePackages = CustomerSubscription.where(customer_id: session[:customer_id])
 
-      @duePackages.each do |pack|
-          update_date = pack.updated_at.to_date
-          current_date = Date.today
+    #   @duePackages.each do |pack|
+    #       update_date = pack.updated_at.to_date
+    #       current_date = Date.today
 
-          days_diff = (current_date - update_date).to_i
+    #       days_diff = (current_date - update_date).to_i
 
-          if days_diff >=1
-             days_diff = pack.dues + days_diff
-             pack.update(dues:days_diff)
-          else
-            pack.update(dues:pack.dues)
-          end
-      end
+    #       if days_diff >=1
+    #          days = pack.dues + days_diff
+    #          pack.update(dues:days)
+    #       else
+    #         pack.update(dues:pack.dues)
+    #       end
+    #   end
 
-    end
+    # end
 
     private
     def customer_login_params

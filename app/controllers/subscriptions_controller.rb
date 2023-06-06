@@ -19,35 +19,88 @@ class SubscriptionsController < ApplicationController
           end
 
       
+          # def addmySubscription
+              
+          #     puts "=====subs====>",params
+          #     # puts "ppppp--->",params[:packagedescription]
+          #     @mysub = CustomerSubscription.new
+          #     @mysub.servicetype = params[:servicetype]
+          #     @mysub.packagedescription = params[:packagedescription]
+          #     @mysub.price = params[:price]
+          #     @mysub.package_id = params[:package_id]
+          #     @mysub.customer_id = session[:customer_id]
+          #     customer = Customer.find_by(id: session[:customer_id])
+          #     @mysub.provider_id = customer.provider_id
+          #     @mysub.dues = 2
+      
+          #     if @mysub.save
+          #       redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
+          #     else
+          #       # flash[:subscription_errors] = "Already subscribed"
+
+          #        error_message = @mysub.errors.full_messages
+
+          #        puts "eeeeeeeeee----->>>>",error_message
+                
+          #       # render: "/customerDashboard"
+          #       # puts @mysub.errors.full_messages
+          #       # render :internetPackagesavailable
+          #       #  status: :unprocessable_entity
+          #       @internetPackage = Package.where("servicetype = 'Internet'")
+          #       @cablePackage = Package.where("servicetype = 'Cable'") 
+          #       @paperPackage = Package.where("servicetype = 'Paper'")  
+          #       # puts @internetPackage
+          #       if params[:servicetype] == "Internet"
+          #             render :internetPackagesavailable, @mysub=> @mysub
+          #       elsif params[:servicetype] == "Cable"
+          #             render :cablePackagesavailable, @mysub=> @mysub
+          #       else
+          #         render :paperPackagesavailable, @mysub=> @mysub
+          #       end
+          #     end
+          # end
+
           def addmySubscription
               
-              puts "=====subs====>",params
-              # puts "ppppp--->",params[:packagedescription]
-              @mysub = CustomerSubscription.new
-              @mysub.servicetype = params[:servicetype]
-              @mysub.packagedescription = params[:packagedescription]
-              @mysub.price = params[:price]
-              @mysub.package_id = params[:package_id]
-              @mysub.customer_id = session[:customer_id]
-              customer = Customer.find_by(id: session[:customer_id])
-              @mysub.provider_id = customer.provider_id
-              @mysub.dues = 2
-      
-              if @mysub.save
-                redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
+            puts "=====subs====>",params
+            # puts "ppppp--->",params[:packagedescription]
+            @pack = Package.find(params[:id])
+            puts "dfkjidfbhgj===>",@pack.servicetype
+            @mysub = CustomerSubscription.new
+            @mysub.servicetype = @pack.servicetype
+            @mysub.packagedescription = @pack.description
+            @mysub.price = @pack.price
+            @mysub.package_id = params[:id]
+            @mysub.customer_id = session[:customer_id]
+            @mysub.provider_id = @pack.provider_id
+            @mysub.dues = 2
+    
+            if @mysub.save
+              redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
+            else
+              # flash[:subscription_errors] = "Already subscribed"
+
+               error_message = @mysub.errors.full_messages
+
+               puts "eeeeeeeeee----->>>>",error_message
+              
+              # render: "/customerDashboard"
+              # puts @mysub.errors.full_messages
+              # render :internetPackagesavailable
+              #  status: :unprocessable_entity
+              @internetPackage = Package.where("servicetype = 'Internet'")
+              @cablePackage = Package.where("servicetype = 'Cable'") 
+              @paperPackage = Package.where("servicetype = 'Paper'")  
+              # puts @internetPackage
+              if @pack.servicetype == "Internet"
+                    render :internetPackagesavailable, @mysub=> @mysub
+              elsif @pack.servicetype == "Cable"
+                    render :cablePackagesavailable, @mysub=> @mysub
               else
-                # flash[:subscription_errors] = "Already subscribed"
-
-                @mysub.errors.full_messages
-
-                puts "eeeeeeeeee----->>>>",error_message
-                
-                # redirect_to "/customerDashboard"
-                # puts @mysub.errors.full_messages
-                # render :internetPackagesavailable, status: :unprocessable_entity, content_type: "text/html"
-      
+                    render :paperPackagesavailable, @mysub=> @mysub
               end
-          end
+            end
+        end
       
       
           def destroy

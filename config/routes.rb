@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   get "/selectpackage" => "subscriptions#selectpackage"
 
 
-  post "/addmySubscription" => "subscriptions#addmySubscription"
+  post "/addmySubscription/:id" => "subscriptions#addmySubscription",as:"addMysubscription"
 
   delete "/unsubscribe/:id" => "subscriptions#destroy", as:"unsubscribe"
 
