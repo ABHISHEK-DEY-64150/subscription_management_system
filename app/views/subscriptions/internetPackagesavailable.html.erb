@@ -1,5 +1,9 @@
-<h1>internetPackagesavailable</h1>
-
+<h1>InternetPackagesavailable</h1>
+<% if @mysub.errors.any? %>
+    <% @mysub.errors.full_messages.each do |message|%>
+      <%= message %>
+    <% end %>
+  <% end %>
 <h1>Packages</h1>
 <table>
   <thead>
@@ -19,17 +23,8 @@
         <td><%= pack.description %></td>
         <td><%= pack.price %></td>
         <td><%= pack.servicetype %></td>
-
-        <td>
-        <%= form_with(model: @mysub, url: addmySubscription_path) do |form| %>
-            <%= form.hidden_field :package_id, value: pack.id %>
-            <%= form.hidden_field :packagedescription, value: pack.description %>
-            <%= form.hidden_field :price, value: pack.price %>
-            <%= form.hidden_field :servicetype, value: pack.servicetype %>
-            <div>
-            <%= form.submit "Subscribe" %>
-            </div>
-          <% end %> 
+        <td>       
+            <%= button_to "Subscribe", addMysubscription_path(pack), method: :post %>
         </td>
 
       </tr>

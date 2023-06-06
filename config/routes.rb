@@ -42,7 +42,10 @@ Rails.application.routes.draw do
 
   get "/customerDashboard" => "customers#dashboard"
 
-  delete "/logoutcustomer" => 'customers#destroy' , as: 'logoutcustomer'
+
+  delete "/logoutcustomer" => 'customers#destroy',as: "logoutcustomer"
+
+
   #available packages of customer
 
   get "/internetPackagesavailable" => "subscriptions#internetPackagesavailable"
@@ -54,7 +57,7 @@ Rails.application.routes.draw do
   get "/selectpackage" => "subscriptions#selectpackage"
 
 
-  post "/addmySubscription" => "subscriptions#addmySubscription"
+  post "/addmySubscription/:id" => "subscriptions#addmySubscription",as:"addMysubscription"
 
   delete "/unsubscribe/:id" => "subscriptions#destroy", as:"unsubscribe"
 
