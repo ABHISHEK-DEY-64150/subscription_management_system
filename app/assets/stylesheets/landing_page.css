@@ -1,0 +1,98 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #668871;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+   /* Change the link color to #111 (black) on hover */
+   li a:hover {
+    background-color: #111;
+  }
+
+    
+  li button {
+    display: block;
+    border: none;
+    background-color: #668871;
+    color: white;
+    text-align: center;
+    font-family: arial, sans-serif;
+    padding: 14px 16px;
+    cursor: pointer;
+    font: inherit;
+  }
+   /* Change the link color to #111 (black) on hover */
+   li button:hover {
+    background-color: #111;
+  }
+
+ 
+  .container{
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px; 
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .grid-container {
+    display: flex;
+    grid-gap: 10px;   
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+  }
+  .grid-container  > * {
+    grid-area: 1/1;
+   
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  img {
+    filter: brightness(120%);
+    filter: contrast(120%);
+    width: 30vw;
+    height: 65vh;
+    
+    filter: drop-shadow(10px 10px 10px rgb(218, 239, 218));
+ }
+
+/* for alart notification */
+
+
+ .alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert.notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.alert.alert {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+/* Add more styles for different types of alerts if needed */
