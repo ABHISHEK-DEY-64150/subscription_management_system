@@ -1,11 +1,13 @@
 class CustomersController < ApplicationController
-  before_action :require_customer_logged_in ,only: [:dashboard]
-  # before_action :update_dues
+  # before_action :update_dues  
+  # prepend_before_action :require_customer_logged_in,only: :update_dues
+  before_action :require_customer_logged_in, :update_dues, only:[:dashboard]
+ 
     def dashboard
       puts notice
       # @package = Package.all 
       @customerspackage = CustomerSubscription.where(customer_id: session[:customer_id])
-      @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
+      @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
 
     end
 
@@ -28,24 +30,29 @@ class CustomersController < ApplicationController
         redirect_to '/customerlogin'
     end  
 
-    # def update_dues
-    #   @duePackages = CustomerSubscription.where(customer_id: session[:customer_id])
+    def update_dues
+      @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]);
+      if @duePackages.nil?
+         redirect_to "/customerDashboard"
+      else
+      @duePackages.each do |pack|
+          update_time = pack.updated_at
+          current_time = Time.now
 
-    #   @duePackages.each do |pack|
-    #       update_date = pack.updated_at.to_date
-    #       current_date = Date.today
+          min_diff = ((current_time - update_time)/60)
+          puts "days_difffffffffffff",min_diff,"pack.dues",pack.dues 
 
-    #       days_diff = (current_date - update_date).to_i
+          if min_diff >=1 && pack.dues.present?
+             days = pack.dues + min_diff
+             puts "days_difffffffffffff2222222",min_diff,"pack.dues",pack.dues 
+             pack.update(dues:days)
+          else
+            pack.update(dues:pack.dues)
+          end
+      end
+    end
 
-    #       if days_diff >=1
-    #          days = pack.dues + days_diff
-    #          pack.update(dues:days)
-    #       else
-    #         pack.update(dues:pack.dues)
-    #       end
-    #   end
-
-    # end
+    end
 
     private
     def customer_login_params

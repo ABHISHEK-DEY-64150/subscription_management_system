@@ -1,4 +1,11 @@
 <h1> Pay For the Package</h1>
+<% if @pay.present? && @pay.errors.any? %>
+    <% @pay.errors.full_messages.each do |message|%>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+<% if @unpaidpack.present? %>
 <table>
   <thead>
     <tr>
@@ -11,14 +18,16 @@
   </thead>
 </table>
 
-<%= form_with(model: @mysub, url: paymentforpackage_path) do |form| %>
+<%= form_with(model: @pay, url: paymentforpackage_path) do |form| %>
     <%= form.hidden_field :subscription_id, value: @unpaidpack.id %>
     <%= form.hidden_field :packagedescription, value: @unpaidpack.packagedescription %>
     <%= form.hidden_field :price, value: @unpaidpack.price %>
     <%= form.hidden_field :servicetype, value: @unpaidpack.servicetype %>
     <%= form.hidden_field :dues, value: @unpaidpack.dues %>
     <%= form.hidden_field :amount, value: @unpaidpack.dues * @unpaidpack.price %>
-    <%= form.label :enter_card_number %>
-     <%= form.number_field:number_field %>
+     <%= form.label :enter_card_number %>
+     <%= form.number_field:card %>
     <%= form.submit "make payment" %>       
   <% end %> 
+
+  <%end%>

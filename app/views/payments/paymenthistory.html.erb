@@ -1,0 +1,17 @@
+<h1> Your transection history</h1>
+
+<table>
+                <tbody>
+                  <% @payhistory.each do |p| %>
+        
+                  <tr>
+                    <td>your package description : <%= p.packagedescription %></td>
+                    <td>Price of package : <%= p.price %></td>
+                    <td>Number of Dues paid : <%= p.dues %></td>
+                    <td>Total Amount : <%= p.amount %></td>
+                    <td>TxId : <%= p.txid %></td>
+                  </tr>
+        
+                  <% end %>
+                </tbody>
+</table>
