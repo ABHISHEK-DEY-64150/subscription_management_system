@@ -1,0 +1,54 @@
+<html>
+  <head></head>
+  <style>
+
+  .sidebar {
+  background-color: #f9f9f9;
+
+  width: 200px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-style: groove;
+}
+
+.sidebar a:hover {
+  color: blue;
+}
+
+.sidebar .logout-button {
+  position: absolute;
+  margin : 50px; 
+  bottom: 10px;
+  left: 10px;
+}
+  </style>
+
+  <body>
+    <div class="sidebar">
+      <a href="/providerDashboard">Dashboard
+        <i class="fa fa-tachometer" aria-hidden="true"></i>
+      </a>
+      <a href="/addpackages">Add new package
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+      </a>
+      <a href="/customerregistration">Register a user
+        <i class="fa fa-users" aria-hidden="true"></i>
+      </a>
+      <a href="/logout" class="logout-button">Logout
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
+
+  </body>
+
+</html>
