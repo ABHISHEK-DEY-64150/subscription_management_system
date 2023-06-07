@@ -40,7 +40,7 @@ class PaymentsController < ApplicationController
 
               
       
-              if @pay.save && @pay.dues > 0
+              if @pay.save && @pay.dues > 0 && @pay.amount > 0 && @pay.card 
                 duePackages = CustomerSubscription.where(id: params[:id])
                 duePackages.update(dues:0)
                 redirect_to "/paymenthistory",notice: 'Payment done'

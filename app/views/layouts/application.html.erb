@@ -2,14 +2,18 @@
 <html>
   <head>
     <title>Ispmanager</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-  
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= csrf_meta_tags %> <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
    
   </head>
 
   <body>
-    <%= yield %>
+    <%  if Currentcustomer.customer.nil? %> 
+    <%= yield %> 
+    <% else %> 
+   
+    <%= render partial: "layouts/sidebar" %> 
+    <% end %>
   </body>
 </html>

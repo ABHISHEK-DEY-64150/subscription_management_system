@@ -1,6 +1,9 @@
 class ProvidersController < ApplicationController
     before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages]
     def home
+         if Currentcustomer.customer.present?
+          redirect_to "/customerDashboard"
+         end
          puts alert
     end
 

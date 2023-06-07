@@ -12,166 +12,77 @@
 
 
       
-    <script>
-      $(document).ready(function(){
-        $(".hamburger .hamburger__inner").click(function(){
-          $(".wrapper").toggleClass("active")
-        })
-  
-        $(".top_navbar .fas").click(function(){
-           $(".profile_dd").toggleClass("active");
-        });
-      })
-    </script>
+ 
   </head>
   <body>
- 
-<!-- SideBar-Menu CSS -->
-<%= stylesheet_link_tag "sidebar", "data-turbo-track": "reload" %>
-
-
-
-    <div class="wrapper">
-      <div class="top_navbar">
-        <div class="hamburger">
-           <div class="hamburger__inner">
-             <div class="one"></div>
-             <div class="two"></div>
-             <div class="three"></div>
-           </div>
-        </div>
-        <div class="menu">
-          <div class="logo">
-            Coding Market
-          </div>
-          <div class="right_menu">
-            <ul>
-              <li><i class="fas fa-user"></i>
-                <div class="profile_dd">
-                   <div class="dd_item"><%= button_to "Logout", logoutcustomer_path, method: :delete %></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-        
-      <div class="main_container">
-          <div class="sidebar">
-              <div class="sidebar__inner">
-                <div class="profile">
-                  <div class="img">
-                    <% image_url = asset_path('pic.png')  %>
-                    <img src="<%= image_url %>" >
-                    <!-- <%= image_tag("pic.png") %> -->
-                  </div>
-                  <div class="profile_info">
-                     <p>Welcome</p>
-                     <p class="profile_name">Alex John</p>
-                  </div>
-                </div>
-                <ul>
-                  <li>
-                    <a href="#" >
-                      <span class="icon"><i class="fas fa-dice-d6"></i></span>
-                      <span class="title">Dashboard</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="icon"><i class="fab fa-delicious"></i></span>
-                      <span class="title">Forms</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="icon"><i class="fab fa-elementor"></i></span>
-                      <span class="title">UI Elements</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="icon"><i class="fas fa-chart-pie"></i></span>
-                      <span class="title">Charts</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span class="icon"><i class="fas fa-border-all"></i></span>
-                      <span class="title">Tables</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-          </div>
-          <div class="container">
-              
-           
-            <div>
-              <h1>Your Subscribed packages</h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>description</th>
-                    <th>price</th>
-                    <th>servicetype</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @customerspackage.each do |p| %>
-        
-                  <tr>
-                    <td><%= p.packagedescription %></td>
-                    <td><%= p.price %></td>
-                    <td><%= p.servicetype %></td>
-                    <td>
-                      <%= button_to "Unsubscribe", unsubscribe_path(p), method: :delete,
-                      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
-                      %>
-                    </td>
-                  </tr>
-        
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-        
-            <h1>Due Packages</h1>
-            <% if @DuePackages.present? %>
+  <div class="container">
+            
+         
+          <div>
+            <h1>Your Subscribed packages</h1>
             <table>
               <thead>
                 <tr>
                   <th>description</th>
                   <th>price</th>
                   <th>servicetype</th>
-                  <th>dues</th>
                 </tr>
               </thead>
               <tbody>
-                <% @DuePackages.each do |p| %>
+                <% @customerspackage.each do |p| %>
+      
                 <tr>
                   <td><%= p.packagedescription %></td>
                   <td><%= p.price %></td>
                   <td><%= p.servicetype %></td>
-                  <td><%= p.dues %></td>
                   <td>
-                    <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
+                    <%= button_to "Unsubscribe", unsubscribe_path(p), method: :delete,
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+                    %>
                   </td>
                 </tr>
+      
                 <% end %>
               </tbody>
             </table>
-            <% end %>
-        
-            <%= button_to "subscribe to new Package", selectpackage_path, method: :get%> 
-            <%= button_to "Logout", logoutcustomer_path, method: :delete %>
-            <%= button_to "transection history", transectionhistory_path, method: :get%>
-              
-            
-     
           </div>
-      </div>
       
-    </div>	
+          <h1>Due Packages</h1>
+          <% if @DuePackages.present? %>
+          <table>
+            <thead>
+              <tr>
+                <th>description</th>
+                <th>price</th>
+                <th>servicetype</th>
+                <th>dues</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @DuePackages.each do |p| %>
+              <tr>
+                <td><%= p.packagedescription %></td>
+                <td><%= p.price %></td>
+                <td><%= p.servicetype %></td>
+                <td><%= p.dues %></td>
+                <td>
+                  <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <% end %>
+      
+          <%= button_to "subscribe to new Package", selectpackage_path, method: :get%> 
+          <%= button_to "Logout", logoutcustomer_path, method: :delete %>
+          <%= button_to "transection history", transectionhistory_path, method: :get%>
+            
+          
+   
+        </div>
+        
+        
+
   </body>
 </html>
