@@ -46,6 +46,7 @@ class PaymentsController < ApplicationController
                 duePackages.update(dues:0)
                 redirect_to "/paymenthistory",notice: 'Payment done' 
 
+
               else
                 #   error_message = @pay.errors.full_messages
                 #   flash[:payment_errors] = error_message
