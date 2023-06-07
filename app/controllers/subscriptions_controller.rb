@@ -6,8 +6,7 @@ class SubscriptionsController < ApplicationController
           end
 
           def internetPackagesavailable
-              @internetPackage = Package.where("servicetype = 'Internet'")
-              # @mysub = CustomerSubscription.new              
+              @internetPackage = Package.where("servicetype = 'Internet'")             
           end
 
           def cablePackagesavailable
@@ -72,8 +71,8 @@ class SubscriptionsController < ApplicationController
             @mysub.price = @pack.price
             @mysub.package_id = params[:id]
             @mysub.customer_id = session[:customer_id]
-            @mysub.provider_id = @pack.provider_id
-            @mysub.dues = 2
+            @mysub.provider_id = @pack.provider_id 
+            @mysub.dues = 1
     
             if @mysub.save
               redirect_to "/customerDashboard",notice: 'Customer subscribed successfully'
@@ -102,10 +101,9 @@ class SubscriptionsController < ApplicationController
             end
         end
       
-      
+        
           def destroy
-            puts "unsubscribe an =========>>>>>",params 
-            
+            puts "unsubscribe an =========>>>>>",params             
             @customerSubscriptionrecord = CustomerSubscription.find(params[:id])
             puts "unsubscribe an article =========>>>>>",params 
             @customerSubscriptionrecord.destroy

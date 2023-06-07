@@ -64,6 +64,8 @@ Rails.application.routes.draw do
   #payment
   get "/payment/:id" =>"payments#payment",as:"showPaymentforPackage"
 
-  post "/makepayment" => "payments#makePayment",as:"paymentforpackage"
+  post "/makepayment/:id" => "payments#makePayment",as:"paymentforpackage"
+
+  get "/paymenthistory" => "payments#paymenthistory",as:"transectionhistory"
 
 end

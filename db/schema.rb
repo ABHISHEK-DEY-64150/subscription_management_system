@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_04_125826) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_132027) do
   create_table "customer_subscriptions", force: :cascade do |t|
     t.string "servicetype"
     t.string "packagedescription"
@@ -57,6 +57,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_125826) do
     t.datetime "updated_at", null: false
     t.integer "card"
     t.integer "package_id"
+    t.string "servicetype"
+    t.string "packagedescription"
+    t.integer "price"
   end
 
   create_table "providers", force: :cascade do |t|
