@@ -1,5 +1,6 @@
 <html>
-  <head></head>
+  <head>
+  </head>
   <style>
 
   .sidebar {
@@ -17,7 +18,8 @@
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  background-color: #123d1d;
+  color: white;
   border-style: groove;
 }
 
@@ -30,6 +32,8 @@
   margin : 50px; 
   bottom: 10px;
   left: 10px;
+background-color: green;
+  color: white;
 }
   </style>
 
@@ -44,9 +48,19 @@
       <a href="/customerregistration">Register a user
         <i class="fa fa-users" aria-hidden="true"></i>
       </a>
-      <a href="/logout" class="logout-button">Logout
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+
+    
+     
+     <%= button_to "LogOut ",
+
+      "/logoutadmin",
+      method: :delete,
+      data: {
+        confirm: "Are you sure?"
+      },
+      class: "logout-button"%>
+      
+
     </div>
 
   </body>
