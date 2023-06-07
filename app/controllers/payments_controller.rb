@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
     def payment
         @unpaidpack = CustomerSubscription.find(params[:id]);
         # @pay = Payment.new 
+        # @pay = Payment.new 
     end
 
     def paymenthistory
