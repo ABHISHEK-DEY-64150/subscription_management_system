@@ -3,6 +3,7 @@
     <% @pay.errors.full_messages.each do |message|%>
       <%= message %>
     <% end %>
+    <%= button_to "make new payment" , customerDashboard_path, method: :get %>
   <% end %>
 
 <% if @unpaidpack.present? %>
