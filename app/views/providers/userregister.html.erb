@@ -1,23 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>registration</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Registration</title>
+<style>
+.card {
+  background-color: #123d1d;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto auto;
+}
 
+.card input[type="text"],
+.card input[type="email"],
+.card input[type="password"] {
+  margin-bottom: 20px;
+  width: 80%;
+  padding: 10px;
+}
+
+.card .submit {
+  background-color: cream;
+  color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+</style>
 </head>
 <body>
-
-<h1 style="color:red">Register a Customer</h1>
-
-<form action ="/customerRegister" method="POST">
-<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-<input type="name" name="customer[name]" placeholder="name">
-<input type="email" name="customer[email]" placeholder="enail">
-<input type="password" name="customer[password]" placeholder="password">
-<input type="password" name="customer[password_confirmation]" placeholder="password_confirmation">
+<%= render "navbar" %>
 
 
-<input type="submit" name="submit" class="submit">
-</form>
+<div class="card">
+  <h1 style="color: white;">Register a Customer</h1>
+
+  <form action="/customerRegister" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="text" name="customer[name]" placeholder="Name">
+    <br>
+    <input type="email" name="customer[email]" placeholder="Email">
+    <br>
+    <input type="password" name="customer[password]" placeholder="Password">
+    <br>
+    <input type="password" name="customer[password_confirmation]" placeholder="Confirm Password">
+    <br>
+    <br>
+    <input type="submit" name="submit" class="submit">
+  </form>
+</div>
+
 </body>
 </html>
-

@@ -9,11 +9,13 @@
   </head>
 
   <body>
+
     <%  if Currentcustomer.customer.nil? %> 
     <%= yield %> 
     <% else %> 
    
     <%= render partial: "layouts/sidebar" %> 
     <% end %>
+
   </body>
 </html>
