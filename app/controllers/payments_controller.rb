@@ -39,8 +39,9 @@ class PaymentsController < ApplicationController
               hash = Digest::SHA256.hexdigest(combined)[0,10]
 
               @pay.txid = hash 
-      
 
+              
+      
               if @pay.save 
                 duePackages = CustomerSubscription.where(id: params[:id])
                 duePackages.update(dues:0)
@@ -48,9 +49,8 @@ class PaymentsController < ApplicationController
 
 
               else
-                #   error_message = @pay.errors.full_messages
-                #   flash[:payment_errors] = error_message
-                  render:payment,@pay=>@pay
+                #  flash[:payment_errors] = "payment error"
+                 render :payment,@pay => @pay 
               end 
     end
 
