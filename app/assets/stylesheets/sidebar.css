@@ -51,7 +51,6 @@
 
 .top_navbar .hamburger div.two{
   top: 10px;
-  
 }
 
 .top_navbar .hamburger div.three{
@@ -133,6 +132,8 @@
   border-color: transparent transparent #fff transparent;
 }
 
+
+
 .main_container .sidebar{
   position: fixed;
   top: 60px;
@@ -158,10 +159,11 @@
 
 .main_container .sidebar .profile .img{
   padding: 0 18px;
+  width: 45px;
 }
-
-.main_container .sidebar .profile img{
-   width: 45px;
+/* newly added */
+.main_container .sidebar .profile {
+  margin-left: 60px;
 }
 
 .main_container .sidebar .profile p:first-child{
@@ -171,6 +173,7 @@
 }
 
 .main_container .container{
+ 
   margin-top: 60px;
   width: calc(100% - 225px);
   margin-left: 225px;
@@ -188,22 +191,22 @@
   margin-bottom: 1px;
   transition: all 0.3s ease;
 }
-
+ 
 .main_container .sidebar ul li a .icon{
   margin-right: 15px;
   font-size: 28px;
 }
-
+ 
 .main_container .sidebar ul li a span{
   display: inline-block;
 }
-
+ 
 .main_container .sidebar ul li a:hover,
 .main_container .sidebar ul li a.active{
   background: #fff;
   color: #004D40;
 }
-
+ 
 .main_container .container .item{
   background: #fff;
   border: 1px solid #E0F2F1;
@@ -212,18 +215,18 @@
   font-size: 14px;
   line-height: 22px;
 }
-
+ 
 /* after adding active class */
 .wrapper.active .sidebar{
   width: 80px;
 }
-
+ 
 .wrapper.active .sidebar ul li a span.title,
 .wrapper.active .profile_info
 {
   display: none;
 }
-
+ 
 .wrapper.active .main_container .container{
   width: calc(100% - 80px);
   margin-left: 80px;
