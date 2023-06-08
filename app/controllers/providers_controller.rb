@@ -1,5 +1,8 @@
 class ProvidersController < ApplicationController
     before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages]
+
+    protect_from_forgery except: :add_Package
+
     def home
          puts alert
     end
