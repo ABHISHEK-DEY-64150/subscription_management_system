@@ -40,13 +40,13 @@ class PaymentsController < ApplicationController
 
               
       
-              if @pay.save && @pay.dues > 0 && @pay.amount > 0 && @pay.card 
+              if @pay.save 
                 duePackages = CustomerSubscription.where(id: params[:id])
                 duePackages.update(dues:0)
                 redirect_to "/paymenthistory",notice: 'Payment done'
 
               else
-                 flash[:payment_errors] = "payment error"
+                #  flash[:payment_errors] = "payment error"
                  render :payment,@pay => @pay 
               end 
     end
