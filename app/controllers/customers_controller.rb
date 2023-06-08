@@ -7,9 +7,14 @@ class CustomersController < ApplicationController
       puts notice
       # @package = Package.all 
       @customerspackage = CustomerSubscription.where(customer_id: session[:customer_id])
-      @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
+      # @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
 
     end
+    
+    def duePackages
+      @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
+    end
+
 
 
     def loginCustomer

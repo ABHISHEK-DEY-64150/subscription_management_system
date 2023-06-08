@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   get "/customerDashboard" => "customers#dashboard"
 
+  get "/duePackages" => "customers#duePackages"
+
 
   delete "/logoutcustomer" => 'customers#destroy',as: "logoutcustomer"
 
@@ -55,7 +57,8 @@ Rails.application.routes.draw do
   get "/paperPackagesavailable" => "subscriptions#paperPackagesavailable"
 
   get "/selectpackage" => "subscriptions#selectpackage"
-
+  
+  
 
   post "/addmySubscription/:id" => "subscriptions#addmySubscription",as:"addMysubscription"
 
