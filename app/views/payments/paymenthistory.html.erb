@@ -1,17 +1,40 @@
-<h1> Your transection history</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag "transaction", "data-turbo-track": "reload" %>
 
-<table>
-                <tbody>
-                  <% @payhistory.each do |p| %>
-        
-                  <tr>
-                    <td>your package description : <%= p.packagedescription %></td>
-                    <td>Price of package : <%= p.price %></td>
-                    <td>Number of Dues paid : <%= p.dues %></td>
-                    <td>Total Amount : <%= p.amount %></td>
-                    <td>TxId : <%= p.txid %></td>
-                  </tr>
-        
-                  <% end %>
-                </tbody>
-</table>
+    <title>Transaction</title>
+  </head>
+  <body>
+   
+
+    <table id="transactions">
+      <caption> <h1>Transaction history</h1> </caption>
+      <thead>
+        <tr>
+          <th>Package description</th>
+          <th>Price</th>
+          <th>Number of Dues paid</th>
+          <th>Total Amount</th>
+          <th>TxId</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @payhistory.each do |p| %>
+
+        <tr>
+          <td><%= p.packagedescription %></td>
+          <td><%= p.price %></td>
+          <td><%= p.dues %></td>
+          <td><%= p.amount %></td>
+          <td><%= p.txid %></td>
+        </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,61 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-          <title> CSS Sidebar Menu with icons Example</title>
-    
+    <meta charset="UTF-8" />
+    <title>CSS Sidebar Menu with icons Example</title>
+
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <!-- SideBar-Menu CSS -->
+    <!-- SideBar-Menu CSS -->
     <%= stylesheet_link_tag "dashboard", "data-turbo-track": "reload" %>
- 
   </head>
   <body>
-  <div class="container">
-            
-         
-          <div>
-            <h1>Your Subscribed packages</h1>
-            <table id = "due_packages">
-              <thead>
-                <tr>
-                  <th>description</th>
-                  <th>price</th>
-                  <th>servicetype</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @customerspackage.each do |p| %>
-      
-                <tr>
-                  <td><%= p.packagedescription %></td>
-                  <td><%= p.price %></td>
-                  <td><%= p.servicetype %></td>
-                  <td>
-                    <%= button_to "Unsubscribe", unsubscribe_path(p), method: :delete,
-                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
-                    %>
-                  </td>
-                </tr>
-      
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-      
-     
-      
-         
-         
-       
-            
-          
-   
-        </div>
-        
-        
+    
+      <h1>Your Subscribed packages</h1>
+      <table id="subscribed_packages">
+        <thead>
+          <tr>
+            <th>description</th>
+            <th>price</th>
+            <th>servicetype</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customerspackage.each do |p| %>
 
+          <tr>
+            <td><%= p.packagedescription %></td>
+            <td><%= p.price %></td>
+            <td><%= p.servicetype %></td>
+            <td>
+              <%= button_to "Unsubscribe", unsubscribe_path(p), method: :delete,
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </td>
+          </tr>
+
+          <% end %>
+        </tbody>
+      </table>
+    
   </body>
 </html>

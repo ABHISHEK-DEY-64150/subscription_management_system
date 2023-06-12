@@ -1,19 +1,19 @@
-#subscribed_packages {
+#due_packages {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #subscribed_packages td, #subscribed_packages th {
+  #due_packages td, #due_packages th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-  #subscribed_packages tr:nth-child(even){background-color: #f2f2f2;}
+  #due_packages tr:nth-child(even){background-color: #f2f2f2;}
   
-  #subscribed_packages tr:hover {background-color: #ddd;}
+  #due_packages tr:hover {background-color: #ddd;}
   
-  #subscribed_packages th {
+  #due_packages th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
