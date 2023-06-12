@@ -3,6 +3,11 @@
     border-collapse: collapse;
     width: 100%;
   }
+
+  #subscribed_packages   caption{
+    margin-bottom: 10px;
+  }
+
   
   #subscribed_packages td, #subscribed_packages th {
     border: 1px solid #ddd;

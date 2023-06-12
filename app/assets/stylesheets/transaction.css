@@ -3,6 +3,11 @@
     border-collapse: collapse;
     width: 100%;
   }
+
+
+  #transactions   caption{
+    margin-bottom: 10px;
+  }
   
   #transactions td, #transactions th {
     border: 1px solid #ddd;

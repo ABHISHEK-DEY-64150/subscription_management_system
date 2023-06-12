@@ -4,6 +4,11 @@
     width: 100%;
   }
   
+  #due_packages   caption{
+    margin-bottom: 10px;
+  }
+
+
   #due_packages td, #due_packages th {
     border: 1px solid #ddd;
     padding: 8px;
