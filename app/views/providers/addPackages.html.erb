@@ -1,26 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Packlages</title>
+<head>\
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Packages</title>
+<style>
+.card {
+  background-color: #123d1d;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin-top : 200px;
+  margin-left : 500px;
+  margin-right : 300px;
+}
 
+.submit {
+  background-color: cream;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top:20px;
+  cursor: pointer;
+}
+
+
+
+</style>
 </head>
 <body>
 
-<h1 style="color:red">Add Packages</h1>
+<%= render "navbar" %>
 
-<form action ="/add_Package" method="POST">
 
-<input type="description" name="packages[description]" placeholder="description">
-<input type="price" name="packages[price]" placeholder="price">
 
-<select name="packages[servicetype]" id="anything" >
-  <option value="Internet">Internet</option>
-  <option value="Cable">Cable</option>
-  <option value="Paper">Paper</option>
-</select>
+<div class="card">
+  <h1 style="color: white;">Add Packages</h1>
 
-<input type="submit" name="submit" class="submit">
-</form>
+  <form action="/add_Package" method="POST">
+    <input type="description" name="packages[description]" placeholder="Description"><br><br>
+    <input type="price" name="packages[price]" placeholder="Price"><br><br>
+    <select name="packages[servicetype]" id="anything">
+      <option value="Internet">Internet</option>
+      <option value="Cable">Cable</option>
+      <option value="Paper">Paper</option>
+    </select><br><br>
+    <input type="submit" name="submit" class="submit">
+  </form>
+</div>
+
 </body>
 </html>
-

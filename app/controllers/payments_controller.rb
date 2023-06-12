@@ -1,6 +1,8 @@
 class PaymentsController < ApplicationController
     def payment
         @unpaidpack = CustomerSubscription.find(params[:id]);
+        # @pay = Payment.new 
+        # @pay = Payment.new 
     end
 
     def paymenthistory
@@ -43,7 +45,8 @@ class PaymentsController < ApplicationController
               if @pay.save 
                 duePackages = CustomerSubscription.where(id: params[:id])
                 duePackages.update(dues:0)
-                redirect_to "/paymenthistory",notice: 'Payment done'
+                redirect_to "/paymenthistory",notice: 'Payment done' 
+
 
               else
                 #  flash[:payment_errors] = "payment error"

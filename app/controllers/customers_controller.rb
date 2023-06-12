@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
   # before_action :update_dues  
   # prepend_before_action :require_customer_logged_in,only: :update_dues
   before_action :require_customer_logged_in, :update_dues, only:[:dashboard]
+  before_action :update_dues, only:[:duePackages]
  
     def dashboard
       puts notice

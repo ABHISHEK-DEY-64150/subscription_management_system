@@ -1,0 +1,73 @@
+<html>
+  <head>
+  </head>
+  <style>
+
+  .sidebar {
+  background-color: #f9f9f9;
+
+  width: 200px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.sidebar a {
+  display: block;
+  border : 10px;
+  padding: 20px;
+  text-decoration: none;
+  background-color: #123d1d;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 10px
+}
+
+.sidebar a:hover {
+  color: blue;
+}
+
+.sidebar .logout-button {
+  position: absolute;
+  padding : 20px;
+  margin : 50px; 
+  bottom: 10px;
+  left: 10px;
+  font-size: 22px;
+    border-radius: 4px;
+background-color: #1a4225;
+  color: white;
+}
+  </style>
+
+  <body>
+    <div class="sidebar">
+      <a href="/providerDashboard">Dashboard
+        <i class="fa fa-tachometer" aria-hidden="true"></i>
+      </a>
+      <a href="/addpackages">Add new package
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+      </a>
+      <a href="/customerregistration">Register a user
+        <i class="fa fa-users" aria-hidden="true"></i>
+      </a>
+
+    
+     
+     <%= button_to "LogOut ",
+
+      "/logoutadmin",
+      method: :delete,
+      data: {
+        confirm: "Are you sure?"
+      },
+      class: "logout-button"%>
+      
+
+    </div>
+
+  </body>
+
+</html>
