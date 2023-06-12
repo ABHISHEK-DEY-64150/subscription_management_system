@@ -1,26 +1,39 @@
-<h1>Due Packages</h1>
-<% if @DuePackages.present? %>
-<table>
-  <thead>
-    <tr>
-      <th>description</th>
-      <th>price</th>
-      <th>servicetype</th>
-      <th>dues</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @DuePackages.each do |p| %>
-    <tr>
-      <td><%= p.packagedescription %></td>
-      <td><%= p.price %></td>
-      <td><%= p.servicetype %></td>
-      <td><%= p.dues %></td>
-      <td>
-        <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
-      </td>
-    </tr>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag "duePackages", "data-turbo-track": "reload" %>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Due Packages</h1>
+    <% if @DuePackages.present? %>
+    <table id="due_packages">
+      <thead>
+        <tr>
+          <th>description</th>
+          <th>price</th>
+          <th>servicetype</th>
+          <th>dues</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @DuePackages.each do |p| %>
+        <tr>
+          <td><%= p.packagedescription %></td>
+          <td><%= p.price %></td>
+          <td><%= p.servicetype %></td>
+          <td><%= p.dues %></td>
+          <td>
+            <%= button_to "pay", showPaymentforPackage_path(p), method: :get %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
     <% end %>
-  </tbody>
-</table>
-<% end %>
+  </body>
+</html>

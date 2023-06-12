@@ -191,7 +191,11 @@
   margin-bottom: 1px;
   transition: all 0.3s ease;
 }
- 
+
+.main_container .sidebar ul li .service_list{
+  color: red;
+}
+
 .main_container .sidebar ul li a .icon{
   margin-right: 15px;
   font-size: 28px;
@@ -207,6 +211,23 @@
   color: #004D40;
 }
  
+.main_container .sidebar ul  .option_list{
+  /* position: absolute; */
+  right: -10px;
+  background: #006856;;
+  padding: 10px 0;
+  width: 100%;
+  border-radius: 3px;
+  display: none;
+  user-select: none;
+}
+
+ 
+.main_container .sidebar ul .option_list.active{
+  display: block;
+}
+
+
 .main_container .container .item{
   background: #fff;
   border: 1px solid #E0F2F1;
