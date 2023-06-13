@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "/providerLogin" => "providers#signIn"
 
-  post "/providerlogin" => "providers#loginprovider"
+  post "/providerlogin" => "providers#loginprovider",as:"loginProvider"
 
 
   # after login admin the admin lands on admin dashboard
@@ -25,13 +25,13 @@ Rails.application.routes.draw do
 
   get "/customerregistration" => 'providers#userregister'
 
-  post "/customerRegister" => 'providers#customerRegister'
+  post "/customerRegister" => 'providers#customerRegister',as:"customerregister"
 
   #packages by provider
 
   get "/addpackages" => "providers#addPackages"
 
-  post "/add_Package" => "providers#add_Package"
+  post "/add_Package" => "providers#add_Package",as: "addpackage"
 
 
   #Customer functionalities

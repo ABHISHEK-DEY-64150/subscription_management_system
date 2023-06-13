@@ -33,25 +33,48 @@
 </style>
 </head>
 <body>
-<%= render "navbar" %>
 
 
-<div class="card">
-  <h1 style="color: white;">Register a Customer</h1>
 
-  <form action="/customerRegister" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-    <input type="text" name="customer[name]" placeholder="Name">
-    <br>
-    <input type="email" name="customer[email]" placeholder="Email">
-    <br>
-    <input type="password" name="customer[password]" placeholder="Password">
-    <br>
-    <input type="password" name="customer[password_confirmation]" placeholder="Confirm Password">
-    <br>
-    <br>
-    <input type="submit" name="submit" class="submit">
-  </form>
+<div>
+<%= form_with(model: @customer, url: customerregister_path ) do |form| %>
+  
+  <div>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+    <% @customer.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :Email %><br>
+    <%= form.email_field :email %>
+    <% @customer.errors.full_messages_for(:email).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+  <%= form.label :Password %><br>
+  <%= form.password_field :password %>
+  <% @customer.errors.full_messages_for(:password).each do |message| %>
+    <div><%= message %></div>
+  <% end %>
+ </div>
+
+ <div>
+ <%= form.label :Confirm_password %><br>
+ <%= form.password_field :password_confirmation %>
+ <% @customer.errors.full_messages_for(:password).each do |message| %>
+  <div><%= message %></div>
+<% end %>
+</div>
+
+  <div>
+    <%= form.submit "add user" %>
+  </div>  
+<% end %>
 </div>
 
 </body>

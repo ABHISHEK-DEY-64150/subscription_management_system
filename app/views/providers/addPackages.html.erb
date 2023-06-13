@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>\
+<head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Packages</title>
 <style>
@@ -32,24 +32,38 @@
 </head>
 <body>
 
-<%= render "navbar" %>
 
+  
+<div>
+<%= form_with(model: @package, url: addpackage_path ) do |form| %>
+  
+  <div>
+    <%= form.label :Description %><br>
+    <%= form.text_field :description %>
+    <% @package.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
 
+  <div>
+    <%= form.label :Price %><br>
+    <%= form.number_field :price %>
+    <% @package.errors.full_messages_for(:price).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
 
-<div class="card">
-  <h1 style="color: white;">Add Packages</h1>
+  <div>
+  <%= form.label :servicetype %><br>
+  <%= form.select :servicetype, ['Internet', 'Cable', 'Paper'], selected: 'Internet' %>
+  </div>
 
-  <form action="/add_Package" method="POST">
-    <input type="description" name="packages[description]" placeholder="Description"><br><br>
-    <input type="price" name="packages[price]" placeholder="Price"><br><br>
-    <select name="packages[servicetype]" id="anything">
-      <option value="Internet">Internet</option>
-      <option value="Cable">Cable</option>
-      <option value="Paper">Paper</option>
-    </select><br><br>
-    <input type="submit" name="submit" class="submit">
-  </form>
+  <div>
+    <%= form.submit "add package" %>
+  </div>  
+<% end %>
 </div>
+
 
 </body>
 </html>

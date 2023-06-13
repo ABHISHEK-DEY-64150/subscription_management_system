@@ -11,39 +11,23 @@
       <div class="inner-warpper text-center">
         <h1 class="title" >Login Provider</h1>
 
-        <form action="/providerlogin" method="POST" >
-          <input
-            type="hidden"
-            name="authenticity_token"
-            value="<%=form_authenticity_token%>"
-          />
+          <%= form_with(model: @provider, url: loginProvider_path ) do |form| %>
 
           <div class="input-group">
             <label class="palceholder" for="userEmail">Email</label>
-            <input
-              class="form-control"
-              type="email"
-              name="loginprovider[email]"
-              id="userEmail"
-              placeholder=""
-            />
+            <%= form.text_field :email , class: 'form-control' ,required: true%>
             <span class="lighting"></span>
           </div>
 
           <div class="input-group">
             <label class="palceholder" for="userPassword">Password</label>
-            <input
-              class="form-control" 
-              name="loginprovider[password]"
-              id="userPassword"
-              type="password"
-              placeholder=""
-            />
+            <%= form.password_field :password , class: 'form-control' ,required: true %>
             <span class="lighting"></span>
           </div>
-
-          <button class="button_login" type="submit" >Login</button>
-        </form>
+          <div>
+          <%= form.submit "Login",class:'button_login' %>
+         </div>  
+        <% end %>
       </div>
     </div>
 
