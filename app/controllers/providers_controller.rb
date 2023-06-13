@@ -1,5 +1,6 @@
 class ProvidersController < ApplicationController
     before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages , :add_Package]
+    before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages , :add_Package]
     def home
          if Currentcustomer.customer.present?
           redirect_to "/customerDashboard"
@@ -13,16 +14,22 @@ class ProvidersController < ApplicationController
       
     end
 
+    def signIn
+      @provider = Provider.new
+    end
+
     def dashboard
         puts notice
     end
 
     def addPackages
       @package = Package.new
+      @package = Package.new
 
     end
 
     def userregister
+      @customer = Customer.new
       @customer = Customer.new
     end
 
@@ -32,8 +39,15 @@ class ProvidersController < ApplicationController
         @customer.paymentDues = 0
         @customer.provider_id = session[:provider_id]
         if @customer.save
+        @customer = Customer.new(customer_params)
+        @customer.paymentDues = 0
+        @customer.provider_id = session[:provider_id]
+        if @customer.save
          redirect_to '/providerDashboard'
         else
+        #  flash[:register_errors] = @customer.errors.full_messages
+        #  redirect_to '/'
+        render :userregister, status: :unprocessable_entity
         #  flash[:register_errors] = @customer.errors.full_messages
         #  redirect_to '/'
         render :userregister, status: :unprocessable_entity
@@ -41,9 +55,12 @@ class ProvidersController < ApplicationController
     end
 
     def loginprovider
+        @provider = Provider.find_by(email:login_params[:email])
         @provider = Provider.find_by(email:params[:email])
         # puts ">>>>>>>>>>>>>>",provider.email
         if @provider.present? && @provider.authenticate(params[:password])
+            session[:provider_id] = @provider.id 
+        if @provider && @provider.authenticate(login_params[:password])
             session[:provider_id] = @provider.id 
             redirect_to '/providerDashboard',notice: 'Provider Logged in successfully'
         else
@@ -51,6 +68,10 @@ class ProvidersController < ApplicationController
           # redirect_to '/'
           flash.now[:alert] = 'Invalid email/password combination'
           render :signIn ,status: :unprocessable_entity
+          # flash[:login_errors] = ['invalid credentials']
+          # redirect_to '/'
+          flash[:alert] = 'Invalid email/password combination'
+          render :signIn
         end
      
       end
@@ -65,12 +86,20 @@ class ProvidersController < ApplicationController
     def add_Package
         puts "========",session[:provider_id]
         @package = Package.new(packages_params)
+        puts "========",session[:provider_id]
+        @package = Package.new(packages_params)
 
+        @package.provider_id = session[:provider_id]
+        # puts "========",session[:provider_id]
+        if @package.save
         @package.provider_id = session[:provider_id]
         # puts "========",session[:provider_id]
         if @package.save
          redirect_to '/providerDashboard'
         else
+        #  flash[:register_errors] = @package.errors.full_messages
+        #  redirect_to '/'
+        render :addPackages, status: :unprocessable_entity
         #  flash[:register_errors] = @package.errors.full_messages
         #  redirect_to '/'
         render :addPackages, status: :unprocessable_entity
