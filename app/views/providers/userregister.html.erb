@@ -3,79 +3,91 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Registration</title>
-<style>
-.card {
-  background-color: #123d1d;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  margin: auto auto;
-}
-
-.card input[type="text"],
-.card input[type="email"],
-.card input[type="password"] {
-  margin-bottom: 20px;
-  width: 80%;
-  padding: 10px;
-}
-
-.card .submit {
-  background-color: cream;
-  color: black;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-
-</style>
+<%= stylesheet_link_tag "userregister", "data-turbo-track": "reload" %>
+ 
 </head>
 <body>
 
 
 
-<div>
+<div class="wrapper_user_register">
+<div class="inner-warpper text-center" >
+  <h1 class="title" >Register User</h1>
+
 <%= form_with(model: @customer, url: customerregister_path ) do |form| %>
   
-  <div>
-    <%= form.label :Name %><br>
-    <%= form.text_field :name %>
+  <div class="input-group">
+    <label class="palceholder" for="Name">Name</label>
+    <%= form.text_field :name , class: 'form-control', required: true %>
     <% @customer.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
+      <span class="lighting"></span>
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :Email %><br>
-    <%= form.email_field :email %>
+  <div  class="input-group">
+    <label class="palceholder" for="email">Email</label>
+    <%= form.email_field :email , class: 'form-control'  ,required: true %>
     <% @customer.errors.full_messages_for(:email).each do |message| %>
       <div><%= message %></div>
+      <span class="lighting"></span>
     <% end %>
   </div>
 
-  <div>
-  <%= form.label :Password %><br>
-  <%= form.password_field :password %>
+  <div  class="input-group">
+    <label class="palceholder" for="password">Password</label>
+  <%= form.password_field :password , class: 'form-control'  ,required: true %>
   <% @customer.errors.full_messages_for(:password).each do |message| %>
     <div><%= message %></div>
+    <span class="lighting"></span>
   <% end %>
  </div>
 
- <div>
- <%= form.label :Confirm_password %><br>
- <%= form.password_field :password_confirmation %>
+ <div  class="input-group">
+  <label class="palceholder" for="password_confirmation"> Confirm Password</label>
+ <%= form.password_field :password_confirmation, class: 'form-control'  ,required: true %>
  <% @customer.errors.full_messages_for(:password).each do |message| %>
   <div><%= message %></div>
+  <span class="lighting"></span>
 <% end %>
 </div>
 
   <div>
-    <%= form.submit "add user" %>
+    <%= form.submit "add user" , class:'button_create_user'%>
   </div>  
 <% end %>
 </div>
+</div>
 
+
+
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+<script>
+  + function($) {
+$('.palceholder').click(function() {
+$(this).siblings('input').focus();
+});
+
+$('.form-control').focus(function() {
+$(this).parent().addClass("focused");
+});
+
+$('.form-control').blur(function() {
+var $this = $(this);
+if ($this.val().length == 0)
+  $(this).parent().removeClass("focused");
+});
+$('.form-control').blur();
+
+// validetion
+$.validator.setDefaults({
+errorElement: 'span',
+errorClass: 'validate-tooltip'
+});
+
+
+}(jQuery);
+</script>
 </body>
 </html>
