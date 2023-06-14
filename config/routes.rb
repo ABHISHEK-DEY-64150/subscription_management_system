@@ -36,9 +36,9 @@ Rails.application.routes.draw do
 
   #Customer functionalities
 
-  post "/customerLogin" => "customers#loginCustomer"
+  post "/customerLogin" => "customers#loginCustomer",as:"customerlogin"
 
-  get "/customerlogin" => "customers#signIn"
+  get "/customerlogin" => "customers#signIn", as:"customerSignin"
 
   get "/customerDashboard" => "customers#dashboard",as:"customerDashboard"
 
