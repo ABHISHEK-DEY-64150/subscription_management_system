@@ -12,7 +12,7 @@ class ProvidersController < ApplicationController
     end
 
     def addPackages
-
+    
     end
 
     def userregister
@@ -57,7 +57,8 @@ class ProvidersController < ApplicationController
         package = Package.new(packages_params)
 
         package.provider_id = session[:provider_id]
-
+        
+        puts  "-----", session[:provider_id]
         if package.save
          redirect_to '/providerDashboard'
         else
