@@ -3,6 +3,8 @@ class ProvidersController < ApplicationController
     def home
          if Currentcustomer.customer.present?
           redirect_to "/customerDashboard"
+         elsif Current.provider.present?
+          redirect_to "/providerDashboard"
          end
          puts alert
     end

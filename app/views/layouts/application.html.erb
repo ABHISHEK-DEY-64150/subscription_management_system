@@ -10,10 +10,11 @@
 
   <body>
 
-    <%  if Currentcustomer.customer.nil? %> 
+    <%  if Currentcustomer.customer.nil? &&  Current.provider.nil?%> 
     <%= yield %> 
+    <% elsif Currentcustomer.customer.nil? %>
+    <%= render partial: "layouts/sidebarprovider" %> 
     <% else %> 
-   
     <%= render partial: "layouts/sidebar" %> 
     <% end %>
 

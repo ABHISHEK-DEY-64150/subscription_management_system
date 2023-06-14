@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   #logout of admin on admindashboard
 
-  delete "/logoutadmin" => 'providers#destroy'
+  delete "/logoutadmin" => 'providers#destroy', as: "logoutprovider"
 
   #Registration of a user by provider
 
