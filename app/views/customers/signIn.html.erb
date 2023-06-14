@@ -12,40 +12,29 @@
     <div class="wrapper">
       <div class="inner-warpper text-center">
         <h1 class="title">Login Customer</h1>
-        <form action="/customerLogin" method="POST">
-          <input
-            type="hidden"
-            name="authenticity_token"
-            value="<%=form_authenticity_token%>"
-          />
-
-          <div class="input-group">
-            <label class="palceholder" for="userEmail">Email</label>
-            <input
-              class="form-control"
-              type="email"
-              name="logincustomer[email]"
-              id="userEmail"
-              placeholder=""
-            />
-            <span class="lighting"></span>
-          </div>
-
-          <div class="input-group">
-            <label class="palceholder" for="userPassword" >Password</label>
-          <input
-            class="form-control" 
-            name="logincustomer[password]"
-            id="userPassword"
-            type="password"
-            placeholder=""
-          />
-          <span class="lighting"></span>
+        <% if flash[:err] %>
+        <div style="color: red">
+          <%= flash[:err] %>
         </div>
-        
-        <button class = "button_login" type="submit" >Login</button>      
-         </form>
+        <% end %>
+      <%= form_with  url: customerlogin_path  do |form| %>
+
+      <div class="input-group">
+        <label class="palceholder" for="userEmail">Email</label>
+        <%= form.text_field :email , class: 'form-control' ,required: true %>
+        <span class="lighting"></span>
       </div>
+
+      <div class="input-group">
+        <label class="palceholder" for="userPassword">Password</label>
+        <%= form.password_field :password , class: 'form-control' ,required: true %>
+        <span class="lighting"></span>
+      </div>
+      <div>
+      <%= form.submit "Login",class:'button_login' %>
+      </div>  
+     <% end %>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

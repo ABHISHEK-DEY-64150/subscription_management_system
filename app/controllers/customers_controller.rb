@@ -11,6 +11,10 @@ class CustomersController < ApplicationController
       # @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
 
     end
+
+    def signIn
+
+    end
     
     def duePackages
       @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
@@ -19,14 +23,14 @@ class CustomersController < ApplicationController
 
 
     def loginCustomer
-        customer = Customer.find_by(email:customer_login_params[:email])
+        customer = Customer.find_by(email:params[:email])
         # puts ">>>>>>>>>>>>>>",provider.email
-        if customer && customer.authenticate(customer_login_params[:password])
+        if customer && customer.authenticate(params[:password])
             session[:customer_id] = customer.id 
             redirect_to '/customerDashboard',notice: 'Customer Logged in successfully'
         else
-          flash[:login_errors] = ['invalid credentials']
-          redirect_to '/'
+          flash.now[:err] = "Invalid email/password combination"
+          render:signIn, status: :unprocessable_entity
         end
      
     end
@@ -60,10 +64,10 @@ class CustomersController < ApplicationController
 
     end
 
-    private
-    def customer_login_params
-      params.require(:logincustomer).permit(:email,:password);
-    end  
+    # private
+    # def customer_login_params
+    #   params.require(:logincustomer).permit(:email,:password);
+    # end  
 
   
 end
