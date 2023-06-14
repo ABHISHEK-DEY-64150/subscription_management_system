@@ -1,70 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Packages</title>
-<style>
-.card {
-  background-color: #123d1d;
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin-top : 200px;
-  margin-left : 500px;
-  margin-right : 300px;
-}
-
-.submit {
-  background-color: cream;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  margin-top:20px;
-  cursor: pointer;
-}
-
-
-
-</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <%= stylesheet_link_tag "add_package", "data-turbo-track": "reload" %>
+  <title>Document</title>
 </head>
 <body>
-
-
-  
-<div>
-<%= form_with(model: @package, url: addpackage_path ) do |form| %>
-  
-  <div>
-    <%= form.label :Description %><br>
-    <%= form.text_field :description %>
-    <% @package.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
+  <div class="wrapper_add_package">
+    <div class = "inner-warpper ">
+      <h1 class="title" >Add Package</h1>
+    <%= form_with(model: @package, url: addpackage_path ) do |form| %>
+      
+      <div class="input-group">
+        <label class="palceholder" for="description">Description</label>
+        <%= form.text_field :description, class: 'form-control'  ,required: true %>
+        <% @package.errors.full_messages_for(:description).each do |message| %>
+          <div><%= message %></div>
+          <span class="lighting"></span>
+        <% end %>
+      </div>
+    
+      <div  class="input-group">
+        <label class="palceholder" for="price">Price</label>
+        <%= form.number_field :price ,  class: 'form-control'  ,required: true%>
+        <% @package.errors.full_messages_for(:price).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+      </div>
+    
+      <div class="input-select" >
+      <%= form.label :serviceType %><br>
+      <%= form.select :servicetype,  ['Internet', 'Cable', 'Paper'], class: 'form-control'  ,required: true %>
+      </div>
+    
+      <div>
+        <%= form.submit "Add Package" , class:'button_add_package'%>
+      </div>  
     <% end %>
-  </div>
+  </div> </div>
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+    <script>
+      + function($) {
+  $('.palceholder').click(function() {
+    $(this).siblings('input').focus();
+  });
 
-  <div>
-    <%= form.label :Price %><br>
-    <%= form.number_field :price %>
-    <% @package.errors.full_messages_for(:price).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  $('.form-control').focus(function() {
+    $(this).parent().addClass("focused");
+  });
 
-  <div>
-  <%= form.label :servicetype %><br>
-  <%= form.select :servicetype, ['Internet', 'Cable', 'Paper'], selected: 'Internet' %>
-  </div>
+  $('.form-control').blur(function() {
+    var $this = $(this);
+    if ($this.val().length == 0)
+      $(this).parent().removeClass("focused");
+  });
+  $('.form-control').blur();
 
-  <div>
-    <%= form.submit "add package" %>
-  </div>  
-<% end %>
-</div>
+  // validetion
+  $.validator.setDefaults({
+    errorElement: 'span',
+    errorClass: 'validate-tooltip'
+  });
 
 
+}(jQuery);
+    </script>
+  
 </body>
 </html>
