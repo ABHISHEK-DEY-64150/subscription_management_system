@@ -11,11 +11,16 @@
       <div class="inner-warpper text-center">
         <h1 class="title" >Login Provider</h1>
 
-          <%= form_with(model: @provider, url: loginProvider_path ) do |form| %>
+        <% if flash[:alert] %>
+            <div style="color: red">
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+          <%= form_with  url: loginProvider_path  do |form| %>
 
           <div class="input-group">
             <label class="palceholder" for="userEmail">Email</label>
-            <%= form.text_field :email , class: 'form-control' ,required: true%>
+            <%= form.text_field :email , class: 'form-control' ,required: true %>
             <span class="lighting"></span>
           </div>
 

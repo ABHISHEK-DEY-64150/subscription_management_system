@@ -8,7 +8,7 @@ class ProvidersController < ApplicationController
     end
 
     def signIn
-      @provider = Provider.new
+      
     end
 
     def dashboard
@@ -39,16 +39,16 @@ class ProvidersController < ApplicationController
     end
 
     def loginprovider
-        @provider = Provider.find_by(email:login_params[:email])
+        @provider = Provider.find_by(email:params[:email])
         # puts ">>>>>>>>>>>>>>",provider.email
-        if @provider && @provider.authenticate(login_params[:password])
+        if @provider.present? && @provider.authenticate(params[:password])
             session[:provider_id] = @provider.id 
             redirect_to '/providerDashboard',notice: 'Provider Logged in successfully'
         else
           # flash[:login_errors] = ['invalid credentials']
           # redirect_to '/'
-          flash[:alert] = 'Invalid email/password combination'
-          render :signIn
+          flash.now[:alert] = 'Invalid email/password combination'
+          render :signIn ,status: :unprocessable_entity
         end
      
       end
@@ -76,9 +76,9 @@ class ProvidersController < ApplicationController
     end    
 
   private
-  def login_params
-    params.require(:provider).permit(:email,:password);
-  end  
+  # def login_params
+  #   params.require(:provider).permit(:email,:password);
+  # end  
 
   private
 
