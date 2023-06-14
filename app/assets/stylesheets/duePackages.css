@@ -25,3 +25,16 @@
     background-color: #668871;
     color: white;
   }
+  #due_packages button{
+    background-color: #4CAF50; /* Green */
+  border: 1px solid #4CAF50;
+  color: white;
+  padding: 15px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+  border-radius: 3px;
+  }

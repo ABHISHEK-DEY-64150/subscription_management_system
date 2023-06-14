@@ -1,39 +1,38 @@
-#subscribed_packages {
+#cable_package {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
-
-  #subscribed_packages   caption{
+  
+  #cable_package   caption{
     margin-bottom: 10px;
   }
 
-  
-  #subscribed_packages td, #subscribed_packages th {
+
+  #cable_package td, #cable_package th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-  #subscribed_packages tr:nth-child(even){background-color: #f2f2f2;}
+  #cable_package tr:nth-child(even){background-color: #f2f2f2;}
   
-  #subscribed_packages tr:hover {background-color: #ddd;}
+  #cable_package tr:hover {background-color: #ddd;}
   
-  #subscribed_packages th {
+  #cable_package th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #668871;
     color: white;
   }
-
-  #subscribed_packages button{
-    background-color: #668871; /* Green */
-  border: 1px solid #668871;
+  #cable_package button{
+    background-color: #4CAF50; /* Green */
+  border: 1px solid #4CAF50;
   color: white;
   padding: 15px ;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   width: 150px;
   display: block;

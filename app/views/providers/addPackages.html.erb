@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>\
+<head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Packages</title>
 <style>
@@ -40,6 +40,7 @@
   <h1 style="color: white;">Add Packages</h1>
 
   <form action="/add_Package" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
     <input type="description" name="packages[description]" placeholder="Description"><br><br>
     <input type="price" name="packages[price]" placeholder="Price"><br><br>
     <select name="packages[servicetype]" id="anything">
