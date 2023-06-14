@@ -1,16 +1,28 @@
-<h1>PaperPackagesavailable</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "paperpackageavailable", "data-turbo-track": "reload" %>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Paper Packages Available</h1>
 <% if @mysub.present? && @mysub.errors.any? %>
 <% @mysub.errors.full_messages.each do |message|%>
   <%= message %>
 <% end %>
 <% end %>
-<h1>Packages</h1>
-<table>
+
+<table id="paper_package">
   <thead>
     <tr>
-      <th>description</th>
-      <th>price</th>
-      <th>servicetype</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Service Type</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -31,3 +43,6 @@
     <% end %>
   </tbody>
 </table>
+
+</body>
+</html>

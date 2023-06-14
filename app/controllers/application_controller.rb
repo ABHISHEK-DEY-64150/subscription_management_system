@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     
+    
     before_action  :set_current_provider
     before_action  :set_current_customer
     
