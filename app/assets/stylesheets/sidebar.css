@@ -211,7 +211,7 @@
   color: #004D40;
 }
  
-.main_container .sidebar ul  .option_list{
+.main_container .sidebar ul li .option_list{
   /* position: absolute; */
   right: -10px;
   background: #006856;;
@@ -223,7 +223,7 @@
 }
 
  
-.main_container .sidebar ul .option_list.active{
+.main_container .sidebar ul li .option_list.active{
   display: block;
 }
 
