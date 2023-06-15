@@ -26,6 +26,27 @@ class ProvidersController < ApplicationController
       @customer = Customer.new
     end
 
+    def registerredCustomers
+      
+      @regCustomers = Current.provider.customers.all
+      
+    end
+
+    def singleCustomer
+      @singleCustomer = Customer.find(params[:id])
+      @subcribedPackages = CustomerSubscription.where(customer_id: params[:id])
+
+    end
+
+    def subscription_destroy
+      puts "unsubscribe an =========>>>>>",params             
+      @customerSubscriptionrecord = CustomerSubscription.find(params[:id])
+      puts "unsubscribe an article =========>>>>>",   @customerSubscriptionrecord 
+      @customerId  = @customerSubscriptionrecord.customer_id
+      @customerSubscriptionrecord.destroy
+      redirect_to showCustomerDetails_path(@customerId)
+    end
+
     def customerRegister
         puts params
         @customer = Customer.new(customer_params)
