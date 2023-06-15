@@ -1,6 +1,5 @@
 class ProvidersController < ApplicationController
     before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages , :add_Package]
-    before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages , :add_Package]
     def home
          if Currentcustomer.customer.present?
           redirect_to "/customerDashboard"
@@ -14,22 +13,16 @@ class ProvidersController < ApplicationController
       
     end
 
-    def signIn
-      @provider = Provider.new
-    end
-
     def dashboard
         puts notice
     end
 
     def addPackages
       @package = Package.new
-      @package = Package.new
 
     end
 
     def userregister
-      @customer = Customer.new
       @customer = Customer.new
     end
 
@@ -93,12 +86,14 @@ class ProvidersController < ApplicationController
     def add_Package
         puts "========",session[:provider_id]
         @package = Package.new(packages_params)
+
         @package.provider_id = session[:provider_id]
         # puts "========",session[:provider_id]
         if @package.save
          redirect_to '/providerDashboard'
         else
-
+        #  flash[:register_errors] = @package.errors.full_messages
+        #  redirect_to '/'
         render :addPackages, status: :unprocessable_entity
         end
     end    
