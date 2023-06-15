@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   get "/providerDashboard" => "providers#dashboard"
 
+  get "/allcustomers" => "providers#registerredCustomers" , as: "allCustomersUnderProvider"
+
+  get "/singlecustomer/:id"  => "providers#singleCustomer", as: "showCustomerDetails"
+
   #logout of admin on admindashboard
 
   delete "/logoutadmin" => 'providers#destroy', as: "logoutprovider"
@@ -62,7 +66,7 @@ Rails.application.routes.draw do
 
   post "/addmySubscription/:id" => "subscriptions#addmySubscription",as:"addMysubscription"
 
-  delete "/unsubscribe/:id" => "subscriptions#destroy", as:"unsubscribe"
+  delete "/unsubscribe/:id" => "providers#subscription_destroy", as:"unsubscribe"
 
   #payment
   get "/payment/:id" =>"payments#payment",as:"showPaymentforPackage"

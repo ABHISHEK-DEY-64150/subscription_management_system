@@ -1,0 +1,40 @@
+#all_customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #all_customers   caption{
+    margin-bottom: 10px;
+  }
+
+
+  #all_customers td, #all_customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #all_customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #all_customers tr:hover {background-color: #ddd;}
+  
+  #all_customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #668871;
+    color: white;
+  }
+  #all_customers button{
+    background-color: #4CAF50; /* Green */
+  border: 1px solid #4CAF50;
+  color: white;
+  padding: 15px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+  border-radius: 3px;
+  }

@@ -1,0 +1,53 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag "allCustomers", "data-turbo-track": "reload" %>
+
+    <title>All users</title>
+  </head>
+  <body>
+   
+
+    <table id="all_customers">
+      <caption> <h1> <b>Transaction History</b> </h1> </caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @regCustomers.each do |customer| %>
+
+        <tr>
+          <td><%= customer.name %></td>
+          <td><%= customer.email %></td>
+          <td>
+            <%= button_to "View Details", showCustomerDetails_path(customer), method: :get %>
+          </td>
+        </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
