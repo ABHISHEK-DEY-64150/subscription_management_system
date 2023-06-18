@@ -17,6 +17,9 @@
   #all_customers tr:nth-child(even){background-color: #f2f2f2;}
   
   #all_customers tr:hover {background-color: #ddd;}
+  #all_customers tr.hide{
+    display: none;
+  }
   
   #all_customers th {
     padding-top: 12px;
@@ -38,3 +41,5 @@
   display: block;
   border-radius: 3px;
   }
+
+ 
