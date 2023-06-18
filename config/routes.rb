@@ -31,6 +31,11 @@ Rails.application.routes.draw do
 
   post "/customerRegister" => 'providers#customerRegister',as:"customerregister"
 
+
+  #Subscription by provider
+
+  get "/subscriptions" => "providers#newSubscriptions" , as:"newSubscriptions"
+
   #packages by provider
 
   get "/addpackages" => "providers#addPackages"
