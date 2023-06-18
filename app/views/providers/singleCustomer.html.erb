@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "singleCustomers", "data-turbo-track": "reload" %>
+    <title>Document</title>
+</head>
+<body>
+   <h1> <%=  @singleCustomer.name %> </h1> 
+   <h1> <%=  @singleCustomer.email %> </h1> 
+   <%= button_to "Subscribe new", newSubscriptions_path, method: :get %>
+
+   <table id="single_customer">
+    <caption> <h1> <b>Subscribed Packages</b> </h1> </caption>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Service Type</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subcribedPackages.each do |subs| %>
+
+      <tr>
+        <td><%= subs.packagedescription %></td>
+        <td><%= subs.servicetype%></td>
+        <td><%= subs.price%></td>
+        <td>
+            <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+      </tr>
+
+      <% end %>
+    </tbody>
+  </table>
+
+
+  <table id="single_customer">
+    <caption> <h1> <b>Due Packages</b> </h1> </caption>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Service Type</th>
+        <th>Price</th>
+        <th>Dues</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @DuePackages.each do |subs| %>
+
+      <tr>
+        <td><%= subs.packagedescription %></td>
+        <td><%= subs.servicetype%></td>
+        <td><%= subs.price%></td>
+        <td><%= subs.dues%></td>
+        <td>
+            <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+      </tr>
+
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

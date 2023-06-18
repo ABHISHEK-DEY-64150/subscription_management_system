@@ -1,5 +1,6 @@
 class ProvidersController < ApplicationController
     before_action :require_provider_logged_in ,only: [:dashboard, :userregister , :addPackages , :add_Package]
+    before_action :update_dues, only:[:singleCustomer]
     def home
          if Currentcustomer.customer.present?
           redirect_to "/customerDashboard"
@@ -24,6 +25,34 @@ class ProvidersController < ApplicationController
 
     def userregister
       @customer = Customer.new
+    end
+
+    def registerredCustomers
+      
+      @regCustomers = Current.provider.customers.all
+      
+    end
+
+    def singleCustomer
+      @singleCustomer = Customer.find(params[:id])
+      @subcribedPackages = CustomerSubscription.where(customer_id: params[:id])
+      @DuePackages = CustomerSubscription.where(customer_id: params[:id]).where("dues > ?",0);
+
+    end
+
+
+
+    def newSubscriptions
+        
+    end
+
+    def subscription_destroy
+      puts "unsubscribe an =========>>>>>",params             
+      @customerSubscriptionrecord = CustomerSubscription.find(params[:id])
+      puts "unsubscribe an article =========>>>>>",   @customerSubscriptionrecord 
+      @customerId  = @customerSubscriptionrecord.customer_id
+      @customerSubscriptionrecord.destroy
+      redirect_to showCustomerDetails_path(@customerId)
     end
 
     def customerRegister
@@ -78,12 +107,6 @@ class ProvidersController < ApplicationController
     end    
 
   private
-  # def login_params
-  #   params.require(:provider).permit(:email,:password);
-  # end  
-
-  private
-
   def customer_params
       params.require(:customer).permit(:name,:email,:password,:password_confirmation);
   end 
@@ -93,5 +116,29 @@ class ProvidersController < ApplicationController
       params.require(:package).permit(:description, :price, :servicetype);
   end 
 
+
+  def update_dues
+    @duePackages = CustomerSubscription.where(customer_id: params[:id]);
+    if @duePackages.nil?
+       redirect_to "/customerDashboard"
+    else
+    @duePackages.each do |pack|
+        update_time = pack.updated_at
+        current_time = Time.now
+
+        min_diff = ((current_time - update_time)/60)
+        puts "days_difffffffffffff",min_diff,"pack.dues",pack.dues 
+
+        if min_diff >=1 && pack.dues.present?
+           days = pack.dues + min_diff
+           puts "days_difffffffffffff2222222",min_diff,"pack.dues",pack.dues 
+           pack.update(dues:days)
+        else
+          pack.update(dues:pack.dues)
+        end
+    end
+  end
+  
+end
 
 end

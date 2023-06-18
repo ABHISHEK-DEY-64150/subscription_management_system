@@ -101,16 +101,6 @@ class SubscriptionsController < ApplicationController
             end
         end
       
-        
-          def destroy
-            puts "unsubscribe an =========>>>>>",params             
-            @customerSubscriptionrecord = CustomerSubscription.find(params[:id])
-            puts "unsubscribe an article =========>>>>>",params 
-            @customerSubscriptionrecord.destroy
-            redirect_to "/customerDashboard"
-          end
-
-
       
           private 
           def customerSub_params
