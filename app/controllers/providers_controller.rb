@@ -43,7 +43,7 @@ class ProvidersController < ApplicationController
 
 
     def newSubscriptions
-        
+        @all_packages = Package.where(provider_id: session[:provider_id])
     end
 
     def subscription_destroy

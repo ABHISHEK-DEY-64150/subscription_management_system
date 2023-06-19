@@ -1,2 +1,39 @@
-<h1>sdfbgvdkjsbk</h2>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "all_packages", "data-turbo-track": "reload" %>
+    <title>Document</title>
+</head>
+<body>
+    <table id="all_packages">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Servicetype</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @all_packages.each do |pack| %>
+            <% if flash[:subscription_errors] %>
+            <div style="color:red"><%= flash[:subscription_errors] %></div>
+            <div ><%= flash[:subscription_errors] = "" %></div>
+            <% end %>
+            <tr>
+              <td><%= pack.description %></td>
+              <td><%= pack.price %></td>
+              <td><%= pack.servicetype %></td>
+              <td>       
+                  <%= button_to "Subscribe", addMysubscription_path(pack), method: :post %>
+              </td>
+      
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+</body>
+</html>
