@@ -8,8 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-   <h1> <%=  @singleCustomer.name %> </h1> 
-   <h1> <%=  @singleCustomer.email %> </h1> 
+   <h1>Name:  <%=  @singleCustomer.name %> </h1> 
+   <h1> Gmail: <%=  @singleCustomer.email %> </h1> 
    <%= button_to "Subscribe new", newSubscriptions_path, method: :get %>
 
    <table id="single_customer">
