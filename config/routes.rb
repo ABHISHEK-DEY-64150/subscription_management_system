@@ -80,4 +80,6 @@ Rails.application.routes.draw do
 
   get "/paymenthistory" => "payments#paymenthistory",as:"transectionhistory"
 
+  get '/paymenthistory/:id/download_pdf', to: 'payments#download_pdf', as: 'download_pdf'
+
 end
