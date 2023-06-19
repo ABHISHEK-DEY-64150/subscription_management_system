@@ -16,8 +16,7 @@
   </head>
   <body>
     <h1> <b>Your Customers</b> </h1>
-    <input type="text" id="columnFilter1" placeholder="Find by name" />
-    <input type="text" id="columnFilter2" placeholder="Find by gmail" />
+    <input type="text" id="search-input" placeholder="Search...">
   
     <table id="all_customers">
       
@@ -45,24 +44,15 @@
   </body>
 
   <script>
-    var filters = document.querySelectorAll('input[id^="columnFilter"]');
-
-    filters.forEach(function (filter) {
-      filter.addEventListener("input", function () {
-        var columnIndex = parseInt(filter.id.slice(-1), 10) - 1;
-        var filterValue = filter.value.toLowerCase();
-        var rows = document.querySelectorAll("#all_customers tbody tr");
-
-        rows.forEach(function (row) {
-          var cells = row.querySelectorAll("td");
-          var cellValue = cells[columnIndex].innerText.toLowerCase();
-          var shouldDisplayRow = cellValue.includes(filterValue);
-
-          row.classList.toggle("hide", !shouldDisplayRow);
-        });
+  $(document).ready(function() {
+    $('#search-input').on('input', function() {
+      var value = $(this).val().toLowerCase();
+      $('table tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
       });
     });
-  </script>
+  });
+</script>
 </html>
 
 
