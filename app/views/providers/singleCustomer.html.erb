@@ -8,12 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-   <h1>Name:  <%=  @singleCustomer.name %> </h1> 
-   <h1> Gmail: <%=  @singleCustomer.email %> </h1> 
-   <%= button_to "Subscribe new", newSubscriptions_path, method: :get %>
+  <div class="user_container">
+    <div class="left_content">
+      <h1>Name:  <%=  @singleCustomer.name %> </h1> 
+      <h1> Gmail: <%=  @singleCustomer.email %> </h1> 
+      <%= button_to "Subscribe new", newSubscriptions_path, method: :get %>
+  
+    </div>
+  
+   
+  </div>
+  
 
    <table id="single_customer">
-    <caption> <h1> <b>Subscribed Packages</b> </h1> </caption>
+    <caption> <h1 class="cd-title"> <b>Subscribed Packages</b> </h1> </caption>
     <thead>
       <tr>
         <th>Description</th>
@@ -40,8 +48,8 @@
   </table>
 
 
-  <table id="single_customer">
-    <caption> <h1> <b>Due Packages</b> </h1> </caption>
+  <table  id="single_customer">
+    <caption> <h1 class="cd-title"> <b>Due Packages</b> </h1> </caption>
     <thead>
       <tr>
         <th>Description</th>

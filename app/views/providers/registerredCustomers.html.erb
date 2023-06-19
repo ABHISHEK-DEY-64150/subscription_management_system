@@ -15,32 +15,35 @@
     <title>All users</title>
   </head>
   <body>
-    <h1> <b>Your Customers</b> </h1>
-    <input type="text" id="search-input" placeholder="Search...">
+    <div class="all_customers_container">
+      <h1 class="cd-title"> <b>Your Customers</b> </h1>
+      <input type="text" class="cd-search" id="search-input" placeholder="Search...">
+    
+      <table id="all_customers">
+        
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @regCustomers.each do |customer| %>
   
-    <table id="all_customers">
-      
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @regCustomers.each do |customer| %>
-
-        <tr>
-          <td><%= customer.name %></td>
-          <td><%= customer.email %></td>
-          <td>
-            <%= button_to "View Details", showCustomerDetails_path(customer), method: :get %>
-          </td>
-        </tr>
-
-        <% end %>
-      </tbody>
-    </table>
+          <tr>
+            <td><%= customer.name %></td>
+            <td><%= customer.email %></td>
+            <td>
+              <%= button_to "View Details", showCustomerDetails_path(customer), method: :get %>
+            </td>
+          </tr>
+  
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+   
   </body>
 
   <script>
