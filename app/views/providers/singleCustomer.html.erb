@@ -12,7 +12,7 @@
     <div class="left_content">
       <h1>Name:  <%=  @singleCustomer.name %> </h1> 
       <h1> Gmail: <%=  @singleCustomer.email %> </h1> 
-      <%= button_to "Subscribe new", newSubscriptions_path, method: :get %>
+      <%= button_to "Subscribe new", newSubscriptions_path(@singleCustomer), method: :get %>
   
     </div>
   

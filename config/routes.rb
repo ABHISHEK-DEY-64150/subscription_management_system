@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   #Subscription by provider
 
-  get "/subscriptions" => "providers#newSubscriptions" , as:"newSubscriptions"
+  get "/subscriptions/:id" => "subscriptions#newSubscriptions" , as:"newSubscriptions"
 
   #packages by provider
 
@@ -71,7 +71,7 @@ Rails.application.routes.draw do
 
   post "/addmySubscription/:id" => "subscriptions#addmySubscription",as:"addMysubscription"
 
-  delete "/unsubscribe/:id" => "providers#subscription_destroy", as:"unsubscribe"
+  delete "/unsubscribe/:id" => "subscriptions#subscription_destroy", as:"unsubscribe"
 
   #payment
   get "/payment/:id" =>"payments#payment",as:"showPaymentforPackage"

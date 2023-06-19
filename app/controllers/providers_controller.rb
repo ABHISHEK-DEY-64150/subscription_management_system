@@ -42,18 +42,6 @@ class ProvidersController < ApplicationController
 
 
 
-    def newSubscriptions
-        @all_packages = Package.where(provider_id: session[:provider_id])
-    end
-
-    def subscription_destroy
-      puts "unsubscribe an =========>>>>>",params             
-      @customerSubscriptionrecord = CustomerSubscription.find(params[:id])
-      puts "unsubscribe an article =========>>>>>",   @customerSubscriptionrecord 
-      @customerId  = @customerSubscriptionrecord.customer_id
-      @customerSubscriptionrecord.destroy
-      redirect_to showCustomerDetails_path(@customerId)
-    end
 
     def customerRegister
         puts params

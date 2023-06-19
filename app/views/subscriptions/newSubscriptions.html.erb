@@ -10,12 +10,10 @@
     <title>Document</title>
 </head>
 <body>
-
-
-
   <div id="all_packages">
+    
     <h1 class="cd-title">Subscribe customer</h1>
-  
+
       <input class="cd-search" type="text" id="search-input" placeholder="Search...">
      
   
@@ -30,10 +28,6 @@
           </thead>
           <tbody>
             <% @all_packages.each do |pack| %>
-              <% if flash[:subscription_errors] %>
-              <div style="color:red"><%= flash[:subscription_errors] %></div>
-              <div ><%= flash[:subscription_errors] = "" %></div>
-              <% end %>
               <tr>
                 <td><%= pack.description %></td>
                 <td><%= pack.price %></td>
