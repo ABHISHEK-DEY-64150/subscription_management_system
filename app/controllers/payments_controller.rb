@@ -47,7 +47,7 @@ class PaymentsController < ApplicationController
             @pay.subscription_id = params[:id]
             @pay.timestamp = Time.now
             @pay.card = params[:card]
-            subtotal=@pay.dues*@pay.amount
+            
 
             h1 = session[:customer_id].to_s
             h2 = params[:card].to_s
@@ -84,11 +84,11 @@ class PaymentsController < ApplicationController
       ],
       line_items: [
         ["<b>Item</b>", "<b>Unit Cost</b>", "<b>Quantity</b>", "<b>Amount</b>"],
-        ["Subscription", "$#{@pay.amount}", "#{@pay.dues}", "$#{subtotal}"],
-        [nil, nil, "Subtotal", "$#{subtotal}"],
+        ["Subscription", "$#{@pay.price}", "#{@pay.dues}", "$#{@pay.amount}"],
+        [nil, nil, "Subtotal", "$#{@pay.amount}"],
         [nil, nil, "Tax", "5%"],
-        [nil, nil, "Total", "$#{subtotal*1.05}"],
-        [nil, nil, "<b>Amount paid</b>", "$#{subtotal*1.05}"]
+        [nil, nil, "Total", "$#{@pay.amount*1.05}"],
+        [nil, nil, "<b>Amount paid</b>", "$#{@pay.amount*1.05}"]
       ],
       footer: "Thanks for your business. Please contact us if you have any questions."
     )
