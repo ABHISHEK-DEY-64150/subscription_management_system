@@ -41,6 +41,54 @@ class ProvidersController < ApplicationController
     end
 
 
+    def generate_bill
+
+      @singleCustomer = Customer.find(params[:id])
+      provider_id = session[:provider_id]
+      provider_email=Provider.find(provider_id).email
+
+      price=params[:price].to_i
+      dues=params[:dues].to_i
+      packagedescription=params[:description]
+
+      p "params Checked : ",params
+
+      sLnumber= SecureRandom.random_number(10000000)
+
+
+
+      pdf = Receipts::Receipt.new(
+        details: [
+          ["Serial ","#{sLnumber}" ],
+          ["Date paid", "....../....../........"],
+          ["Payment method", "Cash"]
+        ],
+        company: {
+          name: "#{provider_id}",
+          address: "123 Fake Street\nNew York City, NY 10012",
+          email: provider_email
+        },
+        recipient: [
+          "<b>Customer Details</b>",
+          ["Customer ID : #{@singleCustomer.id}"],
+          ["Customer Name : #{@singleCustomer.name}"],
+          "Their Address",
+          "City, State Zipcode",
+          "#{@singleCustomer.email}"
+        ],
+        line_items: [
+          ["<b>Package Name</b>", "<b>Unit Cost</b>", "<b>Dues</b>", "<b>Amount</b>"],
+          [packagedescription, price, dues, "$#{price*dues}"],
+          [nil, nil, "Subtotal", "$#{price*dues}"],
+          [nil, nil, "Total", "$#{price*dues}"],
+          [nil, nil, "<b>Amount to be paid</b>", "$#{price*dues}"]
+        ],
+        footer: "Thanks for your business. Please contact us if you have any questions."
+      )
+      send_data pdf.render, filename: 'receipt.pdf', type: 'application/pdf', disposition: 'inline'
+
+
+    end
 
     def newSubscriptions
         @all_packages = Package.where(provider_id: session[:provider_id])
@@ -115,6 +163,8 @@ class ProvidersController < ApplicationController
   def packages_params
       params.require(:package).permit(:description, :price, :servicetype);
   end 
+
+
 
 
   def update_dues

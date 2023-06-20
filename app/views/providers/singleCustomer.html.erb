@@ -10,6 +10,7 @@
 <body>
    <h1>Name:  <%=  @singleCustomer.name %> </h1> 
    <h1> Gmail: <%=  @singleCustomer.email %> </h1> 
+   <h3> ID : <%= @singleCustomer.id %> </h3>
    <%= button_to "Subscribe new", newSubscriptions_path, method: :get %>
 
    <table id="single_customer">
@@ -48,7 +49,8 @@
         <th>Service Type</th>
         <th>Price</th>
         <th>Dues</th>
-        <th></th>
+        <th>Bill</th>
+        <th>Approve</th>
       </tr>
     </thead>
     <tbody>
@@ -60,9 +62,9 @@
         <td><%= subs.price%></td>
         <td><%= subs.dues%></td>
         <td>
-            <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+           <%= button_to 'Download Receipt',generate_bill_path(id:@singleCustomer.id,description:subs.packagedescription,price:subs.price,dues:subs.dues, method: :post) %>
           </td>
+          <td><%= button_to 'Confirm' %></td>
       </tr>
 
       <% end %>
