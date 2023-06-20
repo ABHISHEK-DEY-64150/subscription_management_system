@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
   get "/dues" => "providers#dues",as: "allduesofcustomers"
 
+  post "/singlecustomer/:id/generate_bill" => "providers#generate_bill", as: "generate_bill"
+
+
   #logout of admin on admindashboard
 
   delete "/logoutadmin" => 'providers#destroy', as: "logoutprovider"
@@ -43,6 +46,8 @@ Rails.application.routes.draw do
   get "/addpackages" => "providers#addPackages"
 
   post "/add_Package" => "providers#add_Package",as: "addpackage"
+
+
 
 
   #Customer functionalities
@@ -75,11 +80,15 @@ Rails.application.routes.draw do
 
   delete "/unsubscribe/:id" => "subscriptions#subscription_destroy", as:"unsubscribe"
 
+
+
   #payment
   get "/payment/:id" =>"payments#payment",as:"showPaymentforPackage"
 
   post "/makepayment/:id" => "payments#makePayment",as:"paymentforpackage"
 
   get "/paymenthistory" => "payments#paymenthistory",as:"transectionhistory"
+
+  get '/paymenthistory/:id/download_pdf', to: 'payments#download_pdf', as: 'download_pdf'
 
 end

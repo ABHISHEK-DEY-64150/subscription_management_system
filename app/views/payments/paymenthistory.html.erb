@@ -20,6 +20,7 @@
           <th>Number of Dues paid</th>
           <th>Total Amount</th>
           <th>TxId</th>
+          <th>Invoice</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,8 @@
           <td><%= p.dues %></td>
           <td><%= p.amount %></td>
           <td><%= p.txid %></td>
+          <td><%= link_to 'Download PDF', download_pdf_path(p.id) %>
+</td>
         </tr>
 
         <% end %>
