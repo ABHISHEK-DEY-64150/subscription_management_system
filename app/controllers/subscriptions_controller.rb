@@ -62,9 +62,11 @@ class SubscriptionsController < ApplicationController
 
         def newSubscriptions
             session[:curr_customer] = params[:id]
-            @subsss = CustomerSubscription.where(customer_id: session[:curr_customer])
-            @all_packages = Package.where(provider_id: session[:provider_id] )
+            # @subsss = CustomerSubscription.where(customer_id: session[:curr_customer])
+            # @all_packages = Package.where(provider_id: session[:provider_id] )
             # @all_packages = Package.where("provider_id = :value1 AND id != :value2", value1: session[:provider_id], value2: @subsss.package_id)
+            @all_packages = Package.where.not(id: CustomerSubscription.where(customer_id: session[:curr_customer]).select(:package_id))
+
         end
     
         def subscription_destroy
