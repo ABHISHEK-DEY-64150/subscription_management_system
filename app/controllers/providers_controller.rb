@@ -40,6 +40,10 @@ class ProvidersController < ApplicationController
 
     end
 
+    def dues
+        @dues = CustomerSubscription.where("dues > ?",0).order(dues: :desc);
+    end
+
 
 
 

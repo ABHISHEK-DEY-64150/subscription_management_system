@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get "/singlecustomer/:id"  => "providers#singleCustomer", as: "showCustomerDetails"
 
+  get "/dues" => "providers#dues",as: "allduesofcustomers"
+
   #logout of admin on admindashboard
 
   delete "/logoutadmin" => 'providers#destroy', as: "logoutprovider"
