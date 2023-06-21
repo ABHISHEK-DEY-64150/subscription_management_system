@@ -22,7 +22,7 @@
       <th>Description</th>
       <th>Price</th>
       <th>Service Type</th>
-      <th></th>
+     
     </tr>
   </thead>
   <tbody>
@@ -35,9 +35,7 @@
         <td><%= pack.description %></td>
         <td><%= pack.price %></td>
         <td><%= pack.servicetype %></td>
-        <td>       
-        <%= button_to "Subscribe", addMysubscription_path(pack), method: :post %>
-        </td>
+      
 
       </tr>
     <% end %>

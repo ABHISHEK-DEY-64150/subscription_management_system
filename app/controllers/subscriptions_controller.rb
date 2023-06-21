@@ -1,20 +1,20 @@
 class SubscriptionsController < ApplicationController
-        before_action :require_customer_logged_in ,only: [:internetPackagesavailable]
+        before_action :require_provider_logged_in ,only: [:internetPackagesavailable, :cablePackagesavailable, :paperPackagesavailable ]
         
           def selectpackage
             
           end
 
           def internetPackagesavailable
-              @internetPackage = Package.where("servicetype = 'Internet'")             
+              @internetPackage = Package.where(provider_id: session[:provider_id] ).where("servicetype = 'Internet'")             
           end
 
           def cablePackagesavailable
-            @cablePackage = Package.where("servicetype = 'Cable'")  
+            @cablePackage = Package.where(provider_id: session[:provider_id] ).where("servicetype = 'Cable'")  
           end
 
           def paperPackagesavailable
-            @paperPackage = Package.where("servicetype = 'Paper'")  
+            @paperPackage = Package.where(provider_id: session[:provider_id] ).where("servicetype = 'Paper'")  
           end
 
       
