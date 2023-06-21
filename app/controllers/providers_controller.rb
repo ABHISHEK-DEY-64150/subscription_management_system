@@ -15,6 +15,12 @@ class ProvidersController < ApplicationController
     end
 
     def dashboard
+        @customer_count  = Customer.where(provider_id: session[:provider_id] ).count
+        @package_count = Package.where(provider_id: session[:provider_id] ).count
+        @subscription_count = CustomerSubscription.where(provider_id: session[:provider_id] ).count
+        @internetPackage_count = Package.where(provider_id: session[:provider_id] ).where("servicetype = 'Internet'").count
+        @cablePackage_count =Package.where(provider_id: session[:provider_id] ).where("servicetype = 'Cable'").count
+        @paperPackage_count =Package.where(provider_id: session[:provider_id] ).where("servicetype = 'Paper'").count
         puts notice
     end
 

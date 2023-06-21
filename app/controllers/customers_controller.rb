@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
 
     def destroy
         session[:customer_id] = nil  
-        redirect_to '/customerlogin'
+        redirect_to '/'
     end  
 
     def update_dues
