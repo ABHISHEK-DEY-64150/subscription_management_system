@@ -1,93 +1,122 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Registration</title>
-<%= stylesheet_link_tag "userregister", "data-turbo-track": "reload" %>
- 
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Registration</title>
+    <%= stylesheet_link_tag "userregister", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+    <div class="wrapper_user_register">
+      <div class="inner-warpper text-center" >
+        <h1 class="title" >Register User</h1>
+        <%= form_with(model: @customer, url: customerregister_path ) do |form| %>
+          <div class="input-group">
+            <label class="palceholder" for="Name">Name</label>
+            <%= form.text_field :name , class: 'form-control', required: true %>
+            <% @customer.errors.full_messages_for(:name).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
+          <div  class="input-group">
+            <label class="palceholder" for="email">Email</label>
+            <%= form.email_field :email , class: 'form-control'  ,required: true %>
+            <% @customer.errors.full_messages_for(:email).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
+          <div  class="input-group">
+            <label class="palceholder" for="password">Password</label>
+            <%= form.password_field :password , class: 'form-control'  ,required: true %>
+            <% @customer.errors.full_messages_for(:password).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
+          <div  class="input-group">
+            <label class="palceholder" for="password_confirmation"> Confirm Password</label>
+            <%= form.password_field :password_confirmation, class: 'form-control'  ,required: true %>
+            <% @customer.errors.full_messages_for(:password).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
+          <div  class="input-select">
+            <%= select_tag :service_selector, options_for_select([["Internet"], ["Cable"], ["Paper"]]), prompt: "Select service type ", class: 'form-control'  ,required: true  %>
+          </div>
+          <div  id="second_selector_container">
+          </div>
+          <div>
+            <%= form.submit "Add User" , class:'button_create_user'%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+    <script>
+      + function($) {
+      $('.palceholder').click(function() {
+      $(this).siblings('input').focus();
+      });
+
+      $('.form-control').focus(function() {
+      $(this).parent().addClass("focused");
+      });
+
+      $('.form-control').blur(function() {
+      var $this = $(this);
+      if ($this.val().length == 0)
+      $(this).parent().removeClass("focused");
+      });
+      $('.form-control').blur();
+
+      // validetion
+      $.validator.setDefaults({
+      errorElement: 'span',
+      errorClass: 'validate-tooltip'
+      });
 
 
 
-<div class="wrapper_user_register">
-<div class="inner-warpper text-center" >
-  <h1 class="title" >Register User</h1>
-
-<%= form_with(model: @customer, url: customerregister_path ) do |form| %>
-  
-  <div class="input-group">
-    <label class="palceholder" for="Name">Name</label>
-    <%= form.text_field :name , class: 'form-control', required: true %>
-    <% @customer.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-      <span class="lighting"></span>
-    <% end %>
-  </div>
-
-  <div  class="input-group">
-    <label class="palceholder" for="email">Email</label>
-    <%= form.email_field :email , class: 'form-control'  ,required: true %>
-    <% @customer.errors.full_messages_for(:email).each do |message| %>
-      <div><%= message %></div>
-      <span class="lighting"></span>
-    <% end %>
-  </div>
-
-  <div  class="input-group">
-    <label class="palceholder" for="password">Password</label>
-  <%= form.password_field :password , class: 'form-control'  ,required: true %>
-  <% @customer.errors.full_messages_for(:password).each do |message| %>
-    <div><%= message %></div>
-    <span class="lighting"></span>
-  <% end %>
- </div>
-
- <div  class="input-group">
-  <label class="palceholder" for="password_confirmation"> Confirm Password</label>
- <%= form.password_field :password_confirmation, class: 'form-control'  ,required: true %>
- <% @customer.errors.full_messages_for(:password).each do |message| %>
-  <div><%= message %></div>
-  <span class="lighting"></span>
-<% end %>
-</div>
-
-  <div>
-    <%= form.submit "Add User" , class:'button_create_user'%>
-  </div>  
-<% end %>
-</div>
-</div>
+      }(jQuery);
 
 
 
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
-<script>
-  + function($) {
-$('.palceholder').click(function() {
-$(this).siblings('input').focus();
-});
+      $(document).on('change', '#service_selector', function() {
+      var firstSelectorValue = $(this).val();
 
-$('.form-control').focus(function() {
-$(this).parent().addClass("focused");
-});
-
-$('.form-control').blur(function() {
-var $this = $(this);
-if ($this.val().length == 0)
-  $(this).parent().removeClass("focused");
-});
-$('.form-control').blur();
-
-// validetion
-$.validator.setDefaults({
-errorElement: 'span',
-errorClass: 'validate-tooltip'
-});
+      $.ajax({
+        url: '/provider/customer_register/service_type_selector', // Replace with your controller and action names
+        type: 'GET',
+        dataType: 'html',
+        data: { first_selector_value: firstSelectorValue },
+        success: function(data) {
+          $('#second_selector_container').html(data);
+        }
+      });
+      });
 
 
-}(jQuery);
-</script>
-</body>
+      $(document).on('change', '#package_selector', function() {
+      var selectedOption = $(this).find(':selected');
+      var selectedOptionId = selectedOption.val();
+      var selectedOptionName = selectedOption.text();
+
+      console.log('Selected Option ID:', selectedOptionId);
+      console.log('Selected Option Name:', selectedOptionName);
+      });
+      $('#package_selector').on('change', function() {
+        var selectedOption = $(this).val();
+        var datepickerContainer = $('#date_picker_container');
+
+        if (selectedOption !== '') {
+          datepickerContainer.show();
+        } else {
+          datepickerContainer.hide();
+        }
+      });
+    </script>
+  </body>
 </html>

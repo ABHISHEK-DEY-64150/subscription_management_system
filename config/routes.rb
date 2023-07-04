@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   post "/customerRegister" => 'providers#customerRegister',as:"customerregister"
 
+  get '/provider/customer_register/service_type_selector' => 'providers#service_type_selection'
+
 
   #Subscription by provider
 

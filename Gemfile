@@ -82,3 +82,4 @@ gem "jsbundling-rails", "~> 1.1"
 gem 'jquery-rails'
 gem 'sassc-rails'
 gem 'jquery-cdn'
+gem 'whenever', require: false

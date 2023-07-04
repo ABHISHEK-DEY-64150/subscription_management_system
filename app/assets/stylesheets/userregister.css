@@ -135,6 +135,30 @@ body {
   .input-group span.validate-tooltip {
     margin-top: 0;
   }
+
+
+  .input-select select{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 20px;
+  }
+  .input-select label{
+    color: #668871; 
+    
+  }
+
+  .input-select input[type="date"].date-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 20px;
+  }
+
   .wrapper_user_register {
     width: 320px;
     background: #fff;
