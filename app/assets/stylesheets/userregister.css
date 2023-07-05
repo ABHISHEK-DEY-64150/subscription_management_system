@@ -136,6 +136,10 @@ body {
     margin-top: 0;
   }
 
+  .label-style{
+    color: #668871;
+  }
+
 
   .input-select select{
     width: 100%;

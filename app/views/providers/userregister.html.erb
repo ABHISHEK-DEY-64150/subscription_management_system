@@ -50,6 +50,14 @@
               <span class="lighting"></span>
             <% end %>
           </div>
+          <div style="margin-bottom:20px">
+            <%= form.label "add customer image"%>
+            <%= form.file_field :avatar  ,required: false %>
+            <% @customer.errors.full_messages_for(:avatar).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
           <div  class="input-select">
             <%= select_tag :service_selector, options_for_select([["Internet"], ["Cable"], ["Paper"]]), prompt: "Select service type ", class: 'form-control'  ,required: true  %>
           </div>

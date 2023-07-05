@@ -8,6 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+ <div>
+ <% if @singleCustomer.avatar.attached? %>
+    <img src="<%=%(url_for(@singleCustomer.avatar))%>">
+ <%end%>
+ </div>
   <div class="user_container">
     <div class="left_content">
       <h1>Name:  <%=  @singleCustomer.name %> </h1> 
