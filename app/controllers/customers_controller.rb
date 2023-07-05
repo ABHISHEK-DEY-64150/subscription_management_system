@@ -1,3 +1,6 @@
+
+require_relative '../models/reviews'
+
 class CustomersController < ApplicationController
   # before_action :update_dues  
   # prepend_before_action :require_customer_logged_in,only: :update_dues
@@ -64,15 +67,28 @@ class CustomersController < ApplicationController
 
     end
 
+    def newreview
+      @review = Review.new
+    end
 
     def createNewReview
+      
+  
+      
+      p "peek the RV params : -> ",review_params
       @review = Review.new(review_params)
   
       if @review.save
-        redirect_to @review, notice: 'Review created successfully.'
+        redirect_to '/customerDashboard', notice: 'Review created successfully.'
       else
         notice:'Review Creation Unsuccessful'
       end
+    end
+
+    private
+
+    def review_params
+      params.require(:review).permit(:customer_id, :provider_id, :title, :description)
     end
 
     # private

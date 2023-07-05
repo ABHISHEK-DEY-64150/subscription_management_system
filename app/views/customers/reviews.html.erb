@@ -1,24 +1,26 @@
 <h1>Review Form</h1>
 
 <%= form_with(model: @review, url: "/createNewReview", local: true) do |form| %>
-  <div>
-    <%= form.hidden_field :customer_id %>
-  </div>
+  <%= form.fields_for :review do |review_form| %>
+    <div>
+      <%= review_form.hidden_field :customer_id,value: session[:customer_id] %>
+    </div>
 
-  <div>
-    <%= form.label :provider_id %>
-    <%= form.text_field :provider_id %>
-  </div>
+    <div>
+      <%= review_form.label :provider_id %>
+      <%= review_form.text_field :provider_id %>
+    </div>
 
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div>
+      <%= review_form.label :title %>
+      <%= review_form.text_field :title %>
+    </div>
 
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+    <div>
+      <%= review_form.label :description %>
+      <%= review_form.text_area :description %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit "Submit" %>
