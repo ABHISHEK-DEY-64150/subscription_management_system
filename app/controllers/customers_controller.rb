@@ -64,6 +64,17 @@ class CustomersController < ApplicationController
 
     end
 
+
+    def createNewReview
+      @review = Review.new(review_params)
+  
+      if @review.save
+        redirect_to @review, notice: 'Review created successfully.'
+      else
+        notice:'Review Creation Unsuccessful'
+      end
+    end
+
     # private
     # def customer_login_params
     #   params.require(:logincustomer).permit(:email,:password);
