@@ -27,6 +27,14 @@
             <% end %>
           </div>
           <div  class="input-group">
+            <label class="palceholder" for="address">Address</label>
+            <%= form.text_field :address , class: 'form-control'  ,required: true %>
+            <% @customer.errors.full_messages_for(:address).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
+          <div  class="input-group">
             <label class="palceholder" for="password">Password</label>
             <%= form.password_field :password , class: 'form-control'  ,required: true %>
             <% @customer.errors.full_messages_for(:password).each do |message| %>

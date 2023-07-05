@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_04_105024) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_05_071812) do
   create_table "customer_subscriptions", force: :cascade do |t|
     t.string "servicetype"
     t.string "packagedescription"
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_105024) do
     t.integer "provider_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "address"
     t.index ["provider_id"], name: "index_customers_on_provider_id"
   end
 

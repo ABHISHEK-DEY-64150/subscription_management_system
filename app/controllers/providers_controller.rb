@@ -108,7 +108,8 @@ class ProvidersController < ApplicationController
       @mysub.dues = 1
       @mysub.subscriptiondate = params[:subscription_date]
       if @mysub.save
-       redirect_to "/providerDashboard"
+      #  redirect_to "/providerDashboard"
+      redirect_to showCustomerDetails_path(@customer.id)
       end 
     else
       render :userregister, status: :unprocessable_entity
@@ -163,7 +164,7 @@ class ProvidersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email, :password, :password_confirmation)
+    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :address)
   end
 
   private
