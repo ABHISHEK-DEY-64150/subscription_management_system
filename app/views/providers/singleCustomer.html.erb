@@ -1,83 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "singleCustomers", "data-turbo-track": "reload" %>
     <title>Document</title>
-</head>
-<body>
- <div>
- <% if @singleCustomer.avatar.attached? %>
-    <img src="<%=%(url_for(@singleCustomer.avatar))%>">
- <%end%>
- </div>
-  <div class="user_container">
-    <div class="left_content">
-      <h1>Name:  <%=  @singleCustomer.name %> </h1> 
-      <h1> Gmail: <%=  @singleCustomer.email %> </h1> 
-      <%= button_to "Subscribe new", newSubscriptions_path(@singleCustomer), method: :get %>
-  
-    </div>  
-  </div>
-
-   <table id="single_customer">
-    <caption> <h1 class="cd-title"> <b>Subscribed Packages</b> </h1> </caption>
-    <thead>
-      <tr>
-        <th>Description</th>
-        <th>Service Type</th>
-        <th>Price</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @subcribedPackages.each do |subs| %>
-
-      <tr>
-        <td><%= subs.packagedescription %></td>
-        <td><%= subs.servicetype%></td>
-        <td><%= subs.price%></td>
-        <td>
-            <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
+    <style>
+      img {
+          width: 10rem;
+          height: 10rem;
+          object-fit: cover;
+          border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="user_container">
+      <div class="left_content">
+        <% if @singleCustomer.avatar.attached? %>
+          <img src="<%=(url_for(@singleCustomer.avatar))%>" >
+        <%end%>
+        <div>
+        <h1>Name:<%=  @singleCustomer.name %></h1>
+        <h1> Gmail:<%=  @singleCustomer.email %> </h1>
+        </div>
+        <%= button_to "Subscribe new", newSubscriptions_path(@singleCustomer), method: :get %>
+      </div>
+    </div>
+    <table id="single_customer">
+      <caption>
+        <h1 class="cd-title"> <b>Subscribed Packages</b> </h1>
+      </caption>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Service Type</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subcribedPackages.each do |subs| %>
+          <tr>
+            <td><%= subs.packagedescription %></td>
+            <td><%= subs.servicetype%></td>
+            <td><%= subs.price%></td>
+            <td>
+              <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-          </td>
-      </tr>
-
-      <% end %>
-    </tbody>
-  </table>
-
-
-  <table  id="single_customer">
-    <caption> <h1 class="cd-title"> <b>Due Packages</b> </h1> </caption>
-    <thead>
-      <tr>
-        <th>Description</th>
-        <th>Service Type</th>
-        <th>Price</th>
-        <th>Dues</th>
-        <th>Bill</th>
-        <th>Approve</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @DuePackages.each do |subs| %>
-
-      <tr>
-        <td><%= subs.packagedescription %></td>
-        <td><%= subs.servicetype%></td>
-        <td><%= subs.price%></td>
-        <td><%= subs.dues%></td>
-        <td>
-           <%= button_to 'Download Receipt',generate_bill_path(id:@singleCustomer.id,description:subs.packagedescription,price:subs.price,dues:subs.dues, method: :post) %>
-          </td>
-          <td><%= button_to 'Confirm' %></td>
-      </tr>
-
-      <% end %>
-    </tbody>
-  </table>
-</body>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <table  id="single_customer">
+      <caption>
+        <h1 class="cd-title"> <b>Due Packages</b> </h1>
+      </caption>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Service Type</th>
+          <th>Price</th>
+          <th>Dues</th>
+          <th>Bill</th>
+          <th>Approve</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @DuePackages.each do |subs| %>
+          <tr>
+            <td><%= subs.packagedescription %></td>
+            <td><%= subs.servicetype%></td>
+            <td><%= subs.price%></td>
+            <td><%= subs.dues%></td>
+            <td>
+              <%= button_to 'Download Receipt',generate_bill_path(id:@singleCustomer.id,description:subs.packagedescription,price:subs.price,dues:subs.dues, method: :post) %>
+            </td>
+            <td><%= button_to 'Confirm' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
 </html>

@@ -140,6 +140,13 @@ body {
     color: #668871;
   }
 
+  .avatarimg {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
 
   .input-select select{
     width: 100%;

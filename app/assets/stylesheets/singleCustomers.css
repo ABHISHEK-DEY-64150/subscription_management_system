@@ -5,12 +5,13 @@
 }
 
 .user_container .left_content{
+  display: flex;
   font-family: Arial, Helvetica, sans-serif;
     box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
     border-collapse: collapse;
     border-radius: 20px;
     padding: 20px;
-  width: 40%;
+  width: 70%;
 }
 
 .user_container .right_content{

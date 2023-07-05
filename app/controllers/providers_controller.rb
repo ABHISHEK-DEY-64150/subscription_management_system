@@ -164,7 +164,7 @@ class ProvidersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :address)
+    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :address , :avatar)
   end
 
   private
