@@ -22,8 +22,8 @@
           <img src="<%=(url_for(@singleCustomer.avatar))%>" >
         <%end%>
         <div>
-        <h1>Name:<%=  @singleCustomer.name %></h1>
-        <h1> Gmail:<%=  @singleCustomer.email %> </h1>
+          <h1>Name:<%=  @singleCustomer.name %></h1>
+          <h1> Gmail:<%=  @singleCustomer.email %> </h1>
         </div>
         <%= button_to "Subscribe new", newSubscriptions_path(@singleCustomer), method: :get %>
       </div>

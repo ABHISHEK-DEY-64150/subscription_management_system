@@ -1,8 +1,6 @@
 <div  class="input-select" >
-    
-<%= select_tag :package_selector, options_for_select(@second_selector_options), prompt: "Select a package" %>
-
+  <%= select_tag :package_selector, options_for_select(@second_selector_options), prompt: "Select a package" %>
 </div>
 <div  class="input-select" >
-<%= date_field_tag :subscription_date, nil ,  class: 'date-field', required: true  %>
+  <%= date_field_tag :subscription_date, nil ,  class: 'date-field', required: true  %>
 </div>

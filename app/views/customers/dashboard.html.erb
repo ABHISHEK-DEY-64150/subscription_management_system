@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>CSS Sidebar Menu with icons Example</title>
-
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -11,32 +10,28 @@
     <%= stylesheet_link_tag "dashboard", "data-turbo-track": "reload" %>
   </head>
   <body>
-    
-     
-      <table id="subscribed_packages">
-        <caption> <h1> <b> Your Subscribed Packages </b> </h1> </caption> 
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Servicetype</th>
-            <th>Timestamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @customerspackage.each do |p| %>
-
+    <table id="subscribed_packages">
+      <caption> 
+        <h1> <b> Your Subscribed Packages </b> </h1>
+ </caption>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Servicetype</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customerspackage.each do |p| %>
           <tr>
             <td><%= p.packagedescription %></td>
             <td><%= p.price %></td>
             <td><%= p.servicetype %></td>
             <td><%= p.created_at%></td>
-           
           </tr>
-
-          <% end %>
-        </tbody>
-      </table>
-    
+        <% end %>
+      </tbody>
+    </table>
   </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_104911) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_06_123722) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_104911) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.integer "provider_id"
+    t.integer "customer_id"
+    t.integer "package_id"
+    t.string "packdescription"
+    t.integer "price"
+    t.integer "amount"
+    t.integer "fine"
+    t.integer "status"
+    t.date "date"
+    t.date "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customer_subscriptions", force: :cascade do |t|
@@ -100,9 +115,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_104911) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "provider_id", null: false
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_reviews_on_customer_id"
+    t.index ["provider_id"], name: "index_reviews_on_provider_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_subscriptions", "customers"
   add_foreign_key "customers", "providers"
   add_foreign_key "packages", "providers"
+  add_foreign_key "reviews", "customers"
+  add_foreign_key "reviews", "providers"
 end

@@ -8,33 +8,34 @@
     <title>Document</title>
   </head>
   <body>
-    
     <% if @DuePackages.present? %>
-    <table id="due_packages">
-     <caption> <h1>Due Packages</h1> </caption> 
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Servicetype</th>
-          <th>Dues</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @DuePackages.each do |p| %>
-        <tr>
-          <td><%= p.packagedescription %></td>
-          <td><%= p.price %></td>
-          <td><%= p.servicetype %></td>
-          <td><%= p.dues %></td>
-          <td>
-            <%= button_to "Pay", showPaymentforPackage_path(p), method: :get %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <table id="due_packages">
+        <caption> 
+          <h1>Due Packages</h1>
+ </caption>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Servicetype</th>
+            <th>Dues</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @DuePackages.each do |p| %>
+            <tr>
+              <td><%= p.packagedescription %></td>
+              <td><%= p.price %></td>
+              <td><%= p.servicetype %></td>
+              <td><%= p.dues %></td>
+              <td>
+                <%= button_to "Pay", showPaymentforPackage_path(p), method: :get %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% end %>
   </body>
 </html>

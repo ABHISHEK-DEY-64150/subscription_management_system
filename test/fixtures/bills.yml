@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider_id: 1
+  customer_id: 1
+  package_id: 1
+  packdescription: MyString
+  price: 1
+  amount: 1
+  fine: 1
+  status: 1
+  date: 2023-07-06
+  due_date: 2023-07-06
+
+two:
+  provider_id: 1
+  customer_id: 1
+  package_id: 1
+  packdescription: MyString
+  price: 1
+  amount: 1
+  fine: 1
+  status: 1
+  date: 2023-07-06
+  due_date: 2023-07-06
