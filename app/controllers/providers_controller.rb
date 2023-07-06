@@ -1,5 +1,5 @@
 class ProvidersController < ApplicationController
-  before_action :require_provider_logged_in, only: [:dashboard, :userregister, :addPackages, :add_Package]
+  before_action :require_provider_logged_in, only: [:dashboard, :userregister, :addPackages, :add_Package , :registerredCustomers, :singleCustomer , :dues]
   before_action :update_dues, only: [:singleCustomer]
 
   def home
