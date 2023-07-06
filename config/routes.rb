@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   post "/singlecustomer/:id/generate_bill" => "providers#generate_bill", as: "generate_bill"
 
+  get "/showreviews" => "providers#showreviews"
+
 
   #logout of admin on admindashboard
 
