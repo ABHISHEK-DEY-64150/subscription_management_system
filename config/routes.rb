@@ -25,7 +25,11 @@ Rails.application.routes.draw do
 
   post "/singlecustomer/:id/generate_bill" => "providers#generate_bill", as: "generate_bill"
 
-  get "/showreviews" => "providers#showreviews"
+  get "/showreviews" => "providers#showreviews",as: "showreviews"
+
+  get "/bills" => "payments#bills", as: "bills"
+
+  post "/genBills" => "payments#gen_monthly_bill", as: "gen_monthly_bills"
 
 
   #logout of admin on admindashboard
