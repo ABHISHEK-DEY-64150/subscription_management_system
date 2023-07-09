@@ -5,65 +5,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <%= stylesheet_link_tag "login_page_style", "data-turbo-track": "reload" %>
   </head>
-
   <body>
     <div class="wrapper">
       <div class="inner-warpper text-center">
         <h1 class="title" >Login Provider</h1>
-
         <% if flash[:alert] %>
-            <div style="color: red">
-              <%= flash[:alert] %>
-            </div>
-          <% end %>
-          <%= form_with  url: loginProvider_path  do |form| %>
-
+          <div style="color: red">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <%= form_with  url: loginProvider_path  do |form| %>
           <div class="input-group">
             <label class="palceholder" for="userEmail">Email</label>
             <%= form.text_field :email , class: 'form-control' ,required: true %>
             <span class="lighting"></span>
           </div>
-
           <div class="input-group">
             <label class="palceholder" for="userPassword">Password</label>
             <%= form.password_field :password , class: 'form-control' ,required: true %>
             <span class="lighting"></span>
           </div>
           <div>
-          <%= form.submit "Login",class:'button_login' %>
-         </div>  
+            <%= form.submit "Login",class:'button_login' %>
+          </div>
         <% end %>
       </div>
     </div>
-
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
     <script>
       + function($) {
-  $('.palceholder').click(function() {
-    $(this).siblings('input').focus();
-  });
+        $('.palceholder').click(function() {
+          $(this).siblings('input').focus();
+        });
 
-  $('.form-control').focus(function() {
-    $(this).parent().addClass("focused");
-  });
+        $('.form-control').focus(function() {
+          $(this).parent().addClass("focused");
+        });
 
-  $('.form-control').blur(function() {
-    var $this = $(this);
-    if ($this.val().length == 0)
+        $('.form-control').blur(function() {
+          var $this = $(this);
+          if ($this.val().length == 0)
       $(this).parent().removeClass("focused");
-  });
-  $('.form-control').blur();
+        });
+        $('.form-control').blur();
 
-  // validetion
-  $.validator.setDefaults({
-    errorElement: 'span',
-    errorClass: 'validate-tooltip'
-  });
+        // validetion
+        $.validator.setDefaults({
+          errorElement: 'span',
+          errorClass: 'validate-tooltip'
+        });
 
 
-}(jQuery);
+      }(jQuery);
     </script>
-    
   </body>
 </html>

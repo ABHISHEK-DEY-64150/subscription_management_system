@@ -1,5 +1,7 @@
+require_relative '../models/reviews'
+
 class ProvidersController < ApplicationController
-  before_action :require_provider_logged_in, only: [:dashboard, :userregister, :addPackages, :add_Package , :registerredCustomers, :singleCustomer , :dues]
+  before_action :require_provider_logged_in, only: [:dashboard, :userregister, :addPackages, :add_Package, :registerredCustomers, :singleCustomer, :dues]
   before_action :update_dues, only: [:singleCustomer]
 
   def home
@@ -108,9 +110,9 @@ class ProvidersController < ApplicationController
       @mysub.dues = 1
       @mysub.subscriptiondate = params[:subscription_date]
       if @mysub.save
-      #  redirect_to "/providerDashboard"
-      redirect_to showCustomerDetails_path(@customer.id)
-      end 
+        #  redirect_to "/providerDashboard"
+        redirect_to showCustomerDetails_path(@customer.id)
+      end
     else
       render :userregister, status: :unprocessable_entity
     end
@@ -146,6 +148,17 @@ class ProvidersController < ApplicationController
     redirect_to "/"
   end
 
+
+  def showreviews
+
+    @reviews = Review.where(provider_id:session[:provider_id])
+
+  end
+
+
+
+
+
   def add_Package
     puts "========", session[:provider_id]
     @package = Package.new(packages_params)
@@ -164,7 +177,7 @@ class ProvidersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :address , :avatar)
+    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :address, :avatar)
   end
 
   private

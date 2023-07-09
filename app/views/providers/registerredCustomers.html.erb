@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag "allCustomers", "data-turbo-track": "reload" %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-      
     <title>All users</title>
   </head>
   <body>
     <div class="all_customers_container">
       <h1 class="cd-title"> <b>Your Customers</b> </h1>
       <input type="text" class="cd-search" id="search-input" placeholder="Search...">
-    
       <table id="all_customers">
-        
         <thead>
           <tr>
             <th>Name</th>
@@ -30,41 +22,26 @@
         </thead>
         <tbody>
           <% @regCustomers.each do |customer| %>
-  
-          <tr>
-            <td><%= customer.name %></td>
-            <td><%= customer.email %></td>
-            <td>
-              <%= button_to "View Details", showCustomerDetails_path(customer), method: :get %>
-            </td>
-          </tr>
-  
+            <tr>
+              <td><%= customer.name %></td>
+              <td><%= customer.email %></td>
+              <td>
+                <%= button_to "View Details", showCustomerDetails_path(customer), method: :get %>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-   
   </body>
-
   <script>
-  $(document).ready(function() {
-    $('#search-input').on('input', function() {
-      var value = $(this).val().toLowerCase();
-      $('table tr').filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    $(document).ready(function() {
+      $('#search-input').on('input', function() {
+        var value = $(this).val().toLowerCase();
+        $('table tr').filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
       });
     });
-  });
-</script>
+  </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-

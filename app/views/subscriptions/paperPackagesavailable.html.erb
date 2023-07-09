@@ -1,46 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag "paperpackageavailable", "data-turbo-track": "reload" %>
-  <title>Document</title>
-</head>
-<body>
-
-  <h1>Paper Packages Available</h1>
-<% if @mysub.present? && @mysub.errors.any? %>
-<% @mysub.errors.full_messages.each do |message|%>
-  <%= message %>
-<% end %>
-<% end %>
-
-<table id="paper_package">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Service Type</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <% @paperPackage.each do |pack| %>
-      <% if flash[:subscription_errors] %>
-      <div style="color:red"><%= flash[:subscription_errors] %></div>
-      <div ><%= flash[:subscription_errors] = "" %></div>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "paperpackageavailable", "data-turbo-track": "reload" %>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Paper Packages Available</h1>
+    <% if @mysub.present? && @mysub.errors.any? %>
+      <% @mysub.errors.full_messages.each do |message|%>
+        <%= message %>
       <% end %>
-      <tr>
-        <td><%= pack.description %></td>
-        <td><%= pack.price %></td>
-        <td><%= pack.servicetype %></td>
-      
-
-      </tr>
     <% end %>
-  </tbody>
-</table>
-
-</body>
+    <table id="paper_package">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Service Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @paperPackage.each do |pack| %>
+          <% if flash[:subscription_errors] %>
+            <div style="color:red"><%= flash[:subscription_errors] %></div>
+            <div ><%= flash[:subscription_errors] = "" %></div>
+          <% end %>
+          <tr>
+            <td><%= pack.description %></td>
+            <td><%= pack.price %></td>
+            <td><%= pack.servicetype %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
 </html>

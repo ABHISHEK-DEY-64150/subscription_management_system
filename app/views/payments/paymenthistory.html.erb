@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag "transaction", "data-turbo-track": "reload" %>
-
     <title>Transaction</title>
   </head>
   <body>
-   
-
     <table id="transactions">
-      <caption> <h1> <b>Transaction History</b> </h1> </caption>
+      <caption> 
+        <h1> <b>Transaction History</b> </h1>
+ </caption>
       <thead>
         <tr>
           <th>Package description</th>
@@ -25,17 +24,15 @@
       </thead>
       <tbody>
         <% @payhistory.each do |p| %>
-
-        <tr>
-          <td><%= p.packagedescription %></td>
-          <td><%= p.price %></td>
-          <td><%= p.dues %></td>
-          <td><%= p.amount %></td>
-          <td><%= p.txid %></td>
-          <td><%= link_to 'Download PDF', download_pdf_path(p.id) %>
-</td>
-        </tr>
-
+          <tr>
+            <td><%= p.packagedescription %></td>
+            <td><%= p.price %></td>
+            <td><%= p.dues %></td>
+            <td><%= p.amount %></td>
+            <td><%= p.txid %></td>
+            <td><%= link_to 'Download PDF', download_pdf_path(p.id) %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>

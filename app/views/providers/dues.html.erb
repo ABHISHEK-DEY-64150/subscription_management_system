@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "singleCustomers", "data-turbo-track": "reload" %>
     <title>Document</title>
-</head>
-<body>
-
-  <table  id="single_customer">
-    <caption> <h1 class="cd-title"> <b>Dues</b> </h1> </caption>
-    <thead>
-      <tr>
-        <th>Customer Id</th>
-        <th>Description</th>
-        <th>Service Type</th>
-        <th>Price</th>
-        <th>Dues</th>
-        <th>Amount to be paid</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @dues.each do |d| %>
-
-      <tr>
-        <td><%= d.customer_id %>
-        <td><%= d.packagedescription %></td>
-        <td><%= d.servicetype%></td>
-        <td><%= d.price%></td>
-        <td><%= d.dues%></td>
-        <td><%= d.dues * d.price%></td>
-      </tr>
-
-      <% end %>
-    </tbody>
-  </table>
-</body>
-</html>
+  </head>
+  <body>
+    <table  id="single_customer">
+      <caption> 
+        <h1 class="cd-title"> <b>Dues</b> </h1>
+ </caption>
+      <thead>
+        <tr>
+          <th>Customer Id</th>
+          <th>Description</th>
+          <th>Service Type</th>
+          <th>Price</th>
+          <th>Dues</th>
+          <th>Amount to be paid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dues.each do |d| %>
+          <tr>
+            <td><%= d.customer_id %>
+              <td><%= d.packagedescription %></td>
+              <td><%= d.servicetype%></td>
+              <td><%= d.price%></td>
+              <td><%= d.dues%></td>
+              <td><%= d.dues * d.price%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </body>
+  </html>

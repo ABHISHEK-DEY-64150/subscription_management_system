@@ -6,36 +6,32 @@
   </head>
   <body>
     <div class="container">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="">Service</a></li>
-            <li><a href="#contact">About</a></li>
-            <li style="float: right">
-              <%= link_to "Provider Login", providerLogin_path, method: :get %>
-            </li>
-            <li style="float: right">
-              <%= link_to "Customer Login", customerSignin_path, method: :get %>
-            </li>
-          </ul>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="">Service</a></li>
+        <li><a href="#contact">About</a></li>
+        <li style="float: right">
+          <%= link_to "Provider Login", providerLogin_path, method: :get %>
+        </li>
+        <li style="float: right">
+          <%= link_to "Customer Login", customerSignin_path, method: :get %>
+        </li>
+      </ul>
     </div>
     <div class="grid-container">
-        <div class="grid-item" >
-          <%= image_tag("internet.png", :alt => "internet") %>
-             <figcaption>Internet</figcaption>
-        </div>
-        <div class="grid-item">
-          <%= image_tag("tv_cable.jpg", :alt => "cable") %>
-          <!-- <img src="tv_cable.jpg" alt="Cable" width="500" height="600"/> -->
-            <figcaption>Cable</figcaption>
-        </div>
-         <div class="grid-item">
-          <%= image_tag("paper.jpg", :alt => "paper") %>
-             <figcaption>Newspaper</figcaption>
-        </div>
-        
+      <div class="grid-item" >
+        <%= image_tag("internet.png", :alt => "internet") %>
+        <figcaption>Internet</figcaption>
       </div>
-      
-    
-
+      <div class="grid-item">
+        <%= image_tag("tv_cable.jpg", :alt => "cable") %>
+        <!-- <img src="tv_cable.jpg" alt="Cable" width="500" height="600"/> -->
+        <figcaption>Cable</figcaption>
+      </div>
+      <div class="grid-item">
+        <%= image_tag("paper.jpg", :alt => "paper") %>
+        <figcaption>Newspaper</figcaption>
+      </div>
+    </div>
   </body>
 </html>

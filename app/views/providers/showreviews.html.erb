@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <style>
+      .card {
+        background-color: #d5f2e3;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reviews</h1>
+
+    <% @reviews.each do |review| %>
+      <div class="card">
+        <h2><%= review.title %></h2>
+        <p>Customer ID: <%= review.customer_id %></p>
+        <p>Description: <%= review.description %></p>
+      </div>
+    <% end %>
+  </body>
+</html>

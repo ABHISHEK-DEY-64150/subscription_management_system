@@ -100,4 +100,30 @@ class PaymentsController < ApplicationController
       end
     end
   end
+
+  def self.gen_monthly_bill
+      
+      @all_provider = Provider.all 
+      # @bill_new.provider_id =  
+      @all_provider.each do |p|
+          @customer_of_provider = p.customers.all
+          @customer_of_provider.each do |c|
+            @all_packs = c.customer_subscriptions.all 
+            @all_packs.each do |pack|
+              @bill_new = Bill.new
+              @bill_new.provider_id = p.id
+              @bill_new.customer_id = c.id
+              @bill_new.package_id = pack.id
+              @bill_new.packdescription = pack.packagedescription
+              @bill_new.price = pack.price
+              @bill_new.amount = @bill_new.price + 
+
+            end
+
+
+          end
+
+      end
+
+  end
 end

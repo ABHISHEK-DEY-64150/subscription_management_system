@@ -1,74 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <%= stylesheet_link_tag "add_package", "data-turbo-track": "reload" %>
-  <title>Document</title>
-</head>
-<body>
-  <div class="wrapper_add_package">
-    <div class = "inner-warpper ">
-      <h1 class="title" >Add Package</h1>
-    <%= form_with(model: @package, url: addpackage_path ) do |form| %>
-      
-      <div class="input-group">
-        <label class="palceholder" for="description">Description</label>
-        <%= form.text_field :description, class: 'form-control'  ,required: true %>
-        <% @package.errors.full_messages_for(:description).each do |message| %>
-          <div><%= message %></div>
-          <span class="lighting"></span>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <%= stylesheet_link_tag "add_package", "data-turbo-track": "reload" %>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper_add_package">
+      <div class = "inner-warpper ">
+        <h1 class="title" >Add Package</h1>
+        <%= form_with(model: @package, url: addpackage_path ) do |form| %>
+          <div class="input-group">
+            <label class="palceholder" for="description">Description</label>
+            <%= form.text_field :description, class: 'form-control'  ,required: true %>
+            <% @package.errors.full_messages_for(:description).each do |message| %>
+              <div><%= message %></div>
+              <span class="lighting"></span>
+            <% end %>
+          </div>
+          <div  class="input-group">
+            <label class="palceholder" for="price">Price</label>
+            <%= form.number_field :price ,  class: 'form-control'  ,required: true%>
+            <% @package.errors.full_messages_for(:price).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          </div>
+          <div class="input-select" >
+            <%= form.label :serviceType %><br>
+            <%= form.select :servicetype,  ['Internet', 'Cable', 'Paper'], class: 'form-control'  ,required: true %>
+          </div>
+          <div>
+            <%= form.submit "Add Package" , class:'button_add_package'%>
+          </div>
         <% end %>
       </div>
-    
-      <div  class="input-group">
-        <label class="palceholder" for="price">Price</label>
-        <%= form.number_field :price ,  class: 'form-control'  ,required: true%>
-        <% @package.errors.full_messages_for(:price).each do |message| %>
-          <div><%= message %></div>
-        <% end %>
-      </div>
-    
-      <div class="input-select" >
-      <%= form.label :serviceType %><br>
-      <%= form.select :servicetype,  ['Internet', 'Cable', 'Paper'], class: 'form-control'  ,required: true %>
-      </div>
-    
-      <div>
-        <%= form.submit "Add Package" , class:'button_add_package'%>
-      </div>  
-    <% end %>
-  </div> </div>
-  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+ </div>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
     <script>
       + function($) {
-  $('.palceholder').click(function() {
-    $(this).siblings('input').focus();
-  });
+        $('.palceholder').click(function() {
+          $(this).siblings('input').focus();
+        });
 
-  $('.form-control').focus(function() {
-    $(this).parent().addClass("focused");
-  });
+        $('.form-control').focus(function() {
+          $(this).parent().addClass("focused");
+        });
 
-  $('.form-control').blur(function() {
-    var $this = $(this);
-    if ($this.val().length == 0)
+        $('.form-control').blur(function() {
+          var $this = $(this);
+          if ($this.val().length == 0)
       $(this).parent().removeClass("focused");
-  });
-  $('.form-control').blur();
+        });
+        $('.form-control').blur();
 
-  // validetion
-  $.validator.setDefaults({
-    errorElement: 'span',
-    errorClass: 'validate-tooltip'
-  });
+        // validetion
+        $.validator.setDefaults({
+          errorElement: 'span',
+          errorClass: 'validate-tooltip'
+        });
 
 
-}(jQuery);
+      }(jQuery);
     </script>
-  
-</body>
+  </body>
 </html>
