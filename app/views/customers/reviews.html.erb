@@ -7,9 +7,9 @@
     </div>
 
     <div>
-      <%= review_form.label :provider_id %>
-      <%= review_form.text_field :provider_id %>
+      <%= review_form.hidden_field :provider_id,value: Customer.find_by(id:session[:customer_id]).provider_id %>
     </div>
+
 
     <div>
       <%= review_form.label :title %>

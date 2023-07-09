@@ -76,6 +76,7 @@ class CustomersController < ApplicationController
   
       
       p "peek the RV params : -> ",review_params
+
       @review = Review.new(review_params)
   
       if @review.save

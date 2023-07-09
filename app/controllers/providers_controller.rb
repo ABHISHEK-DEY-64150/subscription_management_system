@@ -150,7 +150,7 @@ class ProvidersController < ApplicationController
 
   def showreviews
 
-    @reviews = Review.all
+    @reviews = Review.where(provider_id:session[:provider_id])
 
   end
 
