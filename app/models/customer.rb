@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :provider
   has_many :bills
-  has_many :CustomerSubscriptions
+  has_many :customer_subscriptions
   has_one_attached :avatar
   has_secure_password
 
