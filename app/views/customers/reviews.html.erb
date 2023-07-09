@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <style>
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .submit-button {
+        background-color: green;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .submit-button:hover {
+        background-color: darkgreen;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        width: 300px;
+      }
+
+      textarea {
+        width: 300px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Review Form</h1>
+
+      <%= form_with(model: @review, url: "/createNewReview", local: true) do |form| %>
+        <%= form.fields_for :review do |review_form| %>
+          <div class="form-group">
+            <%= review_form.hidden_field :customer_id,value: session[:customer_id] %>
+          </div>
+
+          <div class="form-group">
+            <%= review_form.hidden_field :provider_id,value: Customer.find_by(id:session[:customer_id]).provider_id %>
+          </div>
+
+          <div class="form-group">
+            <%= review_form.label :title %>
+            <%= review_form.text_field :title %>
+          </div>
+
+          <div class="form-group">
+            <%= review_form.label :description %>
+            <%= review_form.text_area :description %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= form.submit "Submit", class: "submit-button" %>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>

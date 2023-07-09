@@ -1,3 +1,5 @@
+require_relative '../models/reviews'
+
 class ProvidersController < ApplicationController
   before_action :require_provider_logged_in, only: [:dashboard, :userregister, :addPackages, :add_Package, :registerredCustomers, :singleCustomer, :dues]
   before_action :update_dues, only: [:singleCustomer]
@@ -145,6 +147,17 @@ class ProvidersController < ApplicationController
     session[:provider_id] = nil
     redirect_to "/"
   end
+
+
+  def showreviews
+
+    @reviews = Review.where(provider_id:session[:provider_id])
+
+  end
+
+
+
+
 
   def add_Package
     puts "========", session[:provider_id]
