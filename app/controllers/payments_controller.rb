@@ -101,7 +101,7 @@ class PaymentsController < ApplicationController
     end
   end
 
-  def self.gen_monthly_bill
+  def gen_monthly_bill
       
       @all_provider = Provider.all 
       # @bill_new.provider_id =  
@@ -116,14 +116,21 @@ class PaymentsController < ApplicationController
               @bill_new.package_id = pack.id
               @bill_new.packdescription = pack.packagedescription
               @bill_new.price = pack.price
-              @bill_new.amount = @bill_new.price + 
-
+              @bill_new.fine = 0
+              @bill_new.amount = @bill_new.price 
+              @bill_new.status = 0
+              @bill_new.date = Date.current.beginning_of_month
+              @bill_new.due_date = Date.current.end_of_month
+              @bill_new.save
             end
-
-
           end
-
       end
+      redirect_to "/bills"
 
   end
+
+  def bills
+    @your_bills = Bill.where(provider_id: session[:provider_id],status: 0)
+  end
+
 end

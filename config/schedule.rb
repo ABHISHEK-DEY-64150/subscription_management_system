@@ -18,3 +18,12 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+# every '0 0 1 * *' do
+#     runner 'PaymentsController.gen_monthly_bill'
+# end
+
+every 1.minute do
+    runner 'PaymentsController.gen_monthly_bill'
+end
+  
