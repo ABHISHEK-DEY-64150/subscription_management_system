@@ -6,26 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "singleCustomers", "data-turbo-track": "reload" %>
     <title>Document</title>
-    <style>
-      img {
-          width: 10rem;
-          height: 10rem;
-          object-fit: cover;
-          border-radius: 50%;
-      }
-    </style>
+   
   </head>
   <body>
-    <div class="user_container">
-      <div class="left_content">
-        <% if @singleCustomer.avatar.attached? %>
-          <img src="<%=(url_for(@singleCustomer.avatar))%>" >
-        <%end%>
-        <div>
-          <h1>Name:<%=  @singleCustomer.name %></h1>
-          <h1> Gmail:<%=  @singleCustomer.email %> </h1>
+    
+    <div   id = "user_profile_card">
+      <div class="center">
+        <div class="profile">
+          <div class="image">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+            <% if @singleCustomer.avatar.attached? %>
+              <img src="<%=(url_for(@singleCustomer.avatar))%>" width="70" height="70" >
+            <%end%>
+          </div>
+          <div class="name"><%=  @singleCustomer.name %></div>
+          
+          <div class="actions">
+            <%= button_to "Subscribe new" , newSubscriptions_path(@singleCustomer), method: :get, class: 'btn' %>
+            <%# <button class="btn">Subscribe New</button> %>
+          </div>
         </div>
-        <%= button_to "Subscribe new", newSubscriptions_path(@singleCustomer), method: :get %>
+        <div class="stats">
+          <div class="box">
+            <span class="value">Email:</span>
+            <span class="parameter"><%=  @singleCustomer.email %> </span>
+          </div>
+          <div class="box">
+            <span class="value">Phone number: </span>
+            <span class="parameter">Likes</span>
+          </div>
+          <div class="box">
+            <span class="value">Address:</span>
+            <span class="parameter">Follower</span>
+          </div>
+        </div>
       </div>
     </div>
     <table id="single_customer">

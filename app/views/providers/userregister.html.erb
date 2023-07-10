@@ -50,9 +50,9 @@
               <span class="lighting"></span>
             <% end %>
           </div>
-          <div style="margin-bottom:20px">
-            <%= form.label "add customer image"%>
-            <%= form.file_field :avatar  ,required: false %>
+          <div class="input-group">
+           
+            <%= form.file_field :avatar ,id: "fileInput", class: 'form-control'  ,required: false %>
             <% @customer.errors.full_messages_for(:avatar).each do |message| %>
               <div><%= message %></div>
               <span class="lighting"></span>
@@ -133,6 +133,14 @@
           datepickerContainer.hide();
         }
       });
+    document.addEventListener('DOMContentLoaded', function() {
+    var fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', function() {
+      var fileName = this.value.split('\\').pop(); // Extracts the filename from the file path
+      var buttonText = fileName ? fileName : 'Custom Text';
+      this.nextElementSibling.innerText = buttonText;
+    });
+  });
     </script>
   </body>
 </html>
