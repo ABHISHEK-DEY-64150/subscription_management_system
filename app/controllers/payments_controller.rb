@@ -103,9 +103,7 @@ class PaymentsController < ApplicationController
 
   def gen_monthly_bill
       
-      @all_provider = Provider.all 
-      # @bill_new.provider_id =  
-      @all_provider.each do |p|
+      p = Provider.find(session[:provider_id])
           @customer_of_provider = p.customers.all
           @customer_of_provider.each do |c|
             @all_packs = c.customer_subscriptions.all 
@@ -119,18 +117,90 @@ class PaymentsController < ApplicationController
               @bill_new.fine = 0
               @bill_new.amount = @bill_new.price 
               @bill_new.status = 0
-              @bill_new.date = Date.current.beginning_of_month
+              @bill_new.date = Date.current.beginning_of_month         
               @bill_new.due_date = Date.current.end_of_month
               @bill_new.save
             end
           end
-      end
       redirect_to "/bills"
 
   end
 
   def bills
-    @your_bills = Bill.where(provider_id: session[:provider_id],status: 0)
+    @your_bills = Bill.where(provider_id: session[:provider_id]).order('status ASC')
+  end
+
+
+
+  def generate_bill
+    @bill = Bill.find(params[:id])
+    @cus = Customer.find(@bill.customer_id)
+    provider_id = session[:provider_id]
+    provider_email = Provider.find(provider_id).email
+    
+    packid = @bill.package_id
+    price = params[:price].to_i
+    date = params[:date]
+    puts "date: ",date
+    month = date.to_time.strftime("%B")
+    year = date.to_time.strftime("%Y")
+    due_date = params[:due_date]
+    packagedescription = params[:packdescription]
+    amount = params[:amount]
+    st = ""
+    if @bill.status == 0
+      st = "Due"
+    else
+      st = "paid"
+    end
+
+    p "params Checked : ", params
+
+    sLnumber = SecureRandom.random_number(10000000)
+
+    pdf = Receipts::Receipt.new(
+      details: [
+        ["Serial ", "#{sLnumber}"],
+        ["Month", "#{month},#{year}"],
+        ["Pay within", "#{due_date}"],
+        ["Payment method", "Cash"],
+      ],
+      company: {
+        name: "#{provider_id}",
+        address: "123 Fake Street\nNew York City, NY 10012",
+        email: provider_email,
+      },
+      recipient: [
+        "<b>Customer Details</b>",
+        ["Customer ID : #{@bill.customer_id}"],
+        ["Customer Name : #{@cus.name}"],
+        ["Customer Address : #{@cus.address}"],
+        ["Customer email : #{@cus.email}"],
+
+      ],
+      line_items: [
+        ["<b>Package id</b>","<b>Package Name</b>", "<b>price</b>", "<b>Month</b>", "<b>Amount</b>","<b>Payment status</b>"],
+        [packid,packagedescription, price, month, "$#{amount}",nil],
+        [nil,nil, nil, "Subtotal", "BDT#{amount}",nil],
+        [nil,nil, nil, "Total", "BDT#{amount}",nil],
+        [nil, nil, nil, "<b>Amount to be paid</b>", "BDT#{amount}","#{st}"],
+      ],
+      footer: "Thanks for your business. Please contact us if you have any questions.",
+
+    )
+    send_data pdf.render, filename: "#{sLnumber}_Bill_#{@bill.id}_#{@cus.name}_#{@cus.id}.pdf", type: "application/pdf", disposition: "inline"
+  end
+
+  def confirm_pay
+      @bill = Bill.find(params[:id])
+      @bill.update(status: 1)
+      redirect_to "/bills"
+  end
+
+  def destroy
+      @bil = Bill.find(params[:id])
+      @bil.destroy
+      redirect_to "/bills"
   end
 
 end

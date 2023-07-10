@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   post "/genBills" => "payments#gen_monthly_bill", as: "gen_monthly_bills"
 
+  post "/genreceipt/:id" => "payments#generate_bill", as: "generate_bill_receipt"
+
 
   #logout of admin on admindashboard
 
@@ -101,5 +103,9 @@ Rails.application.routes.draw do
   get "/paymenthistory" => "payments#paymenthistory",as:"transectionhistory"
 
   get '/paymenthistory/:id/download_pdf', to: 'payments#download_pdf', as: 'download_pdf'
+
+  post "/confirmPayment/:id" => "payments#confirm_pay",as:"confirm_pay"
+
+  delete "/deletebill/:id" => "payments#destroy", as:"deletebill"
 
 end
