@@ -16,6 +16,8 @@
             <div class="circle-2"></div>
             <% if @singleCustomer.avatar.attached? %>
               <img src="<%=(url_for(@singleCustomer.avatar))%>" width="70" height="70" >
+            <%else %>
+              <img src="/assets/user_avatar.png" width="70" height="70" >
             <%end%>
           </div>
           <div class="name"><%=  @singleCustomer.name %></div>
