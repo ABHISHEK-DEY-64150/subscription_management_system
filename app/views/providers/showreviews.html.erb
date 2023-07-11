@@ -1,24 +1,48 @@
 <html>
   <head>
-    <style>
-      .card {
-        background-color: #d5f2e3;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-    </style>
+    <%= stylesheet_link_tag "showreviews", "data-turbo-track": "reload" %>
   </head>
   <body>
-    <h1>Reviews</h1>
-
+    <h1 style= "margin-bottom: 15px;">Reviews</h1>
+    <%if @reviews.present? %>
     <% @reviews.each do |review| %>
-      <div class="card">
-        <h2><%= review.title %></h2>
-        <p>Customer ID: <%= review.customer_id %></p>
-        <p>Description: <%= review.description %></p>
-      </div>
+      <% @customers.each do |customer|%>
+        <% if review.customer_id == customer.id%>
+          <div   id = "review_card">
+            <div class="center">
+              <div class="profile">
+                <div class="image">
+                  <div class="circle-1"></div>
+                  <div class="circle-2"></div>
+                  <% if customer.avatar.attached? %>
+                    <img src="<%=(url_for(customer.avatar))%>" width="70" height="70" >
+                  <%else %>
+                    <img src="/assets/user_avatar.png" width="70" height="70" >
+                  <%end%>
+                </div>
+                <div class="name"><%=  customer.name %></div>
+                <div class="actions">
+                  <%= button_to "Subscribe new" , method: :get, class: 'btn' %>
+                  <%# <button class="btn">Subscribe New</button> %>
+                </div>
+              </div>
+              <div class="stats">
+                <div class="box">
+                  <span class="value">Title: </span>
+                  <span class="parameter"><%= review.title%></span>
+                </div>
+                <div class="box">
+                  <span class="value">Description:</span>
+                  <span class="parameter"><%= review.description %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
     <% end %>
+    <%else%>
+    <h3 style ="color: red">No reviews yet.</h3>
+    <%end%>
   </body>
 </html>

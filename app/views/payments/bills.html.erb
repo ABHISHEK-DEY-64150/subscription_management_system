@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag "singleCustomers", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "bills", "data-turbo-track": "reload" %>
     <title>Document</title>
   </head>
   <body>
     <%= button_to "Gererate new bill" , gen_monthly_bills_path, method: :post %>
-    <table  id="single_customer">
       <caption>
-        <h1 class="cd-title"> <b>Bills</b> </h1>
+        <h1 class="cd-title"> <b>Bill table</b> </h1>
       </caption>
+    <input type="text" class="cd-search" id="search-input" placeholder="Search...">
+    <table  id="bills">
+    
       <thead>
         <tr>
           <th>Customer Id</th>
@@ -66,4 +68,15 @@
         </tbody>
       </table>
     </body>
+
+      <script>
+       $(document).ready(function() {
+        $('#search-input').on('input', function() {
+          var value = $(this).val().toLowerCase();
+          $('table tr').filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+          });
+        });
+       });
+      </script>
   </html>

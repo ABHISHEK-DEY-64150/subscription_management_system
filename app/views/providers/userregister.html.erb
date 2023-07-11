@@ -51,8 +51,8 @@
             <% end %>
           </div>
           <div class="input-group">
-           
-            <%= form.file_field :avatar ,id: "fileInput", class: 'form-control'  ,required: false %>
+            
+            <%= form.file_field :avatar,id: "fileInput", class: 'form-control'  ,required: false %>
             <% @customer.errors.full_messages_for(:avatar).each do |message| %>
               <div><%= message %></div>
               <span class="lighting"></span>

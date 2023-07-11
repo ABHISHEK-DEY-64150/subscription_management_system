@@ -174,3 +174,9 @@
   #user_profile_card .stats .parameter {
     font-size: 11px;
   }
+  .cd-search{
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+  }
