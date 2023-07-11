@@ -117,7 +117,8 @@ class PaymentsController < ApplicationController
               @bill_new.fine = 0
               @bill_new.amount = @bill_new.price 
               @bill_new.status = 0
-              @bill_new.date = Date.current.beginning_of_month         
+              @bill_new.date = Date.current.beginning_of_month
+              # @bill_new.date = Date.today.next_month         
               @bill_new.due_date = Date.current.end_of_month
               @bill_new.save
             end
@@ -127,7 +128,10 @@ class PaymentsController < ApplicationController
   end
 
   def bills
+    @currmonth = Date.current.beginning_of_month
+    # @your_bills = Bill.where(provider_id: session[:provider_id],date: @currmonth).order('status ASC')
     @your_bills = Bill.where(provider_id: session[:provider_id]).order('status ASC')
+
   end
 
 
@@ -196,6 +200,13 @@ class PaymentsController < ApplicationController
       @bill.update(status: 1)
       redirect_to "/bills"
   end
+
+  def confirm_pay_customer
+    @bill = Bill.find(params[:id])
+    customerid = params[:customer]
+    @bill.update(status: 1)
+    redirect_to showCustomerDetails_path(customerid)
+end
 
   def destroy
       @bil = Bill.find(params[:id])

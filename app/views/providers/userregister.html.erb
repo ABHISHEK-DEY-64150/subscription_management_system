@@ -9,6 +9,11 @@
     <div class="wrapper_user_register">
       <div class="inner-warpper text-center" >
         <h1 class="title" >Register User</h1>
+        <% if flash[:transactionErr] %>
+          <div style="color: red">
+            <%= flash[:transactionErr] %>
+          </div>
+        <% end %>
         <%= form_with(model: @customer, url: customerregister_path ) do |form| %>
           <div class="input-group">
             <label class="palceholder" for="Name">Name</label>
@@ -51,7 +56,6 @@
             <% end %>
           </div>
           <div class="input-group">
-           
             <%= form.file_field :avatar ,id: "fileInput", class: 'form-control'  ,required: false %>
             <% @customer.errors.full_messages_for(:avatar).each do |message| %>
               <div><%= message %></div>
@@ -133,14 +137,14 @@
           datepickerContainer.hide();
         }
       });
-    document.addEventListener('DOMContentLoaded', function() {
-    var fileInput = document.getElementById('fileInput');
-    fileInput.addEventListener('change', function() {
+          document.addEventListener('DOMContentLoaded', function() {
+          var fileInput = document.getElementById('fileInput');
+          fileInput.addEventListener('change', function() {
       var fileName = this.value.split('\\').pop(); // Extracts the filename from the file path
       var buttonText = fileName ? fileName : 'Custom Text';
       this.nextElementSibling.innerText = buttonText;
-    });
-  });
+          });
+        });
     </script>
   </body>
 </html>

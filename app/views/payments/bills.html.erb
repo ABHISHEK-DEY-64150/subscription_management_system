@@ -19,7 +19,7 @@
           <th>Description</th>
           <th>Price</th>
           <th>status</th>
-          <th>Date</th>
+          <th>Month</th>
           <th>Due date</th>
           <th>Amount to be paid</th>
           <th>Receipt</th>
@@ -41,7 +41,7 @@
                     <p style = "color:blue">paid</p>
                   <% end %>
                 </td>
-                <td><%= d.date%></td>
+                <td><%= d.date.to_time.strftime("%B")%>,<%= d.date.to_time.strftime("%Y")%></td>
                 <td><%= d.due_date%></td>
                 <td><%= d.amount%></td>
                 <td>

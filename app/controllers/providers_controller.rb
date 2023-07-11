@@ -41,38 +41,49 @@ class ProvidersController < ApplicationController
   def singleCustomer
     @singleCustomer = Customer.find(params[:id])
     @subcribedPackages = CustomerSubscription.where(customer_id: params[:id])
-    @DuePackages = CustomerSubscription.where(customer_id: params[:id]).where("dues > ?", 0)
+    @DuePackages = Bill.where(customer_id: params[:id]).where(status: 0)
   end
 
   def dues
     @dues = CustomerSubscription.where("dues > ?", 0).order(dues: :desc)
   end
 
+
   def customerRegister
     puts params
     @customer = Customer.new(customer_params)
     @customer.paymentDues = 0
     @customer.provider_id = session[:provider_id]
+    # @customer.provider_id = "someenn"
     pack_id = Package.find_by(provider_id: session[:provider_id], description: params[:package_selector], servicetype: params[:service_selector])
     # puts ">>>>>>>>>>>>>>",pack_id.price
-    if @customer.save
-      @mysub = CustomerSubscription.new
-      @mysub.servicetype = pack_id.servicetype
-      @mysub.packagedescription = pack_id.description
-      @mysub.price = pack_id.price
-      @mysub.package_id = pack_id.id
-      @mysub.customer_id = @customer.id
-      @mysub.provider_id = pack_id.provider_id
-      @mysub.dues = 1
-      @mysub.subscriptiondate = params[:subscription_date]
-      if @mysub.save
-        #  redirect_to "/providerDashboard"
+      ActiveRecord::Base.transaction do
+        @customer.save!
+        @mysub = CustomerSubscription.new
+        @mysub.servicetype = pack_id.servicetype
+        @mysub.packagedescription = pack_id.description
+        @mysub.price = pack_id.price
+        @mysub.package_id = pack_id.id
+        # @mysub.package_id = "sdhfdzusvgfihdklshbrgefgi"
+        @mysub.customer_id = @customer.id
+        @mysub.provider_id = pack_id.provider_id
+        @mysub.dues = 1
+        @mysub.subscriptiondate = params[:subscription_date]
+        @mysub.save!
         redirect_to showCustomerDetails_path(@customer.id)
       end
-    else
+      
+    rescue ActiveRecord::RecordInvalid => e
+      flash.now[:transactionErr] = "Transaction Rollback occured: #{e.message}"
+      puts "*******************rollback occured :  #{e.message}"     
       render :userregister, status: :unprocessable_entity
-    end
+    rescue StandardError => e
+      flash.now[:transactionErr] = "Transaction Rollback occured: #{e.message}"
+      puts "*******************rollback occured for standered error: #{e.message}"     
+      render :userregister, status: :unprocessable_entity  
   end
+
+
 
   def service_type_selection
     first_selector_value = params[:first_selector_value]
@@ -104,16 +115,9 @@ class ProvidersController < ApplicationController
     redirect_to "/"
   end
 
-
   def showreviews
-
-    @reviews = Review.where(provider_id:session[:provider_id])
-
+    @reviews = Review.where(provider_id: session[:provider_id])
   end
-
-
-
-
 
   def add_Package
     puts "========", session[:provider_id]
