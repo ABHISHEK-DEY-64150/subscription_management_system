@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get "/showreviews" => "providers#showreviews",as: "showreviews"
 
+  patch "/replyreview" => "providers#replyreview", as: "replyreview"
+
   get "/bills" => "payments#bills", as: "bills"
 
   post "/genBills" => "payments#gen_monthly_bill", as: "gen_monthly_bills"

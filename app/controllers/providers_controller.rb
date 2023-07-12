@@ -123,6 +123,27 @@ class ProvidersController < ApplicationController
 
   end
 
+  def replyreview
+
+    p "Peek params : ", params 
+
+    creview = Review.find_by_id(params[:id])
+
+    creview.reply=params[:reply]
+
+    p "Check Updated Review", creview
+
+    if creview.save
+      redirect_to '/providerDashboard', notice: "Reply updated successfully."
+    else
+      render '/dues'
+    end
+
+  end
+
+
+
+
   def add_Package
     puts "========", session[:provider_id]
     @package = Package.new(packages_params)
