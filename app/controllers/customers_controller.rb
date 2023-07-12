@@ -43,6 +43,10 @@ class CustomersController < ApplicationController
         redirect_to '/'
     end  
 
+
+
+
+
     def update_dues
       @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]);
       if @duePackages.nil?

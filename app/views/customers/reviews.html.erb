@@ -4,7 +4,33 @@
     <title>Reviews </title>
     <%= stylesheet_link_tag "review", "data-turbo-track": "reload" %>
     <script src="https://use.fontawesome.com/a6f0361695.js"></script>
+    <style>
+      .card {
+        background-color: #d5f2e3;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
 
+        /* Add a shadow to the card */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+        /* Add a slight gradient to the background color */
+        background-image: linear-gradient(to bottom, #d5f2e3 0%, #d2e9dd 100%);
+      }
+
+      .card h2 {
+        /* Make the heading text bold and larger */
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+
+      .card p {
+        /* Make the paragraph text smaller and lighter */
+        font-size: 0.9em;
+        font-weight: lighter;
+      }
+    </style>
   </head>
   <body>
     <div class="card">
@@ -51,7 +77,19 @@
       <% end %>
     </div>
 
+<div>
+<h1>My Reviews</h1>
 
+    <%@myreviews=Review.where(customer_id: session[:customer_id])%>
+
+    <% @myreviews.each do |review| %>
+      <div class="card">
+        <h2><%= review.title %></h2>
+        <p>Date : <%= review.created_at %></p>
+        <p><b>Description : </b> <%= review.description %></p>
+        <p><b>Reply : </b> <%= review.reply %></p>
+      </div>
+    <% end %></div>
 
 
 

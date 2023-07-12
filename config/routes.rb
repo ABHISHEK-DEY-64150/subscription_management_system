@@ -79,6 +79,8 @@ Rails.application.routes.draw do
   post '/createNewReview', to: 'customers#createNewReview', as: "createNewReview"
 
 
+
+
   #available packages of customer
 
   get "/internetPackagesavailable" => "subscriptions#internetPackagesavailable"
