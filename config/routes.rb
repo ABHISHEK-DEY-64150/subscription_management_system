@@ -110,4 +110,6 @@ Rails.application.routes.draw do
 
   delete "/deletebill/:id" => "payments#destroy", as:"deletebill"
 
+  get "/your_bills/getbills" => "payments#getbills",as:"getbills"
+
 end

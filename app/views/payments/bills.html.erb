@@ -1,82 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag "bills", "data-turbo-track": "reload" %>
-    <title>Document</title>
-  </head>
-  <body>
-    <%= button_to "Gererate new bill" , gen_monthly_bills_path, method: :post %>
-      <caption>
-        <h1 class="cd-title"> <b>Bill table</b> </h1>
-      </caption>
-    <input type="text" class="cd-search" id="search-input" placeholder="Search...">
-    <table  id="bills">
-    
-      <thead>
-        <tr>
-          <th>Customer Id</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>status</th>
-          <th>Month</th>
-          <th>Due date</th>
-          <th>Amount to be paid</th>
-          <th>Receipt</th>
-          <th>Confirm</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @your_bills.present? %>
-          <% @your_bills.each do |d| %>
-            <tr>
-              <td><%= d.customer_id %>
-                <td><%= d.packdescription %></td>
-                <td><%= d.price%></td>
-                <td >
-                  <%if d.status == 0%>
-                    <p style = "color:red">unpaid</p>
-                  <%else%>
-                    <p style = "color:blue">paid</p>
-                  <% end %>
-                </td>
-                <td><%= d.date.to_time.strftime("%B")%>,<%= d.date.to_time.strftime("%Y")%></td>
-                <td><%= d.due_date%></td>
-                <td><%= d.amount%></td>
-                <td>
-                  <%= button_to 'Download',generate_bill_receipt_path(id:d.id,packdescription:d.packdescription,price:d.price,date:d.date,due_date:d.due_date,amount:d.amount,method: :post) %>
-                </td>
-                <td>
-                  <%if d.status == 0%>
-                    <%= button_to 'Confirm',confirm_pay_path(id:d.id,method: :post) %>
-                  <%else%>
-                    <p style = "color:blue">Confirmed</p>
-                  <% end %>                  
-                </td>
-                <td>
-                    <%= button_to "Delete", deletebill_path(d), method: :delete ,data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </body>
+<div>
+  <%= select_tag 'year', options_for_select((Date.current.year - 10..Date.current.year).to_a), prompt: 'Select year', id: 'year-selector' %>
+  <%= select_tag 'month', options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, index| [name, index + 1] }), prompt: 'Select month', id: 'month-selector' %>
+</div>
 
-      <script>
-       $(document).ready(function() {
-        $('#search-input').on('input', function() {
-          var value = $(this).val().toLowerCase();
-          $('table tr').filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-          });
-        });
-       });
-      </script>
-  </html>
+<div id="result-container">
+    <%= render partial: "bills_partial", locals: { your_bills: @your_bills } %>
+</div>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    function fetchRecords() {
+      var month = $('#month-selector').val();
+      var year = $('#year-selector').val();
+
+      // Make an AJAX request to fetch the records
+      $.ajax({
+        url: "/your_bills/getbills",
+        type: "GET",
+        dataType: "html",
+        data: { month: month, year: year },
+        success: function(response) {
+          // Display the fetched records
+          $("#result-container").html(response);
+        },
+        error: function(xhr) {
+          console.log(xhr.responseText);
+        }
+      });
+    }
+
+    // Listen for changes in the month and year selectors
+    $('#month-selector, #year-selector').on('change', function() {
+      fetchRecords();
+    });
+
+    // Fetch default records on page load
+    fetchRecords();
+  });
+</script>
