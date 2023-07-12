@@ -47,7 +47,6 @@
             <%= review_form.hidden_field :provider_id, value: Customer.find_by(id:session[:customer_id]).provider_id %>
           </div>
 
-
            <div class="pinfo">Title</div>
 
            <div class="form-group">
@@ -87,14 +86,9 @@
         <h2><%= review.title %></h2>
         <p>Date : <%= review.created_at %></p>
         <p><b>Description : </b> <%= review.description %></p>
-        <p><b>Reply : </b> <%= review.reply %></p>
+        <p><b>Reply : </b> <pre><%= review.reply %></pre></p>
       </div>
     <% end %></div>
 
-
-
-
-   
-  
   </body>
 </html>
