@@ -31,7 +31,7 @@
 <body>
 <h1>My Reviews</h1>
 
-    <% @myreviews = Review.where(customer_id: session[:customer_id]) %>
+    <% @myreviews = Review.where(customer_id: session[:customer_id]).order(updated_at: :desc) %>
 
     <% @myreviews.each do |review| %>
       <div class="card">

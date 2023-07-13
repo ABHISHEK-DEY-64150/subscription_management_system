@@ -117,7 +117,7 @@ class ProvidersController < ApplicationController
 
   def showreviews
 
-    @reviews = Review.where(provider_id: session[:provider_id])
+    @reviews = Review.where(provider_id: session[:provider_id]).order(updated_at: :desc)
 
     @customers = Customer.where(provider_id: session[:provider_id], id: Review.select(:customer_id))
 

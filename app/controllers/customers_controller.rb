@@ -78,7 +78,6 @@ class CustomersController < ApplicationController
     def createNewReview
       
   
-      
       p "peek the RV params : -> ",review_params
 
       @review = Review.new(review_params)
