@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get "/showreviews" => "providers#showreviews",as: "showreviews"
 
+  patch "/replyreview" => "providers#replyreview", as: "replyreview"
+
   get "/bills" => "payments#bills", as: "bills"
 
   post "/genBills" => "payments#gen_monthly_bill", as: "gen_monthly_bills"
@@ -71,12 +73,16 @@ Rails.application.routes.draw do
   get "/duePackages" => "customers#duePackages", as: "duePackages"
 
   get "/reviews" =>  "customers#reviews", as:"reviews"
+
+  get "/myreviews" =>   "customers#myreviews"
  
   delete "/logoutcustomer" => 'customers#destroy',as: "logoutcustomer"
 
   post '/createNewReview', to: 'customers#createNewReview', as: "createNewReview"
 
   get "/customerbills" => "customers#bills",as:"customerbills"
+
+
 
 
   #available packages of customer

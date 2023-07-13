@@ -47,6 +47,10 @@ class CustomersController < ApplicationController
         redirect_to '/'
     end  
 
+
+
+
+
     def update_dues
       @duePackages = CustomerSubscription.where(customer_id: session[:customer_id]);
       if @duePackages.nil?
@@ -78,7 +82,6 @@ class CustomersController < ApplicationController
     def createNewReview
       
   
-      
       p "peek the RV params : -> ",review_params
 
       @review = Review.new(review_params)

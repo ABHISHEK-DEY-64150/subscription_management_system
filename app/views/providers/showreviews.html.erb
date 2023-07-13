@@ -21,9 +21,19 @@
                   <%end%>
                 </div>
                 <div class="name"><%=  customer.name %></div>
+                <div class="action">
+                <%= form_with(model: @review, url: '/replyreview', local: true, method: :patch) do |form| %>
+                  <div class="field">
+                    <%= form.text_area :reply, rows: 4 %>
+                  </div>
+                  <div class="field">
+                 <%= form.hidden_field :id, :value => review.id %>
+                  </div>
+
                 <div class="actions">
-                  <%= button_to "Subscribe new" , method: :get, class: 'btn' %>
-                  <%# <button class="btn">Subscribe New</button> %>
+                  <%= form.submit "Reply", class: "btn btn-success" %>
+                </div>
+                <% end %>
                 </div>
               </div>
               <div class="stats">
@@ -35,6 +45,16 @@
                   <span class="value">Description:</span>
                   <span class="parameter"><%= review.description %></span>
                 </div>
+                <% if review.reply%>
+                <div class="box">
+                  <span class="value">Reply:</span>
+                  <% sepreview=review.reply.split('$')%>
+                  <% for v in sepreview%>
+                  <span style="background-color: #edf2ed"> <%=v%> </span>
+                  <hr>
+                  <%end%>
+                </div>
+                <%end%>
               </div>
             </div>
           </div>

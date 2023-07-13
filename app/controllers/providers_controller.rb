@@ -117,11 +117,41 @@ class ProvidersController < ApplicationController
 
   def showreviews
 
-    @reviews = Review.where(provider_id: session[:provider_id])
+    @reviews = Review.where(provider_id: session[:provider_id]).order(updated_at: :desc)
 
     @customers = Customer.where(provider_id: session[:provider_id], id: Review.select(:customer_id))
 
   end
+
+  def replyreview
+
+    p "Peek params : ", params 
+
+    creview = Review.find_by_id(params[:id])
+
+    p "TYPE", creview.reply.class
+
+    if creview.reply
+      old=creview.reply
+      newr="$"+params[:reply]
+      creview.reply=old+newr
+    else
+      creview.reply=params[:reply]
+    end
+
+    
+    p "Check Updated Review", creview
+
+    if creview.save
+      redirect_to '/showreviews', notice: "Reply updated successfully."
+    else
+      render '/dues'
+    end
+
+  end
+
+
+
 
   def add_Package
     puts "========", session[:provider_id]
