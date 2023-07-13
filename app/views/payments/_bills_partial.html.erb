@@ -9,6 +9,8 @@
   </head>
   <body>
     <%= button_to "Gererate new bill" , gen_monthly_bills_path, method: :post %>
+    
+
     <% if your_bills.present? %>
       <caption>
         <% first = your_bills.first%>
@@ -72,17 +74,19 @@
           </tbody>
         </table>
       <%else%>
-        <p>no bills found</p>
+        <p>No bills found</p>
       <% end %>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $(document).ready(function() {
        $('#search-input').on('input', function() {
          var value = $(this).val().toLowerCase();
-         $('table tr').filter(function() {
+         $('table tbody tr').filter(function() {
            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
          });
        });
       });
+      
     </script>
   </html>

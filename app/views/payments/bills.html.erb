@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<div>
+      <div> 
+        <h3 style= "margin-bottom: 10px;">
+          Filter by month and year
+        </h3>
   <%= select_tag 'year', options_for_select((Date.current.year - 10..Date.current.year).to_a), prompt: 'Select year', id: 'year-selector' %>
-  <%= select_tag 'month', options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, index| [name, index + 1] }), prompt: 'Select month', id: 'month-selector' %>
-</div>
-
+    <%= select_tag 'month', options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, index| [name, index + 1] }), prompt: 'Select month', id: 'month-selector' %>
+    </div>
+       
 <div id="result-container">
-    <%= render partial: "bills_partial", locals: { your_bills: @your_bills } %>
+    <%= render partial: "bills_partial",locals:  {your_bills: @your_bills}%>
 </div>
 
 </html>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+     $(document).ready(function() {
     function fetchRecords() {
       var month = $('#month-selector').val();
       var year = $('#year-selector').val();
@@ -42,4 +44,6 @@
     // Fetch default records on page load
     fetchRecords();
   });
-</script>
+
+
+  </script>

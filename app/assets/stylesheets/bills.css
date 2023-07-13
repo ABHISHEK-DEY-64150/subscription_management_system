@@ -1,87 +1,93 @@
-.user_container{
-    display:flex; 
-    flex-direction: row; 
-    margin-bottom: 20px;
-  }
-  
-  .user_container .left_content{
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-      box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
-      border-collapse: collapse;
-      border-radius: 20px;
-      padding: 20px;
-    width: 70%;
-  }
-  
-  .user_container .right_content{
-    
-    float: right;
-    width: 20%;
-  }
-  
-  #bills {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom:50px;
-    }
-    
-    #bills   caption{
-      margin-bottom: 10px;
-    }
-  
-  
-    #bills td, #bills th {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-    
-    #bills tr:nth-child(even){background-color: #f2f2f2;}
-    
-    #bills tr:hover {background-color: #ddd;}
-    
-    #bills th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: #668871;
-      color: white;
-    }
-    #bills button{
-      background-color: #4CAF50; /* Green */
-    border: 1px solid #4CAF50;
-    color: white;
-    padding: 15px ;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    cursor: pointer;
-    width: 150px;
-    display: block;
-    border-radius: 3px;
-    }
-  
-  
-    button{
-    float: right;
-    background-color: #4CAF50; /* Green */
-    border: 1px solid #4CAF50;
-    color: white;
-    padding: 15px ;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    cursor: pointer;
-    width: 150px;
-    display: block;
-    border-radius: 3px;
-    }
+.user_container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
 
+.user_container .left_content {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+  border-radius: 20px;
+  padding: 20px;
+  width: 70%;
+}
 
-    .cd-search{
-        padding: 10px;
-        border: 1px solid #0c0000;
-        width: 30%;
-        box-sizing: border-box;
-      }
+.user_container .right_content {
+  float: right;
+  width: 20%;
+}
+
+#bills {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+#bills caption {
+  margin-bottom: 10px;
+}
+
+#bills td,
+#bills th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bills tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#bills tr:hover {
+  background-color: #ddd;
+}
+
+#bills th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #668871;
+  color: white;
+}
+#bills button {
+  background-color: #4caf50; /* Green */
+  border: 1px solid #4caf50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+  border-radius: 3px;
+}
+
+button {
+  float: right;
+  background-color: #4caf50; /* Green */
+  border: 1px solid #4caf50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+  border-radius: 3px;
+}
+
+.cd-search {
+  padding: 10px;
+  border: 1px solid #0c0000;
+  width: 30%;
+  margin-left: 500px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.cd-title{
+  margin-left :500px;
+}
