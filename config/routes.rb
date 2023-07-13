@@ -73,6 +73,8 @@ Rails.application.routes.draw do
   get "/duePackages" => "customers#duePackages", as: "duePackages"
 
   get "/reviews" =>  "customers#reviews", as:"reviews"
+
+  get "/myreviews" =>   "customers#myreviews"
  
   delete "/logoutcustomer" => 'customers#destroy',as: "logoutcustomer"
 

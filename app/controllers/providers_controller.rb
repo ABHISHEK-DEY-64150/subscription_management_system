@@ -132,12 +132,14 @@ class ProvidersController < ApplicationController
     p "TYPE", creview.reply.class
 
     if creview.reply
-      old=creview.reply+creview.created_at.to_s
-      newr=params[:reply]
-      creview.reply="#{old}\n#{newr}"
+      old=creview.reply
+      newr="$"+params[:reply]
+      creview.reply=old+newr
     else
       creview.reply=params[:reply]
     end
+
+    
     p "Check Updated Review", creview
 
     if creview.save

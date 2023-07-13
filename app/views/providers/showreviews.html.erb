@@ -48,7 +48,11 @@
                 <% if review.reply%>
                 <div class="box">
                   <span class="value">Reply:</span>
-                  <span class="parameter"><pre><%= review.reply %></pre></span>
+                  <% sepreview=review.reply.split('$')%>
+                  <% for v in sepreview%>
+                  <span style="background-color: #edf2ed"> <%=v%> </span>
+                  <hr>
+                  <%end%>
                 </div>
                 <%end%>
               </div>

@@ -77,18 +77,6 @@
     </div>
 
 <div>
-<h1>My Reviews</h1>
-
-    <%@myreviews=Review.where(customer_id: session[:customer_id])%>
-
-    <% @myreviews.each do |review| %>
-      <div class="card">
-        <h2><%= review.title %></h2>
-        <p>Date : <%= review.created_at %></p>
-        <p><b>Description : </b> <%= review.description %></p>
-        <p><b>Reply : </b> <pre><%= review.reply %></pre></p>
-      </div>
-    <% end %></div>
 
   </body>
 </html>
