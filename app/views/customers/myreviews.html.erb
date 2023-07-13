@@ -38,8 +38,9 @@
         <h2><%= review.title %></h2>
         <p>Date : <%= review.created_at %></p>
         <p><b>Description : </b> <%= review.description %></p>
-        <p><b>Reply : </b> </p>
+
                 <%if review.reply%>
+                        <p><b>Provider's Reply : </b> </p>
         <%sepreviews=review.reply.split("$")%>
                           <% for v in sepreviews%>
                   <div style="background-color: #edf2ed"> <%=v%> </div>
