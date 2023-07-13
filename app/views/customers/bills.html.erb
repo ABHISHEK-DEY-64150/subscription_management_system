@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "singleCustomers", "data-turbo-track": "reload" %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%if @DuePackages.present? %>
+      <table  id="single_customer">
+        <caption>
+          <h1 class="cd-title"> <b>Customers' Bills</b> </h1>
+        </caption>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Price</th>
+            <th>status</th>
+            <th>Month</th>
+            <th>Due date</th>
+            <th>Amount to be paid</th>
+            <th>Receipt</th>
+            <th>Confirm</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @DuePackages.each do |d| %>
+            <tr>
+              <td><%= d.packdescription %></td>
+              <td><%= d.price%></td>
+              <td >
+                <%if d.status == 0%>
+                  <p style = "color:red">unpaid</p>
+                <%else%>
+                  <p style = "color:blue">paid</p>
+                <% end %>
+              </td>
+              <td><%= d.date.to_time.strftime("%B")%>,<%= d.date.to_time.strftime("%Y")%></td>
+              <td><%= d.due_date%></td>
+              <td><%= d.amount%></td>
+              <td>
+                <%= button_to 'Download',generate_bill_receipt_path(id:d.id,packdescription:d.packdescription,price:d.price,date:d.date,due_date:d.due_date,amount:d.amount,method: :post) %>
+              </td>
+              <td>
+                <%if d.status == 0%>
+                  <p style = "color:red">Pending</p>
+                <%else%>
+                  <p style = "color:blue">Confirmed</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <%else%>
+      <table  id="single_customer">
+        <caption>
+          <h1 class="cd-title"> <b>Customers' Bills</b> </h1>
+          <h3 class="cd-title"> <b style="color:red">No bills yet</b> </h3>
+        </caption>
+      </table>
+    <%end%>
+  </body>
+</html>

@@ -102,50 +102,59 @@ class PaymentsController < ApplicationController
   end
 
   def gen_monthly_bill
-      
-      p = Provider.find(session[:provider_id])
-          @customer_of_provider = p.customers.all
-          @customer_of_provider.each do |c|
-            @all_packs = c.customer_subscriptions.all 
-            @all_packs.each do |pack|
-              @bill_new = Bill.new
-              @bill_new.provider_id = p.id
-              @bill_new.customer_id = c.id
-              @bill_new.package_id = pack.id
-              @bill_new.packdescription = pack.packagedescription
-              @bill_new.price = pack.price
-              @bill_new.fine = 0
-              @bill_new.amount = @bill_new.price 
-              @bill_new.status = 0
-              @bill_new.date = Date.current.beginning_of_month
-              # @bill_new.date = Date.today.next_month         
-              @bill_new.due_date = Date.current.end_of_month
-              @bill_new.save
-            end
-          end
-      redirect_to "/bills"
-
+    p = Provider.find(session[:provider_id])
+    @customer_of_provider = p.customers.all
+    @customer_of_provider.each do |c|
+      @all_packs = c.customer_subscriptions.all
+      @all_packs.each do |pack|
+        @bill_new = Bill.new
+        @bill_new.provider_id = p.id
+        @bill_new.customer_id = c.id
+        @bill_new.package_id = pack.id
+        @bill_new.packdescription = pack.packagedescription
+        @bill_new.price = pack.price
+        @bill_new.fine = 0
+        @bill_new.amount = @bill_new.price
+        @bill_new.status = 0
+        @bill_new.date = Date.current.beginning_of_month
+        # @bill_new.date = Date.today.next_month.beginning_of_month
+        @bill_new.due_date = Date.current.end_of_month
+        @bill_new.save
+      end
+    end
+    redirect_to "/bills"
   end
 
-  def bills
-    @currmonth = Date.current.beginning_of_month
-    # @your_bills = Bill.where(provider_id: session[:provider_id],date: @currmonth).order('status ASC')
-    @your_bills = Bill.where(provider_id: session[:provider_id]).order('status ASC')
-
+  def getbills
+    month = params[:month]
+    year = params[:year]
+    puts "month => ",month,year 
+    if month.present? && year.present?
+      dat = Date.new(year.to_i, month.to_i,1)
+      @your_bills = Bill.where(date: dat).order("status ASC")
+      # @your_bills = Bill.where("extract(month from date) = ? AND extract(year from date) = ?", month.to_i, year.to_i)
+    else
+      @currmonth = Date.current.beginning_of_month
+      @your_bills = Bill.where(provider_id: session[:provider_id],date: @currmonth).order('status ASC')
+      # @your_bills = Bill.where(provider_id: session[:provider_id]).order("status ASC")
+    end
+    render partial: "bills_partial", locals: { your_bills: @your_bills }
   end
 
+   def bills
 
+   end
 
   def generate_bill
     @bill = Bill.find(params[:id])
     @cus = Customer.find(@bill.customer_id)
     provider_id = session[:provider_id]
     provider_email = Provider.find(provider_id).email
-    
+
     packid = @bill.package_id
     price = params[:price].to_i
     date = params[:date]
-    puts "date: ",date
+    puts "date: ", date
     month = date.to_time.strftime("%B")
     year = date.to_time.strftime("%Y")
     due_date = params[:due_date]
@@ -183,11 +192,11 @@ class PaymentsController < ApplicationController
 
       ],
       line_items: [
-        ["<b>Package id</b>","<b>Package Name</b>", "<b>price</b>", "<b>Month</b>", "<b>Amount</b>","<b>Payment status</b>"],
-        [packid,packagedescription, price, month, "$#{amount}",nil],
-        [nil,nil, nil, "Subtotal", "BDT#{amount}",nil],
-        [nil,nil, nil, "Total", "BDT#{amount}",nil],
-        [nil, nil, nil, "<b>Amount to be paid</b>", "BDT#{amount}","#{st}"],
+        ["<b>Package id</b>", "<b>Package Name</b>", "<b>price</b>", "<b>Month</b>", "<b>Amount</b>", "<b>Payment status</b>"],
+        [packid, packagedescription, price, month, "$#{amount}", nil],
+        [nil, nil, nil, "Subtotal", "BDT#{amount}", nil],
+        [nil, nil, nil, "Total", "BDT#{amount}", nil],
+        [nil, nil, nil, "<b>Amount to be paid</b>", "BDT#{amount}", "#{st}"],
       ],
       footer: "Thanks for your business. Please contact us if you have any questions.",
 
@@ -196,9 +205,11 @@ class PaymentsController < ApplicationController
   end
 
   def confirm_pay
-      @bill = Bill.find(params[:id])
-      @bill.update(status: 1)
-      redirect_to "/bills"
+    @bill = Bill.find(params[:id])
+    @bill.update(status: 1)
+    flash[:confirmsg] = "bill payment confirmed"
+    redirect_to "/bills"
+    # render :bills
   end
 
   def confirm_pay_customer
@@ -206,12 +217,11 @@ class PaymentsController < ApplicationController
     customerid = params[:customer]
     @bill.update(status: 1)
     redirect_to showCustomerDetails_path(customerid)
-end
-
-  def destroy
-      @bil = Bill.find(params[:id])
-      @bil.destroy
-      redirect_to "/bills"
   end
 
+  def destroy
+    @bil = Bill.find(params[:id])
+    @bil.destroy
+    redirect_to "/bills"
+  end
 end
