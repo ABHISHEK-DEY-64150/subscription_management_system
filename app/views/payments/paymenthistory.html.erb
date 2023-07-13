@@ -9,14 +9,14 @@
   </head>
   <body>
     <table id="transactions">
-      <caption> 
+      <caption>
         <h1> <b>Transaction History</b> </h1>
- </caption>
+      </caption>
       <thead>
         <tr>
           <th>Package description</th>
           <th>Price</th>
-          <th>Number of Dues paid</th>
+          <th>Billing month</th>
           <th>Total Amount</th>
           <th>TxId</th>
           <th>Invoice</th>
@@ -25,12 +25,12 @@
       <tbody>
         <% @payhistory.each do |p| %>
           <tr>
-            <td><%= p.packagedescription %></td>
+            <td><%= p.packdescription %></td>
             <td><%= p.price %></td>
-            <td><%= p.dues %></td>
+            <td><%= p.date.to_time.strftime("%B")%>,<%= p.date.to_time.strftime("%Y") %></td>
             <td><%= p.amount %></td>
             <td><%= p.txid %></td>
-            <td><%= link_to 'Download PDF', download_pdf_path(p.id) %>
+            <td><%= button_to 'Download',generate_bill_receipt_path(id:p.id,packdescription:p.packdescription,price:p.price,date:p.date,due_date:p.due_date,amount:p.amount,method: :post) %>
             </td>
           </tr>
         <% end %>

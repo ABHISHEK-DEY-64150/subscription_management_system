@@ -11,6 +11,11 @@
     <%if @DuePackages.present? %>
       <table  id="single_customer">
         <caption>
+          <% if flash[:billpaid] %>
+            <div style="color: red">
+              <%= flash[:billpaid] %>
+            </div>
+          <% end %>
           <h1 class="cd-title"> <b>Customers' Bills</b> </h1>
         </caption>
         <thead>
@@ -51,6 +56,9 @@
                   <p style = "color:blue">Confirmed</p>
                 <% end %>
               </td>
+              <td>
+                <%= button_to "Pay", showPaymentforPackage_path(d), method: :get %>
+              </td>
             </tr>
           <% end %>
         </tbody>
@@ -58,6 +66,11 @@
     <%else%>
       <table  id="single_customer">
         <caption>
+          <% if flash[:billpaid] %>
+            <div style="color: red">
+              <%= flash[:billpaid] %>
+            </div>
+          <% end %>
           <h1 class="cd-title"> <b>Customers' Bills</b> </h1>
           <h3 class="cd-title"> <b style="color:red">No bills yet</b> </h3>
         </caption>

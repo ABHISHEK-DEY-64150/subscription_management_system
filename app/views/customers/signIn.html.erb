@@ -12,10 +12,10 @@
     <div class="wrapper">
       <div class="inner-warpper text-center">
         <h1 class="title">Login Customer</h1>
-        <% if flash[:err] %>
-        <div style="color: red">
-          <%= flash[:err] %>
-        </div>
+        <% if flash[:alert] %>
+          <div style="color: red">
+            <%= flash[:alert] %>
+          </div>
         <% end %>
       <%= form_with  url: customerlogin_path  do |form| %>
 

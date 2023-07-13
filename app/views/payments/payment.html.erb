@@ -22,36 +22,30 @@
             <thead>
               <tr>
                 <td>Description</td>
-                <td><%= @unpaidpack.packagedescription %></td>
+                <td><%= @unpaidpack.packdescription %></td>
               </tr>
               <tr>
                 <td>Price</td>
                 <td><%= @unpaidpack.price %></td>
               </tr>
               <tr>
-                <td>Service Type</td>
-                <td><%= @unpaidpack.servicetype %></td>
+                <td>Month</td>
+                <td><%= @unpaidpack.date.to_time.strftime("%B")%>,<%= @unpaidpack.date.to_time.strftime("%Y")%></td>
               </tr>
               <tr>
-                <td>Dues</td>
-                <td><%= @unpaidpack.dues %></td>
+                <td>Due date</td>
+                <td><%= @unpaidpack.due_date %></td>
               </tr>
               <tr>
-                <td>Total Amount</td>
-                <td> <%= @unpaidpack.dues * @unpaidpack.price %></td>
+                <td>Total amount</td>
+                <td> <%= @unpaidpack.amount%></td>
               </tr>
             </thead>
           </table>
           <div class="paymentForm"></div>
-          <%= form_with(model: @pay, url: paymentforpackage_path , id:"your-form") do |form| %>
-            <%= form.hidden_field :subscription_id, value: @unpaidpack.id %>
-            <%= form.hidden_field :packagedescription, value: @unpaidpack.packagedescription %>
-            <%= form.hidden_field :price, value: @unpaidpack.price %>
-            <%= form.hidden_field :servicetype, value: @unpaidpack.servicetype %>
-            <%= form.hidden_field :dues, value: @unpaidpack.dues %>
-            <%= form.hidden_field :amount, value: @unpaidpack.dues * @unpaidpack.price %>
+          <%= form_with(url: confirm_pay_customer_path ,method: "post", id:"your-form") do |form| %>
             <%= form.label(:enter_card_number, class: "payment_form_label") %>
-            <%= form.number_field(:card, class: "payment_form_input" )%>
+            <%= form.number_field(:card, class: "payment_form_input" ,required: true)%>
             <%= form.submit("Make Payment", class: "button_checkout") %>
           <% end %>
         <%end%>
