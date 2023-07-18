@@ -158,9 +158,11 @@
   transition: all 0.3s ease;
 }
 
-.main_container .sidebar .profile .img{
-  padding: 0 18px;
-  width: 45px;
+.wrapper .main_container .sidebar  img{
+  
+  border-radius: 100px;
+  border: 2px solid black;
+  color: #15debd;
 }
 /* newly added */
 .main_container .sidebar .profile {

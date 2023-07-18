@@ -11,15 +11,15 @@
   </head>
   <body>
     <table id="subscribed_packages">
-      <caption> 
+      <caption>
         <h1> <b> Your Subscribed Packages </b> </h1>
- </caption>
+      </caption>
       <thead>
         <tr>
           <th>Description</th>
           <th>Price</th>
           <th>Servicetype</th>
-          <th>Timestamp</th>
+          <th>date of subscription</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,11 @@
             <td><%= p.packagedescription %></td>
             <td><%= p.price %></td>
             <td><%= p.servicetype %></td>
-            <td><%= p.created_at%></td>
+            <td>
+              <% if p.subscriptiondate.present?%>
+                <%= p.subscriptiondate.to_time.strftime("%B")%>,<%= p.subscriptiondate.to_time.strftime("%Y")%>
+              <%end%>
+            </td>
           </tr>
         <% end %>
       </tbody>

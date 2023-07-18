@@ -2,7 +2,7 @@ require_relative '../models/reviews'
 
 class ProvidersController < ApplicationController
   before_action :require_provider_logged_in, only: [:dashboard, :userregister, :addPackages, :add_Package, :registerredCustomers, :singleCustomer, :dues]
-  before_action :update_dues, only: [:singleCustomer]
+  # before_action :update_dues, only: [:singleCustomer]
 
   def home
     if Currentcustomer.customer.present?
@@ -180,26 +180,26 @@ class ProvidersController < ApplicationController
     params.require(:package).permit(:description, :price, :servicetype)
   end
 
-  def update_dues
-    @duePackages = CustomerSubscription.where(customer_id: params[:id])
-    if @duePackages.nil?
-      redirect_to "/customerDashboard"
-    else
-      @duePackages.each do |pack|
-        update_time = pack.updated_at
-        current_time = Time.now
+  # def update_dues
+  #   @duePackages = CustomerSubscription.where(customer_id: params[:id])
+  #   if @duePackages.nil?
+  #     redirect_to "/customerDashboard"
+  #   else
+  #     @duePackages.each do |pack|
+  #       update_time = pack.updated_at
+  #       current_time = Time.now
 
-        min_diff = ((current_time - update_time) / 60)
-        puts "days_difffffffffffff", min_diff, "pack.dues", pack.dues
+  #       min_diff = ((current_time - update_time) / 60)
+  #       puts "days_difffffffffffff", min_diff, "pack.dues", pack.dues
 
-        if min_diff >= 1 && pack.dues.present?
-          days = pack.dues + min_diff
-          puts "days_difffffffffffff2222222", min_diff, "pack.dues", pack.dues
-          pack.update(dues: days)
-        else
-          pack.update(dues: pack.dues)
-        end
-      end
-    end
-  end
+  #       if min_diff >= 1 && pack.dues.present?
+  #         days = pack.dues + min_diff
+  #         puts "days_difffffffffffff2222222", min_diff, "pack.dues", pack.dues
+  #         pack.update(dues: days)
+  #       else
+  #         pack.update(dues: pack.dues)
+  #       end
+  #     end
+  #   end
+  # end
 end
