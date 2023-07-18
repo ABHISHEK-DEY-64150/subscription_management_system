@@ -4,7 +4,7 @@ require_relative '../models/reviews'
 class CustomersController < ApplicationController
   # before_action :update_dues  
   # prepend_before_action :require_customer_logged_in,only: :update_dues
-  before_action :require_customer_logged_in, :update_dues, only:[:dashboard,:bills]
+  before_action :require_customer_logged_in, :update_dues, only:[:dashboard,:bills, :profile]
   before_action :update_dues, only:[:duePackages]
  
     def dashboard
@@ -13,6 +13,11 @@ class CustomersController < ApplicationController
       @customerspackage = CustomerSubscription.where(customer_id: session[:customer_id])
       # @DuePackages = CustomerSubscription.where(customer_id: session[:customer_id]).where("dues > ?",0);
 
+    end
+
+    def profile
+      puts "current customer session======",session[:customer_id]
+      @singleCustomer = Customer.find(session[:customer_id])
     end
 
     def signIn
@@ -103,6 +108,7 @@ class CustomersController < ApplicationController
     # def customer_login_params
     #   params.require(:logincustomer).permit(:email,:password);
     # end  
+
 
   
 end

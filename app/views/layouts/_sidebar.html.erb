@@ -53,6 +53,7 @@
       <div class="main_container">
         <div class="sidebar">
           <div class="sidebar__inner">
+            <a href = "/customer_profile">
             <div class="profile">
               <% if Currentcustomer.customer.avatar.attached?%>
                 <img src="<%=(url_for(Currentcustomer.customer.avatar))%>" width="70" height="70" >
@@ -64,6 +65,7 @@
                 <p class="profile_name"><%=Currentcustomer.customer.name %></p>
               </div>
             </div>
+            </a>
             <ul>
               <li>
                 <a href="/customerDashboard">

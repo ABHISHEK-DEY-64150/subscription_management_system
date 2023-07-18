@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "customer_profile", "data-turbo-track": "reload" %>
+    <title>Document</title>
+  </head>
+  <body>
+    <div   id = "user_profile_card">
+      <div class="center">
+        <div class="profile">
+          <div class="image">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+            <% if @singleCustomer.avatar.attached? %>
+              <img src="<%=(url_for(@singleCustomer.avatar))%>" width="70" height="70" >
+            <%else %>
+              <img src="/assets/user_avatar.png" width="70" height="70" >
+            <%end%>
+          </div>
+          <div class="name"><%=  @singleCustomer.name %></div>
+         
+        </div>
+        <div class="stats">
+          <div class="box">
+            <span class="value">Email:</span>
+            <span class="parameter"><%=  @singleCustomer.email %> </span>
+          </div>
+          <div class="box">
+            <span class="value">Phone number: </span>
+            <span class="parameter">Likes</span>
+          </div>
+          <div class="box">
+            <span class="value">Address:</span>
+            <span class="parameter">Follower</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

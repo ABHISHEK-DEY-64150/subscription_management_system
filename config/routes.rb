@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 
 
   #Customer functionalities
+  get "/customer_profile" => "customers#profile" , as: "customer_profile"
 
   post "/customerLogin" => "customers#loginCustomer",as:"customerlogin"
 
