@@ -40,7 +40,7 @@
         </div>
         <div class="card">
           <div class="card-content">
-            <div class="number">$4500</div>
+            <div class="number">$<%=@currTotal%></div>
             <div class="card-name">Earnings</div>
           </div>
           <div class="icon-box">
@@ -50,7 +50,7 @@
       </div>
       <div class="charts">
         <div class="chart">
-          <h2>Subscriptions (past 12 months)</h2>
+          <h2>Earnings (Past 12 months)</h2>
           <div>
             <canvas id="lineChart"></canvas>
           </div>
@@ -65,14 +65,29 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script>
+      var L = [];
+      var D = [];
+
+      <% @monthly_totals.each do |month, total| %>
+          L.push("<%= j(month)%>");
+          D.push("<%= j(total)%>");
+      <% end %>
+      // L.reverse();
+      // D.reverse();
+      var f = L.shift();
+      var f1 = D.shift();
+      L.push(f);
+      D.push(f1);
       var ctx = document.getElementById('lineChart').getContext('2d');
       var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          // labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: L,
           datasets: [{
               label: 'Earnings in $',
-              data: [2050, 1900, 2100, 2800, 1800, 2000, 2500, 2600, 2450, 1950, 2300, 2900],
+              // data: [2050, 1900, 2100, 2800, 1800, 2000, 2500, 2600, 2450, 1950, 2300, 2900],
+              data: D,
               backgroundColor: [
                   'rgba(85,85,85, 1)'
 

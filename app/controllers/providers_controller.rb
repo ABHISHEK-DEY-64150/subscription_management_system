@@ -24,6 +24,46 @@ class ProvidersController < ApplicationController
     @cablePackage_count = Package.where(provider_id: session[:provider_id]).where("servicetype = 'Cable'").count
     @paperPackage_count = Package.where(provider_id: session[:provider_id]).where("servicetype = 'Paper'").count
     puts notice
+
+    #  getting all bills from bills table by earch month and calculating total price
+
+    start_date = Date.current - 12.months
+    end_date = Date.current
+    curr_month = Date.current.strftime("%B")
+
+    @bills = Bill.where(date:start_date..end_date,provider_id:session[:provider_id],status:1)
+
+    @monthly_totals = Hash.new(0)
+
+    (start_date..end_date).each do |date|
+      month = date.strftime("%B") # Format the date as "YYYY-MM" string
+      @monthly_totals[month] = 0
+    end
+
+    @bills.each do |b|
+      month = b.date.strftime("%B")
+      puts "bill id",b.id
+      price = b.amount 
+      # if monthly_totals[month].nil?
+      #   monthly_totals[month] = price
+      #   puts month,"monthly_total####========>",monthly_totals[month],price
+      # elsif monthly_totals[month].is_a?(Numeric)
+      #   # monthly_totals[month] ||= 0
+       
+      #   monthly_totals[month] += price 
+      #   puts month,"monthly_total========>",monthly_totals[month],price
+      # else
+      #   monthly_totals[month] = price
+      # end
+      @monthly_totals[month] ||= 0
+      @monthly_totals[month] = @monthly_totals[month].to_i + price.to_i
+      # puts month,"monthly_total========>",@monthly_totals[month],price
+
+    end
+    # puts "-----",curr_month
+    @currTotal = @monthly_totals[curr_month].to_i 
+    
+      
   end
 
   def addPackages

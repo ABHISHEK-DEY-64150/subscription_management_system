@@ -121,8 +121,8 @@ class PaymentsController < ApplicationController
         @bill_new.fine = 0
         @bill_new.amount = @bill_new.price
         @bill_new.status = 0
-        @bill_new.date = Date.current.beginning_of_month
-        # @bill_new.date = Date.today.next_month.beginning_of_month
+        # @bill_new.date = Date.current.beginning_of_month
+        @bill_new.date = Date.today.prev_month(4).beginning_of_month
         @bill_new.due_date = Date.current.end_of_month
         @bill_new.save
       end
