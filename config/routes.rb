@@ -115,6 +115,8 @@ Rails.application.routes.draw do
 
   post "/confirmPayment/:id" => "payments#confirm_pay",as:"confirm_pay"
 
+  post "/confirmPayment/singlecustomer/:id" => "payments#confirm_pay_provider",as:"confirm_pay_provider"
+
   post "/confirmPayment/customer/:id" => "payments#confirm_pay_customer", as:"confirm_pay_customer"
 
   delete "/deletebill/:id" => "payments#destroy", as:"deletebill"

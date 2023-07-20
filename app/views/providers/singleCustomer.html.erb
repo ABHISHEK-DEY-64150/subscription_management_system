@@ -43,44 +43,49 @@
       </div>
     </div>
     <% if @subcribedPackages.present? %>
-    <table id="single_customer">
-      <caption>
-        <h1 class="cd-title"> <b>Subscriptions</b> </h1>
-      </caption>
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Service Type</th>
-          <th>Price</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @subcribedPackages.each do |subs| %>
+      <table id="single_customer">
+        <caption>
+          <h1 class="cd-title"> <b>Subscriptions</b> </h1>
+        </caption>
+        <thead>
           <tr>
-            <td><%= subs.packagedescription %></td>
-            <td><%= subs.servicetype%></td>
-            <td><%= subs.price%></td>
-            <td>
-              <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-            </td>
+            <th>Description</th>
+            <th>Service Type</th>
+            <th>Price</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <%else%>
-    <table  id="single_customer">
-      <caption>
-        <h1 class="cd-title"> <b>Subscriptions</b> </h1>
-        <h3 class="cd-title"> <b style="color:red">No subscriptions yet</b> </h3>
-      </caption>
-    </table>
-  <%end%>
+        </thead>
+        <tbody>
+          <% @subcribedPackages.each do |subs| %>
+            <tr>
+              <td><%= subs.packagedescription %></td>
+              <td><%= subs.servicetype%></td>
+              <td><%= subs.price%></td>
+              <td>
+                <%= button_to "Unsubscribe", unsubscribe_path(subs), method: :delete,
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <%else%>
+      <table  id="single_customer">
+        <caption>
+          <h1 class="cd-title"> <b>Subscriptions</b> </h1>
+          <h3 class="cd-title"> <b style="color:red">No subscriptions yet</b> </h3>
+        </caption>
+      </table>
+    <%end%>
     <%if @DuePackages.present? %>
-      <table  id="single_customer"> 
+      <table  id="single_customer">
         <caption>
           <h1 class="cd-title"> <b>Customers' Bills</b> </h1>
+          <% if flash[:confirmsg] %>
+            <div style="color: red">
+              <%= flash[:confirmsg] %>
+            </div>
+          <% end %>
         </caption>
         <thead>
           <tr>
@@ -115,7 +120,7 @@
               </td>
               <td>
                 <%if d.status == 0%>
-                  <%= button_to 'Confirm',confirm_pay_customer_path(id:d.id,customer: @singleCustomer.id,method: :post) %>
+                  <%= button_to 'Confirm',confirm_pay_provider_path(id:d.id,customer: @singleCustomer.id,method: :post) %>
                 <%else%>
                   <p style = "color:blue">Confirmed</p>
                 <% end %>

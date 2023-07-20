@@ -121,8 +121,8 @@ class PaymentsController < ApplicationController
         @bill_new.fine = 0
         @bill_new.amount = @bill_new.price
         @bill_new.status = 0
-        # @bill_new.date = Date.current.beginning_of_month
-        @bill_new.date = Date.today.prev_month(4).beginning_of_month
+        @bill_new.date = Date.current.beginning_of_month
+        # @bill_new.date = Date.today.prev_month(4).beginning_of_month
         @bill_new.due_date = Date.current.end_of_month
         @bill_new.save
       end
@@ -214,6 +214,21 @@ class PaymentsController < ApplicationController
   def confirm_pay
     @bill = Bill.find(params[:id])
     @bill.update(status: 1)
+    h1 = @bill.customer_id.to_s
+    h2 = @bill.amount.to_s
+    h3 = @bill.due_date.to_s
+    h4 = @bill.date.to_s
+    h5 = @bill.package_id.to_s
+    h6 = @bill.provider_id.to_s
+    h7 = @bill.status.to_s
+
+    combined = h1 + h2 + h3 + h4 + h5 + h6 + h7
+
+    hash = Digest::SHA256.hexdigest(combined)[0, 10]
+
+    @bill.txid = hash
+
+    @bill.save
     flash[:confirmsg] = "bill payment confirmed"
     redirect_to "/bills"
     # render :bills
@@ -247,6 +262,28 @@ class PaymentsController < ApplicationController
     end
 
     redirect_to customerbills_path
+  end
+
+  def confirm_pay_provider
+    @bill = Bill.find(params[:id])
+    @bill.update(status: 1)
+    h1 = @bill.customer_id.to_s
+    h2 = @bill.amount.to_s
+    h3 = @bill.due_date.to_s
+    h4 = @bill.date.to_s
+    h5 = @bill.package_id.to_s
+    h6 = @bill.provider_id.to_s
+    h7 = @bill.status.to_s
+
+    combined = h1 + h2 + h3 + h4 + h5 + h6 + h7
+
+    hash = Digest::SHA256.hexdigest(combined)[0, 10]
+
+    @bill.txid = hash
+
+    @bill.save
+    flash[:confirmsg] = "bill payment confirmed"
+    redirect_to showCustomerDetails_path(@bill.customer_id)
   end
 
   def destroy
