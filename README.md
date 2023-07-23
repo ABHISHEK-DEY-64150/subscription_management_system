@@ -131,9 +131,3 @@ rails server
 
 
 
-
-
-## Developed by,
-- <b>[ Abhishek Dey (2017331021)](https://github.com/ABHISHEK-DEY-64150)</b>
-- <b>[Sani Talukder (2017331023)](https://github.com/sani-1023)</b>
-
