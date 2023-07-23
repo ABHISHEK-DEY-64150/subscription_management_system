@@ -82,52 +82,5 @@ run:
 rails server
 ```
 
-
-# Some Screenshots:
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-34-52.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-35-06.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-39-46.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-42-12.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-42-26.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-48-05.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-48-22.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-48-43.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-49-03.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-50-16.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-50-32.png"  height = "400"/> </p>
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-51-21.png"  height = "400"/> </p>
-
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-51-57.png"  height = "400"/> </p>
-
-
-<p  align="center"  >
-<img  src="Project Pictures/Screenshot from 2021-12-13 22-52-47.png"  height = "400"/> </p>
-
-
+- <b>Here is a demo[ video ](https://drive.google.com/file/d/11NIUtgW3QbRovQkW41O0Opwc_TgcFWAX/view?usp=sharing) of the project</b>
 
